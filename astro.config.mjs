@@ -32,9 +32,16 @@ export default defineConfig({
     {
       name: 'Science Gothic',
       cssVariable: '--font-science-gothic',
-      provider: fontProviders.google(),
-      weights: ['100 900'],
-      styles: ['normal']
+      provider: fontProviders.local(),
+      options: {
+        variants: [
+          {
+            weight: '100 900',
+            style: 'normal',
+            src: ['./src/assets/fonts/science-gothic.woff2']
+          }
+        ]
+      }
     }
   ],
 
