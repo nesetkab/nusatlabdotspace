@@ -1,5 +1,43 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
+
+import tailwindcss from '@tailwindcss/vite';
+
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  vite: {
+    plugins: [tailwindcss()]
+  },
+
+  site: 'https://nusatlab.space',
+
+  fonts: [
+    {
+      name: 'Inter',
+      cssVariable: '--font-inter',
+      provider: fontProviders.fontsource(),
+      weights: ['400 800'],
+      styles: ['normal']
+    },
+    {
+      name: 'JetBrains Mono',
+      cssVariable: '--font-jetbrains-mono',
+      provider: fontProviders.fontsource(),
+      weights: [400, 500],
+      styles: ['normal'],
+      fallbacks: ['monospace']
+    },
+    {
+      name: 'Science Gothic',
+      cssVariable: '--font-science-gothic',
+      provider: fontProviders.google(),
+      weights: ['100 900'],
+      styles: ['normal']
+    }
+  ],
+
+  session: false,
+  adapter: cloudflare({ imageService: 'compile' })
+});

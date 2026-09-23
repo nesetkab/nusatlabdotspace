@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* NSL brand palette — source of truth: design/nsl-palette.svg */
+@theme {
+  --color-*: initial;
+  --color-ink: #070c13;
+  --color-prussian: #121d30;
+  --color-dusk: #2b4e73;
+  --color-slate: #a8a9ad;
+  --color-clay: #d39b43;
+  --color-alice: #dae3f1;
+  --color-white: #f8f8f8;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-science-gothic);
+}
+
+@layer base {
+  html {
+    @apply bg-ink text-alice antialiased;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply flex min-h-dvh flex-col font-sans;
+  }
+
+  a {
+    @apply text-clay underline-offset-4 hover:underline;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-clay;
+  }
+}

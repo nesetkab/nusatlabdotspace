@@ -1,0 +1,432 @@
+northeasternsatellitelab@gmail.com
+NSL is a brand-new spin-out club from the Northeastern Aerospace Club, originally founded in 2022 by undergraduate students. The club is run by a management team of 8 undergrads and supported by our faculty advisor, Dr. Jornet, the Associate Dean of Research in the Northeastern College of Engineering. We're also backed by a small but dedicated group of satellite club alumni.
+A CubeSat is a miniaturized satellite, typically under 20 kg, built to a standardized modular design where each unit (a "1U") measures just 10×10×10 cm and weighs about 1.33 kg. Originally developed in 1999 as an educational tool, CubeSats have grown into a platform used by universities, startups, and space agencies to conduct science, test new technology, and enable commercial applications at a fraction of the cost of traditional satellites. Their small size and standardized form factor make them far cheaper to build and launch — democratizing access to space for organizations that previously couldn't afford it.
+CubeSats are our flagship, not our boundary. NSL's work spans ground stations, national competitions, open-source R&D, and mission simulation — from a sub-THz ground segment to trajectory-optimization contests and tools any student team can pick up and use.
+wrench
+Hardware
+Mechanical and electrical engineering: avionics, PCBs, structures, power, and payloads — the physical spacecraft, designed, built, and tested by students.
+zap
+Software
+Flight software running onboard the spacecraft and ground software that talks to it — the code that keeps a mission alive from lab bench to orbit.
+globe
+Simulations
+Orbital mechanics and mission analysis — modeling trajectories, dynamics, and mission scenarios before anything flies.
+NASA CSLI
+AFRL UNP
+INSI
+NSF CIRC
+PROVES
+Cal Poly Pomona Bronco Space
+MSU
+MIT Lincoln Laboratory
+Draper Laboratory
+Specter Aerospace
+Blue Origin
+Space Dynamics Laboratory
+Shield AI
+Northeastern INSI
+Fidelity Investments
+Harvard Medical School
+Stripe
+SpaceX
+proves-atlas
+PROVES Atlas
+Launched · April 2026
+/img/proves.svg
+PROVES Atlas CubeSat illustration
+With the Pleiades Consortium · PROVES
+~15
+students on the build
+<1 yr
+from kickoff to launch
+partner university teams
+In April 2026, Northeastern went to space for the first time — a student-built CubeSat, launched into orbit as one of a five-satellite constellation. About 15 students built it in under a year, working shoulder-to-shoulder with the Pleiades Consortium, a group of five partner university teams. Our students worked on both the hardware and the software of the platform, and we open-sourced all of it. It carries a Sony Spresense camera payload for image capture, and it's part of PROVES — an educational satellite program that's also developing university CubeSat kits for under $3,000, lowering the barrier to space for students and researchers everywhere.
+teralink-1
+Teralink-1
+In development
+Tentative launch window: TBD
+TBD
+tentative launch window
+Active
+team building now
+/img/satellite.svg
+Teralink-1 CubeSat concept illustration
+An in-development CubeSat program pushing high-frequency communications. [Placeholder — full mission description coming from the Teralink-1 team.]
+sub-thz
+Sub-THz Ground Station
+Sub-THz
+frequency frontier
+Growing
+one of our fastest-growing programs
+/img/groundstation.svg
+Sub-THz ground station illustration
+A student-built ground station exploring sub-terahertz communication links — and one of our most rapidly growing programs. [Placeholder — full description coming soon.]
+dewsat
+NASA Space to Soil — DEWSat
+Finalist
+/img/dewsat.svg
+DEWSat drought early-warning satellite concept illustration
+NASA Space to Soil challenge
+A four-member NSL team was selected as a finalist for DEWSat — a Drought Early Warning Satellite. DEWSat captures multispectral data and processes it onboard, using a custom compute architecture running a quantized Bi-LSTM, to compute vegetation indices, detect soil stress, and produce risk alerts within hours. Doing the analysis in orbit means faster responses without heavy ground infrastructure — and the same architecture extends to wildfire, flood, and urban-heat monitoring, especially as a constellation. The competition has concluded, and the team is exploring the path from concept to launch-ready mission.
+gtoc-14
+GTOC-14
+Forming interest
+The Global Trajectory Optimization Competition — often called the "America's Cup of Rocket Science" — is an international trajectory-optimization contest. GTOC-14 hasn't been announced yet, but NSL intends to field a team and is gathering interested members ahead of the announcement.
+star
+Open-Source Star Tracker Algorithm
+An open attitude-determination algorithm that identifies a spacecraft's orientation from the stars it sees.
+Open-Source Radio Telescope
+With SEDS
+A radio telescope built in collaboration with SEDS — open hardware for listening to the sky.
+layers
+SatSim
+Early development
+An open-source Python framework for end-to-end CubeSat mission simulation — a modular architecture covering orbital mechanics, spacecraft dynamics, and mission analysis, aiming to become an accessible tool for mission design and education.
+CubeSat Deployable Solar Panel Mechanism
+A student-designed deployable solar-panel mechanism for CubeSats — more power in a small package.
+Landon Bayer, Noah Typrin, Riley Ashok
+Monday
+Hardware team build session
+6:00 – 8:00 PM
+Tuesday
+Software / flight code
+7:00 – 9:00 PM
+Wednesday
+All-hands general meeting
+7:30 – 9:00 PM
+Thursday
+Simulations & mission analysis
+E-Board
+Laura Teixeira
+Swati Sundaram
+Orlando LuPone
+Sandhya Moorthi
+Gavin Sarno
+Landon Bayer
+Noah Typrin
+Riley Ashok
+Subteam leads
+Mechanical — TBA
+Software — TBA
+Simulations — TBA
+Instagram
+#
+LinkedIn
+react.transitional.element
+react.fragment
+key
+solid
+--btn-glow-tight
+--btn-glow-wide
+--btn-fill-lava
+--btn-glow-tight-lava
+--btn-glow-wide-lava
+--btn-ghost-color
+--btn-ghost-border-hover
+--btn-ghost-glow
+btn
+btn--solid
+ghost
+btn--ghost
+ghost-bordered
+btn--ghost-bordered
+btn--lava
+btn__label
+btn__arrow
+btn__arrow_inner
+→
+left
+full
+classic
+section hero-section section--${o} hero-section--${i} hero-section--${a} hero-section--x-${s}
+hero-section__glow
+section-container
+hero-section__content
+section-eyebrow
+hero-section__headline
+hero-section__sub
+hero-section__actions
+22,6 12,13 2,6
+cards
+section section--${a}
+feature-grid__header
+section-title
+section-sub
+feature-grid__grid feature-grid__grid--x-${o}
+--feature-cols
+feature-card
+feature-card__icon
+feature-card__title
+feature-card__body
+Name: ${c.name}nContact: ${c.contact}nn${c.message}
+mailto:${r}?subject=Inquiry%20from%20website&body=${e}
+section section--${s}
+contact-section__inner
+contact-section__info
+32px
+contact-section__detail-list
+contact-section__detail
+contact-section__detail-icon
+mail
+mailto:${r}
+contact-section__detail-value
+phone
+tel:${i}
+contact-section__form
+contact-form__group
+contact-form__label
+cs-name
+Name
+name
+contact-form__input
+Your name
+cs-contact
+Email or Phone
+contact
+How to reach you
+cs-msg
+Message
+message
+contact-form__textarea
+Tell us about your business...
+contact-form__submit
+Send Message
+faq-group
+faq__header
+faq__list
+details
+faq__item
+summary
+faq__q
+faq__icon
+faq__a
+nsl-marquee${t?
+:
+}
+nsl-marquee__track
+--marquee-dur
+${n}s
+nsl-chip
+${e}-${t}
+Please add me to the NSL mailing list: ${e.trim()}
+mailto:${Qn}?subject=Mailing%20list%20signup&body=${n}
+nsl-mailing
+your.email@northeastern.edu
+aria-label
+Email address
+Join the list
+nsl-mailing__done
+Thanks! Your email app should open to confirm.
+nsl-hero
+nsl-hero__photo
+/img/photos/hero.jpg
+The atrium of Northeastern's ISEC building, with its helix staircase
+Northeastern Satellite Lab · Est. 2022
+Welcome to Northeastern's Satellite Lab.
+We're a student-run club designing, building, and launching CubeSats and more — real spacecraft, built by undergrads across hardware, software, and simulations.
+Explore our work
+/projects
+Join the mailing list
+/contact
+centered
+Get to know us
+The basics
+What is NSL?
+What is a CubeSat?
+alt
+nsl-block
+nsl-block__inner
+nsl-eyebrow
+More than CubeSats
+nsl-h2
+Satellites are just the start
+nsl-sub
+720px
+Our teams
+Three teams, one spacecraft
+Every member joins a team and builds real flight hardware, software, or mission analysis — mechanical, electrical, and computing students all have a home here.
+nsl-block nsl-block--alt nsl-orgs
+Partners & people
+We don't do it alone
+The agencies, labs, and university teams we build alongside — and where our members and alumni go on to work.
+nsl-orgs__row
+nsl-orgs__label
+Partners, collaborators & mentors
+Our members & alumni work at
+nsl-block nsl-block--alt
+Our work
+Missions, competitions, and open-source tools
+nsl-worklinks
+nsl-worklink
+nsl-worklink__eyebrow
+Full portfolio
+nsl-worklink__title
+Projects
+nsl-worklink__body
+Everything we're building — active satellite & ground-station programs, competitions like NASA Space to Soil, and open-source R&D.
+nsl-worklink__cta
+See all projects →
+/programs
+Flagship programs
+Programs
+The deep dive on our flagship flight experiments — PROVES Atlas, Teralink-1, and the Sub-THz Ground Station.
+See our programs →
+Stay in the loop
+Are you a NU or NSL community member?
+Join our mailing list for meeting times, launch news, and ways to get involved.
+nsl-intro
+nsl-intro__inner
+nsl-intro__title
+nsl-intro__lead
+Our flagship satellite and ground-station programs — some call them flight experiments — at the scale of multi-semester missions: real hardware, real launches, and teams of a dozen or more students working with national partners.
+nsl-detail${t%2?
+nsl-detail__media
+nsl-detail__info
+nsl-detail__tag
+nsl-detail__name
+nsl-detail__body
+dl
+nsl-scale
+nsl-scale__item
+dt
+nsl-scale__label
+dd
+nsl-scale__big
+nsl-detail__meta
+nsl-detail__ph
+Placeholder copy — full details coming from the team
+nsl-footnote
+Looking for competitions and open-source R&D too? The full portfolio lives on the
+Projects page
+Everything we're building
+Active satellite and ground-station programs, national competitions, and open-source R&D — the full portfolio.
+Active satellite & ground station programs
+Missions in flight and on the bench
+Competitions
+Taking on the hard problems
+nsl-detail
+nsl-callout
+nsl-callout__row
+nsl-callout__name
+nsl-callout__tag
+nsl-callout__body
+R&D projects
+Open-source by default
+Tools and hardware we build in the open — usable by any student or researcher.
+nsl-rnd
+nsl-rnd__card
+nsl-rnd__head
+nsl-rnd__title
+nsl-rnd__tag
+nsl-rnd__body
+36px 0
+nsl-pocs
+nsl-pocs__title
+Project points of contact
+nsl-pocs__line
+strong
+—
+All other projects — reach out through the
+contact page
+?
+This Semester
+Meetings, schedule & who to talk to
+Everything you need to show up and get involved this semester.
+nsl-cards
+40px
+nsl-info-card
+General meeting
+nsl-info-card__big
+Wed · 7:30 PM
+Location TBD — all members welcome. [Placeholder]
+Questions?
+mailto:${Qn}
+var(--color-accent)
+Reach out anytime — we're happy to help you find a team.
+Weekly schedule
+Placeholder times & rooms — the team updates these each term
+nsl-table-wrap
+20px
+nsl-table
+Day
+Session
+Time
+Where
+nsl-table__time
+Persons of contact
+Who to talk to
+nsl-roster
+28px
+nsl-roster__group
+nsl-roster__title
+nsl-roster__list
+nsl-person
+nsl-person__avatar
+nsl-person__name
+Founded
+Spun out of the Northeastern Aerospace Club by undergraduate students.
+Management team
+Undergrads running the club day-to-day.
+Dr. Jornet
+Faculty advisor
+Associate Dean of Research, Northeastern College of Engineering.
+About Us
+Students building real spacecraft.
+A brand-new, student-run satellite lab at Northeastern — undergrads designing, building, and flying CubeSats and more.
+/img/photos/gallery-1.jpg
+Who we are
+Northeastern Satellite Lab
+36px
+6px
+nsl-detail nsl-detail--reverse
+CubeSat illustration
+The platform
+How the work splits up
+Alumni & advisors
+The people behind the students
+NSL is supported by a small but dedicated group of satellite-club alumni who mentor current members, and by our faculty advisor Dr. Jornet, Associate Dean of Research in the Northeastern College of Engineering. That network follows our members after graduation, too.
+Contact
+Get in touch
+Questions, collaborations, or want to join? Email us at
+or use the form below.
+Reach the lab
+Send us a message
+Whether you're a prospective member, a collaborator, or press — drop us a line and we'll get back to you.
+mailing
+Mailing list
+Join our mailing list
+For NU and NSL community members — meeting times, launch news, and opportunities to get involved.
+18px
+Project-specific mailing lists (Teralink-1, THz ground station) are coming soon.
+Follow along
+Find us on social
+nsl-socials
+/this-semester
+/about
+nsl-nav
+Main
+/
+nsl-nav__logo
+nsl-nav__mark
+Northeastern
+nsl-nav__accent
+Satellite Lab
+nsl-nav__links
+nsl-nav__link${e?
+nsl-footer
+nsl-footer__inner
+nsl-footer__brand-col
+nsl-footer__brand
+nsl-footer__tagline
+A student-run club at Northeastern University designing, building, and launching CubeSats and more — hardware, software, and simulations.
+nsl-footer__col
+nsl-footer__col-title
+Explore
+Contact & mailing list
+nsl-footer__bottom
+©
+Founded 2022 · Boston, MA
+nsl-app
+nsl-backdrop
+nsl-main
+root

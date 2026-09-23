@@ -1,17 +1,39 @@
 ---
-
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import hero from '../assets/photos/hero.jpg';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <section class="relative isolate overflow-hidden">
+    <Image
+      src={hero}
+      alt="The atrium of Northeastern's ISEC building, with its helix staircase"
+      widths={[640, 1024, 1600]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="absolute inset-0 -z-10 size-full object-cover"
+    />
+    <div class="absolute inset-0 -z-10 bg-linear-to-t from-ink via-ink/80 to-ink/40"></div>
+
+    <div class="mx-auto max-w-6xl px-5 py-28 sm:py-40">
+      <p class="font-mono text-xs uppercase tracking-widest text-clay">Northeastern Satellite Lab · Est. 2020</p>
+      <h1 class="mt-4 max-w-3xl font-display text-4xl font-bold text-white sm:text-6xl">
+        Welcome to Northeastern's Satellite Lab.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-alice">
+        We're a student-run club designing, building, and launching CubeSats and more — real spacecraft,
+        built by undergrads across hardware, software, and simulations.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="/projects" class="rounded-md bg-clay px-5 py-3 font-semibold text-ink no-underline hover:bg-alice hover:no-underline">
+          Explore our work →
+        </a>
+        <a href="/contact#mailing" class="rounded-md border border-alice/40 px-5 py-3 font-semibold text-alice no-underline hover:border-clay hover:text-clay hover:no-underline">
+          Join the mailing list
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

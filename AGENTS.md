@@ -8,6 +8,16 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Images
+
+- Raster images (jpg/png/webp): use `<Image>` / `<Picture>` from `astro:assets`.
+- SVGs (logos, wordmarks, illustrations): use them as SVG components
+  (`import Logo from '../assets/brand/nsl-logo-light.svg'` → `<Logo class="h-16 w-auto" />`,
+  adding `aria-hidden="true"` when decorative or `role="img" aria-label="…"` otherwise).
+  Do not pass SVGs to `<Image>` — with `imageService: 'compile'`, the Cloudflare adapter's dev
+  image endpoint rejects SVG with `400 Unsupported format: svg`, so they break under `astro dev`
+  even though builds work.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build

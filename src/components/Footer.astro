@@ -1,0 +1,42 @@
+---
+import Logo from '../assets/brand/nsl-logo-light.svg';
+import { navLinks, contactEmail } from './nav-links';
+---
+
+<footer class="border-t border-dusk/60 bg-prussian">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 py-12 md:grid-cols-[2fr_1fr_1fr]">
+    <div class="flex gap-4">
+      <Logo aria-hidden="true" class="h-16 w-auto shrink-0" />
+      <div>
+        <p class="font-semibold text-white">Northeastern Satellite Lab</p>
+        <p class="mt-2 max-w-sm text-sm text-slate">
+          A student-run club at Northeastern University designing, building, and launching CubeSats and
+          more — hardware, software, and simulations.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="font-mono text-xs uppercase tracking-widest text-slate">Explore</h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        {navLinks.map(({ href, label }) => (
+          <li><a href={href} class="text-alice hover:text-clay">{label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="font-mono text-xs uppercase tracking-widest text-slate">Contact</h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href={`mailto:${contactEmail}`} class="break-all">{contactEmail}</a></li>
+        <li><a href="/contact#mailing" class="text-alice hover:text-clay">Join the mailing list</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-dusk/60">
+    <p class="mx-auto max-w-6xl px-5 py-5 text-xs text-slate">
+      © {new Date().getFullYear()} Northeastern Satellite Lab · Founded 2020 · Boston, MA
+    </p>
+  </div>
+</footer>
