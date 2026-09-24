@@ -1,0 +1,16 @@
+---
+// A sentence that lists organizations: the label, then the <Org> children separated by commas.
+interface Props {
+  label: string;
+  class?: string;
+}
+
+const { label, class: className } = Astro.props;
+---
+
+<div class:list={['max-w-[68ch] text-alice/80', className]}>
+  <span class="text-white">{label}</span>{" "}
+  <ul class="inline">
+    <slot />
+  </ul>
+</div>

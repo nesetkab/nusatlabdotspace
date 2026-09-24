@@ -2,17 +2,17 @@
 // Weekly meeting table; the children are <Session> rows.
 ---
 
-<div class="mt-6 overflow-x-auto rounded-xl border border-dusk/60">
-  <table class="w-full min-w-lg text-left">
-    <thead class="bg-prussian font-mono text-xs uppercase tracking-widest text-slate">
+<div class="mt-6 overflow-x-auto">
+  <table class="w-full min-w-lg text-left tabular-nums">
+    <thead class="border-b border-dusk text-sm text-slate">
       <tr>
-        <th scope="col" class="px-5 py-3 font-medium">Day</th>
-        <th scope="col" class="px-5 py-3 font-medium">Session</th>
-        <th scope="col" class="px-5 py-3 font-medium">Time</th>
-        <th scope="col" class="px-5 py-3 font-medium">Where</th>
+        <th scope="col" class="py-2 pr-6 font-normal">Day</th>
+        <th scope="col" class="py-2 pr-6 font-normal">Session</th>
+        <th scope="col" class="py-2 pr-6 font-normal">Time</th>
+        <th scope="col" class="py-2 pr-6 font-normal">Where</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-dusk/60">
+    <tbody class="divide-y divide-line">
       <slot />
     </tbody>
   </table>

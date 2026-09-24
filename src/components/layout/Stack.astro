@@ -1,5 +1,5 @@
 ---
-// Vertical stack with generous spacing, for a run of <Mission> write-ups.
+// Vertical run of <Mission> write-ups.
 interface Props {
   class?: string;
 }
@@ -7,6 +7,6 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class:list={['space-y-24', className]}>
+<div class:list={['space-y-20', className]}>
   <slot />
 </div>

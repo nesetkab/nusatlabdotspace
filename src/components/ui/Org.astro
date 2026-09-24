@@ -1,7 +1,5 @@
 ---
-// One name chip in a <Marquee>.
+// One name in an <OrgList>. Names run together as a comma-separated sentence.
 ---
 
-<li class="shrink-0 rounded-full border border-dusk bg-ink/60 px-4 py-2 text-sm font-medium whitespace-nowrap text-alice">
-  <slot />
-</li>
+<li class="inline after:content-[',_'] last:after:content-['.']"><slot /></li>

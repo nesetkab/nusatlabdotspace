@@ -2,181 +2,174 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import hero from '../assets/photos/hero.jpg';
-import { Section, SectionHeading, Icon, Marquee, Org, Grid, Card, MailingListForm } from '../components';
-import WhatIsNsl from '../partials/what-is-nsl.mdx';
-import WhatIsACubeSat from '../partials/what-is-a-cubesat.mdx';
+import { Section, SectionHeading, Org, OrgList, MailingListForm } from '../components';
 import AlumniEmployers from '../partials/alumni-employers.mdx';
 
-const basics = [
-  { q: 'What is NSL?', Answer: WhatIsNsl },
-  { q: 'What is a CubeSat?', Answer: WhatIsACubeSat },
-];
-
-// Full team descriptions live on the About page.
-const teams = [
-  { icon: 'wrench', title: 'Hardware' },
-  { icon: 'zap', title: 'Software' },
-  { icon: 'globe', title: 'Simulations' },
-  { icon: 'briefcase', title: 'Business' },
-] as const;
-
-const workLinks = [
+const work = [
   {
-    href: '/projects',
-    eyebrow: 'Full portfolio',
-    title: 'Projects',
-    body: "Everything we're building — active satellite & ground-station programs, competitions like NASA Space to Soil, and open-source R&D.",
-    cta: 'See all projects',
+    href: '/programs#proves-atlas',
+    name: 'PROVES Atlas',
+    status: 'In orbit since April 2026',
+    what: 'Our first satellite. A camera CubeSat, built by about 15 students in under a year and deployed from the ISS with four other university satellites.',
   },
   {
-    href: '/programs',
-    eyebrow: 'Flagship programs',
-    title: 'Programs',
-    body: 'The deep dive on our flagship flight experiments — PROVES Atlas, TeraLink-1, and the Sub-THz Ground Station.',
-    cta: 'See our programs',
+    href: '/programs#teralink-1',
+    name: 'TeraLink-1',
+    status: 'Critical Design Review in November',
+    what: 'A 6U CubeSat that will try the first terahertz link from space to the ground. Funded by AFRL’s University Nanosatellite Program.',
+  },
+  {
+    href: '/programs#sub-thz',
+    name: 'Sub-THz Ground Station',
+    status: 'In design',
+    what: 'The other end of that link: a 2 m reflector dish that must hold its shape to within 83 µm.',
+  },
+  {
+    href: '/projects#dewsat',
+    name: 'DEWSat',
+    status: 'NASA Space to Soil finalist',
+    what: 'A drought early-warning satellite that scores farmland for drought risk in orbit and sends down only the high-risk images.',
+  },
+];
+
+const teams = [
+  { name: 'Hardware', what: 'structures, circuit boards, power, and firmware' },
+  { name: 'Software', what: 'flight and ground-station code' },
+  { name: 'Simulations', what: 'orbits, dynamics, and mission analysis' },
+  { name: 'Business', what: 'proposals, funding, outreach, and operations' },
+];
+
+const press = [
+  {
+    title: 'Students reach for the stars with launch of first satellite',
+    outlet: 'Northeastern Global News, March 2026',
+    href: 'https://news.northeastern.edu/2026/03/20/student-club-satellite-launch/',
+  },
+  {
+    title: 'Northeastern Satellite Laboratory prepares for interstellar debut with cube satellite',
+    outlet: 'The Huntington News',
+    href: 'https://huntnewsnu.com/92573/primary-homepage/northeastern-satellite-laboratory-prepares-for-interstellar-debut-with-cube-satellite/',
+  },
+  {
+    title: 'New Space Engineering Club Set to Launch Their First Satellite',
+    outlet: 'Northeastern College of Engineering',
+    href: 'https://coe.northeastern.edu/news/new-space-engineering-club-set-to-launch-their-first-satellite/',
+  },
+  {
+    title: 'Building a space satellite isn’t cheap. These Northeastern students are researching ways to bring the cost way down.',
+    outlet: 'Northeastern Global News, September 2024',
+    href: 'https://news.northeastern.edu/2024/09/16/satellite-development-cost-project-horizon/',
+  },
+  {
+    title: 'Student Club Is Innovating To Lower the Cost of Satellites',
+    outlet: 'Northeastern College of Engineering',
+    href: 'https://coe.northeastern.edu/news/northeastern-undergraduates-innovate-satellite-development-through-project-horizon/',
   },
 ];
 ---
 
 <BaseLayout>
-  <section class="relative isolate overflow-hidden">
-    <Image
-      src={hero}
-      alt="The atrium of Northeastern's ISEC building, with its helix staircase"
-      widths={[640, 1024, 1600]}
-      sizes="100vw"
-      loading="eager"
-      fetchpriority="high"
-      class="absolute inset-0 -z-10 size-full object-cover"
-    />
-    <div class="absolute inset-0 -z-10 bg-linear-to-t from-ink via-ink/80 to-ink/40"></div>
-
-    <div class="mx-auto max-w-6xl px-5 py-28 sm:py-40">
-      <p class="font-mono text-xs uppercase tracking-widest font-medium text-slate">Northeastern Satellite Lab · Est. 2020</p>
-      <h1 class="mt-4 max-w-3xl font-display text-4xl font-medium sm:text-6xl">
-        <span class="block text-white">Welcome to</span>
-        <span class="block font-features-['smcp'] text-slate">Northeastern <span class="text-clay">Satellite</span> Lab</span>
+  <section class="mx-auto grid w-full max-w-6xl gap-10 px-5 pt-14 pb-6 sm:pt-20 md:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] md:gap-14">
+    <div>
+      <h1 class="font-display text-[clamp(2.25rem,7vw,4rem)] leading-none font-medium text-white font-features-['smcp']">
+        Northeastern <span class="text-clay">Satellite</span> Lab
       </h1>
-      <p class="mt-6 max-w-2xl text-lg text-alice">
-        We're a student-run club designing, building, and launching CubeSats and more — real spacecraft,
-        built by undergrads across hardware, software, and simulations.
-      </p>
-      <div class="mt-10 flex flex-wrap gap-4">
-        <a href="/projects" class="rounded-md bg-clay px-5 py-3 font-semibold text-ink no-underline hover:bg-alice hover:no-underline">
-          Explore our work →
-        </a>
-        <a href="/contact#mailing" class="rounded-md border border-alice/40 px-5 py-3 font-semibold text-alice no-underline hover:border-clay hover:text-clay hover:no-underline">
-          Join the mailing list
-        </a>
+      <div class="prose-nsl mt-8 text-lg text-alice/90">
+        <p>
+          We’re a student club at Northeastern University that designs, builds, and launches small satellites. In
+          April 2026 our first one, <a href="/programs#proves-atlas">PROVES Atlas</a>, was deployed from the
+          International Space Station. The next, <a href="/programs#teralink-1">TeraLink-1</a>, is on the bench now.
+        </p>
+        <p>
+          You don’t need experience to join. New members start at Intro to Satellites, Mondays at 7 PM in Forsyth 129.
+          The rest of the week’s meetings are on the <a href="/this-semester">schedule</a>.
+        </p>
       </div>
     </div>
+    <figure class="md:mt-3">
+      <Image
+        src={hero}
+        alt="The helix staircase in the atrium of Northeastern’s ISEC building"
+        widths={[400, 700, 1000]}
+        sizes="(min-width: 768px) 360px, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="aspect-[4/5] w-full rounded-sm object-cover object-[68%_50%]"
+      />
+      <figcaption class="mt-2 text-sm text-slate">The ISEC atrium on Northeastern’s Boston campus.</figcaption>
+    </figure>
   </section>
 
-  <section aria-labelledby="press-heading" class="border-y border-dusk/60">
-    <div class="mx-auto max-w-6xl px-5 py-12">
-      <h2 id="press-heading" class="text-lg text-slate">
-        <span class="font-mono text-xs font-medium uppercase tracking-widest text-clay">As seen in</span>
-        <span class="mt-2 block font-display text-xl font-medium text-white sm:text-2xl">
-          Northeastern Global News, The Huntington News & Northeastern College of Engineering
-        </span>
-      </h2>
-      <Grid cols={3} class="mt-8">
-        <Card eyebrow="The Huntington News" title="Northeastern Satellite Laboratory prepares for interstellar debut with cube satellite" href="https://huntnewsnu.com/92573/primary-homepage/northeastern-satellite-laboratory-prepares-for-interstellar-debut-with-cube-satellite/" cta="Read" />
-        <Card eyebrow="Northeastern Global News" title="Students reach for the stars with launch of first satellite" href="https://news.northeastern.edu/2026/03/20/student-club-satellite-launch/" cta="Read" />
-        <Card eyebrow="Northeastern College of Engineering" title="New Space Engineering Club Set to Launch Their First Satellite" href="https://coe.northeastern.edu/news/new-space-engineering-club-set-to-launch-their-first-satellite/" cta="Read" />
-        <Card eyebrow="Northeastern College of Engineering" title="Student Club Is Innovating To Lower the Cost of Satellites" href="https://coe.northeastern.edu/news/northeastern-undergraduates-innovate-satellite-development-through-project-horizon/" cta="Read" />
-        <Card eyebrow="Northeastern Global News" title="Building a space satellite isn't cheap. These Northeastern students are researching ways to bring the cost way down." href="https://news.northeastern.edu/2024/09/16/satellite-development-cost-project-horizon/" cta="Read" />
-      </Grid>
-    </div>
-  </section>
-
-  <Section alt>
-    <SectionHeading eyebrow="Get to know us" title="The basics" />
-    <div class="mt-10 max-w-3xl divide-y divide-dusk/60 border-y border-dusk/60">
-      {basics.map(({ q, Answer }) => (
-        <details class="group py-5">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white [&::-webkit-details-marker]:hidden">
-            {q}
-            <svg class="size-5 shrink-0 text-clay transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-              <path d="M12 5v14M5 12h14" />
-            </svg>
-          </summary>
-          <div class="mt-4 space-y-4 text-alice"><Answer /></div>
-        </details>
+  <Section>
+    <SectionHeading title="What we’re working on" />
+    <ul class="mt-6 max-w-3xl divide-y divide-line border-y border-line">
+      {work.map(({ href, name, status, what }) => (
+        <li class="py-5">
+          <h3 class="font-semibold">
+            <a href={href} class="text-white decoration-white/30 hover:text-clay hover:decoration-clay">{name}</a>
+            <span class="font-normal text-slate"> · {status}</span>
+          </h3>
+          <p class="mt-1 text-pretty text-alice/80">{what}</p>
+        </li>
       ))}
+    </ul>
+    <p class="mt-5 max-w-3xl text-alice/80">
+      We also help the MIT Satellite Team with <a href="/programs#leonird">LEONIRD</a>, and run open-source projects
+      like a star tracker and a mission simulator. <a href="/projects">All projects</a>.
+    </p>
+  </Section>
+
+  <Section>
+    <SectionHeading title="How the club works" />
+    <div class="prose-nsl mt-4 text-alice/90">
+      <p>Every member joins one of four teams, each with its own weekly meeting:</p>
+      <ul class="list-disc space-y-1 pl-5 marker:text-slate">
+        {teams.map(({ name, what }) => (
+          <li><span class="text-white">{name}</span>: {what}</li>
+        ))}
+      </ul>
+      <p>
+        The Business team finds and writes the competition entries and grant proposals that pay for the hardware.
+        The club started in 2020 as Project Horizon inside AeroNU and became its own club in 2025. Our faculty
+        advisor is Dr. Josep Jornet. <a href="/about">More about us</a>.
+      </p>
     </div>
   </Section>
 
   <Section>
-    <SectionHeading
-      eyebrow="More than CubeSats"
-      title="Satellites are just the start"
-      sub="CubeSats are our flagship, not our boundary. NSL's work spans ground stations, national competitions, open-source R&D, and mission simulation — from a sub-THz ground segment to trajectory-optimization contests and tools any student team can pick up and use."
-    />
+    <SectionHeading title="Who we work with" />
+    <div class="mt-4 space-y-4">
+      <OrgList label="Partners and mentors:">
+        <Org>NASA’s CubeSat Launch Initiative</Org>
+        <Org>AFRL’s University Nanosatellite Program</Org>
+        <Org>Northeastern’s Institute for the Wireless Internet of Things</Org>
+        <Org>UNLab</Org>
+        <Org>NSF CIRC</Org>
+        <Org>PROVES</Org>
+        <Org>Cal Poly Pomona Bronco Space</Org>
+        <Org>the MIT Satellite Team</Org>
+        <Org>Morehead State University</Org>
+      </OrgList>
+      <OrgList label="Members and alumni have gone on to:"><AlumniEmployers /></OrgList>
+    </div>
   </Section>
 
-  <Section class="pt-0 sm:pt-0">
-    <SectionHeading
-      eyebrow="Our teams"
-      title="Four teams, one spacecraft"
-      sub="Every member joins a team and works on real flight hardware, software, mission analysis, or the business that keeps missions funded — engineers and non-engineers alike have a home here."
-    />
-    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {teams.map(({ icon, title }) => (
+  <Section>
+    <SectionHeading title="In the news" />
+    <ul class="mt-5 max-w-3xl space-y-4">
+      {press.map(({ title, outlet, href }) => (
         <li>
-          <a href="/about#teams" class="group flex items-center gap-4 rounded-xl border border-dusk/60 bg-prussian p-5 font-semibold text-white no-underline transition-colors hover:border-clay hover:no-underline">
-            <span class="inline-flex size-11 shrink-0 items-center justify-center rounded-lg bg-dusk/40 text-clay">
-              <Icon name={icon} />
-            </span>
-            {title}
-            <span aria-hidden="true" class="ml-auto text-clay transition-transform group-hover:translate-x-1">→</span>
-          </a>
+          <a href={href}>{title}</a>
+          <span class="block text-sm text-slate">{outlet}</span>
         </li>
       ))}
     </ul>
   </Section>
 
-  <section class="bg-prussian py-20 sm:py-24">
-    <div class="mx-auto max-w-6xl px-5">
-      <SectionHeading
-        eyebrow="Partners & people"
-        title="We don't do it alone"
-        sub="The agencies, labs, and university teams we build alongside — and where our members and alumni go on to work."
-      />
-    </div>
-    <Marquee label="Partners, collaborators & mentors" duration={36}>
-      <Org>NASA CSLI</Org>
-      <Org>AFRL UNP</Org>
-      <Org>INSI</Org>
-      <Org>UNLab</Org>
-      <Org>NSF CIRC</Org>
-      <Org>PROVES</Org>
-      <Org>Cal Poly Pomona Bronco Space</Org>
-      <Org>MIT Satellite Team</Org>
-      <Org>Morehead State University</Org>
-    </Marquee>
-    <Marquee label="Our members & alumni work at" reverse duration={50}><AlumniEmployers /></Marquee>
-  </section>
-
-  <Section>
-    <SectionHeading eyebrow="Our work" title="Missions, competitions, and open-source tools" />
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
-      {workLinks.map(({ href, eyebrow, title, body, cta }) => (
-        <a href={href} class="group rounded-xl border border-dusk/60 bg-prussian p-8 text-alice no-underline transition-colors hover:border-clay hover:no-underline">
-          <span class="font-mono text-xs uppercase tracking-widest text-slate">{eyebrow}</span>
-          <span class="mt-3 block font-display text-2xl font-medium text-white">{title}</span>
-          <span class="mt-3 block">{body}</span>
-          <span class="mt-6 block font-semibold text-clay">{cta} <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span></span>
-        </a>
-      ))}
-    </div>
-  </Section>
-
-  <Section alt>
+  <Section id="mailing">
     <SectionHeading
-      eyebrow="Stay in the loop"
-      title="Are you a NU or NSL community member?"
-      sub="Join our mailing list for meeting times, launch news, and ways to get involved."
+      title="Mailing list"
+      sub="Meeting times, launch news, and ways to get involved, for Northeastern students and the NSL community."
     />
     <MailingListForm />
   </Section>

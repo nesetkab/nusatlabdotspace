@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* NSL brand palette — source of truth: design/nsl-palette.svg */
+/* NSL brand palette. Source of truth: design/nsl-palette.svg */
 @theme {
   --color-*: initial;
   --color-ink: #070c13;
@@ -12,22 +12,15 @@
   --color-white: #f8f8f8;
   --color-transparent: transparent;
   --color-current: currentColor;
+
+  /* Rules and table borders. */
+  --color-line: color-mix(in oklab, var(--color-dusk) 55%, var(--color-ink));
 }
 
 @theme inline {
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains-mono);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
   --font-display: var(--font-science-gothic);
-}
-
-@theme {
-  --animate-marquee: marquee var(--marquee-duration, 42s) linear infinite;
-
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
-    }
-  }
 }
 
 @layer base {
@@ -37,14 +30,27 @@
   }
 
   body {
-    @apply flex min-h-dvh flex-col font-sans;
+    @apply flex min-h-dvh flex-col font-sans text-[1.0625rem] leading-7;
   }
 
   a {
-    @apply text-clay underline-offset-4 hover:underline;
+    @apply text-clay underline decoration-clay/40 decoration-1 underline-offset-[0.2em] hover:decoration-clay;
   }
 
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-clay;
   }
+
+  ::selection {
+    @apply bg-clay text-ink;
+  }
+}
+
+/* Running text. Kept to a readable line length. */
+@utility prose-nsl {
+  @apply max-w-[68ch] space-y-4 text-pretty;
+}
+
+@utility btn-primary {
+  @apply inline-flex cursor-pointer items-center justify-center rounded-sm bg-clay px-5 py-2.5 font-semibold whitespace-nowrap text-ink no-underline hover:bg-white;
 }
