@@ -1,7 +1,5 @@
 ---
-// One name in an <OrgList>, separated from the next by a slash.
+// One name in an <OrgList>. Names run together as a comma-separated sentence.
 ---
 
-<li class="after:ml-3 after:text-dusk after:content-['/'] last:after:hidden">
-  <slot />
-</li>
+<li class="inline after:content-[',_'] last:after:content-['.']"><slot /></li>

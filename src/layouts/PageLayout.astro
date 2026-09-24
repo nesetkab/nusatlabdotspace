@@ -1,6 +1,6 @@
 ---
 // Layout for MDX pages in src/pages/. Set these in the page's frontmatter:
-//   title (tab/SEO title), description, label (optional line above the h1), heading (the h1), lead (intro paragraph).
+//   title (tab/SEO title), description, heading (the h1), lead (intro paragraph).
 import BaseLayout from './BaseLayout.astro';
 import PageIntro from '../components/layout/PageIntro.astro';
 
@@ -8,16 +8,15 @@ interface Props {
   frontmatter: {
     title: string;
     description?: string;
-    label?: string;
     heading: string;
     lead?: string;
   };
 }
 
-const { title, description, label, heading, lead } = Astro.props.frontmatter;
+const { title, description, heading, lead } = Astro.props.frontmatter;
 ---
 
 <BaseLayout {title} {description}>
-  <PageIntro {label} title={heading}>{lead}</PageIntro>
+  <PageIntro title={heading}>{lead}</PageIntro>
   <slot />
 </BaseLayout>

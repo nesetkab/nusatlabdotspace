@@ -15,7 +15,7 @@ interface Props {
 const siteName = 'Northeastern Satellite Lab';
 const {
   title,
-  description = 'The Northeastern Satellite Lab (NSL) is a student-run club that designs, builds, and launches CubeSats.',
+  description = "The Northeastern Satellite Lab (NSL) is a student-run club that designs, builds, and launches CubeSats: hardware, software, and simulations.",
   shareImage = defaultShareImage,
 } = Astro.props;
 
@@ -47,8 +47,8 @@ const ogUrl = new URL(og.src, Astro.site);
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <Font cssVariable="--font-body" preload />
-    <Font cssVariable="--font-jetbrains-mono" />
+    <Font cssVariable="--font-plex-sans" preload />
+    <Font cssVariable="--font-plex-mono" />
     <Font cssVariable="--font-science-gothic" preload />
   </head>
   <body>

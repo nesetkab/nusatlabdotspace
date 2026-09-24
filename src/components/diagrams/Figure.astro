@@ -1,0 +1,15 @@
+---
+interface Props {
+  caption?: string;
+  class?: string;
+}
+
+const { caption, class: className } = Astro.props;
+---
+
+<figure class:list={['min-w-0', className]}>
+  <div class="overflow-hidden rounded-sm border border-line bg-prussian/40">
+    <slot />
+  </div>
+  {caption && <figcaption class="mt-2 text-sm text-pretty text-slate">{caption}</figcaption>}
+</figure>

@@ -1,0 +1,56 @@
+---
+const earth = { cx: 320, cy: 1400, r: 1080 };
+const orbitR = 1290;
+const ground = (x: number) => earth.cy - Math.sqrt(earth.r ** 2 - (x - earth.cx) ** 2);
+
+const sat = { x: 300, y: earth.cy - Math.sqrt(orbitR ** 2 - (300 - earth.cx) ** 2) };
+const uhf = { x: 110, y: ground(110) };
+const dish = { x: 250, y: ground(250) };
+const aws = { x: 540, y: ground(540) };
+---
+
+<svg viewBox="0 0 640 380" role="img" aria-labelledby="teralink-links-title" class="block h-auto w-full">
+  <title id="teralink-links-title">
+    Diagram of TeraLink-1's links. The satellite sends telemetry over UHF and runs the 225 GHz terahertz experiment with the
+    campus dish, then sends the experiment data over S-band to AWS ground stations.
+  </title>
+  <circle cx={earth.cx} cy={earth.cy} r={orbitR} fill="none" class="stroke-alice/30" stroke-width="1" stroke-dasharray="3 7" />
+  <circle cx={earth.cx} cy={earth.cy} r={earth.r} class="fill-dusk/25 stroke-alice/50" stroke-width="1.5" />
+
+  <polygon points={`${sat.x},${sat.y + 10} ${dish.x - 9},${dish.y - 14} ${dish.x + 9},${dish.y - 14}`} class="fill-clay/20 stroke-clay" stroke-width="1.25" stroke-linejoin="round" />
+  <line x1={sat.x - 6} y1={sat.y + 8} x2={uhf.x} y2={uhf.y - 20} class="stroke-alice/60" stroke-width="1.25" stroke-dasharray="6 5" />
+  <line x1={sat.x + 8} y1={sat.y + 8} x2={aws.x} y2={aws.y - 18} class="stroke-alice/80" stroke-width="1.5" />
+
+  <g transform={`translate(${sat.x} ${sat.y})`}>
+    <rect x="-34" y="-5" width="22" height="10" class="fill-dusk stroke-alice/70" stroke-width="1" />
+    <rect x="12" y="-5" width="22" height="10" class="fill-dusk stroke-alice/70" stroke-width="1" />
+    <line x1="-12" y1="0" x2="12" y2="0" class="stroke-alice/70" stroke-width="1" />
+    <rect x="-8" y="-10" width="16" height="20" class="fill-prussian stroke-white" stroke-width="1.5" />
+  </g>
+  <text x={sat.x} y={sat.y - 22} text-anchor="middle" class="fill-white font-mono text-[15px]">TeraLink-1</text>
+
+  <g transform={`translate(${uhf.x} ${uhf.y})`}>
+    <line x1="0" y1="0" x2="0" y2="-18" class="stroke-alice" stroke-width="1.5" />
+    <line x1="-8" y1="-12" x2="8" y2="-12" class="stroke-alice" stroke-width="1.5" />
+    <line x1="-5" y1="-7" x2="5" y2="-7" class="stroke-alice" stroke-width="1.5" />
+  </g>
+  <g transform={`translate(${dish.x} ${dish.y})`}>
+    <path d="M-12 -16 Q0 -2 12 -16" fill="none" class="stroke-clay" stroke-width="2" />
+    <line x1="0" y1="-9" x2="0" y2="0" class="stroke-clay" stroke-width="1.5" />
+  </g>
+  <g transform={`translate(${aws.x} ${aws.y})`}>
+    <path d="M-10 -14 Q0 -2 10 -14" fill="none" class="stroke-alice" stroke-width="1.5" />
+    <line x1="0" y1="-8" x2="0" y2="0" class="stroke-alice" stroke-width="1.5" />
+  </g>
+
+  <text x="118" y="196" text-anchor="middle" class="fill-alice/80 font-mono text-[14px]">UHF</text>
+  <text x="118" y="214" text-anchor="middle" class="fill-slate font-mono text-[13px]">telemetry</text>
+  <text x="284" y="232" class="fill-clay font-mono text-[14px]">225 GHz</text>
+  <text x="284" y="250" class="fill-clay/80 font-mono text-[13px]">THz link</text>
+  <text x="452" y="186" class="fill-alice/80 font-mono text-[14px]">S-band</text>
+  <text x="452" y="204" class="fill-slate font-mono text-[13px]">experiment data</text>
+
+  <text x={uhf.x} y={uhf.y + 24} text-anchor="middle" class="fill-slate font-mono text-[13px]">UHF station</text>
+  <text x={dish.x} y={dish.y + 24} text-anchor="middle" class="fill-clay font-mono text-[13px]">THz dish, Boston</text>
+  <text x={aws.x} y={aws.y + 24} text-anchor="middle" class="fill-slate font-mono text-[13px]">AWS ground stations</text>
+</svg>

@@ -1,0 +1,54 @@
+---
+const vertex = { x: 320, y: 320 };
+const f = 150;
+const half = 200;
+const subY = vertex.y - f + 18;
+const feedTop = vertex.y - 20;
+
+const dishY = (x: number) => vertex.y - (x - vertex.x) ** 2 / (4 * f);
+const edgeY = dishY(vertex.x - half);
+const control = vertex.y + (vertex.y - edgeY);
+
+const rays = [-150, -80, 80, 150].map((dx) => {
+  const x = vertex.x + dx;
+  const hit = { x, y: dishY(x) };
+  const t = (hit.y - subY) / (hit.y - (vertex.y - f));
+  const bounce = { x: hit.x + (vertex.x - hit.x) * t, y: subY };
+  return `M${x} 58 L${hit.x} ${hit.y.toFixed(1)} L${bounce.x.toFixed(1)} ${bounce.y} L${vertex.x} ${feedTop}`;
+});
+
+const callout = { x: vertex.x + 170, y: dishY(vertex.x + 170) };
+---
+
+<svg viewBox="0 0 640 380" role="img" aria-labelledby="cassegrain-dish-title" class="block h-auto w-full">
+  <title id="cassegrain-dish-title">
+    Cross-section of the 2 m Cassegrain dish. Signals reflect off the primary dish onto a small subreflector and back down
+    to the feed horn at the center. The primary must hold its shape to within 83 micrometers.
+  </title>
+  <g class="stroke-clay" stroke-width="1.25">
+    <line x1={vertex.x - half} y1="30" x2={vertex.x - 30} y2="30" />
+    <line x1={vertex.x + 30} y1="30" x2={vertex.x + half} y2="30" />
+    <line x1={vertex.x - half} y1="24" x2={vertex.x - half} y2={edgeY - 8} class="stroke-clay/40" stroke-width="1" />
+    <line x1={vertex.x + half} y1="24" x2={vertex.x + half} y2={edgeY - 8} class="stroke-clay/40" stroke-width="1" />
+  </g>
+  <text x={vertex.x} y="35" text-anchor="middle" class="fill-clay font-mono text-[15px]">2 m</text>
+
+  {rays.map((d) => <path d={d} fill="none" class="stroke-clay/60" stroke-width="1.25" stroke-dasharray="5 4" />)}
+
+  <line x1={vertex.x - half + 16} y1={edgeY + 10} x2={vertex.x - 26} y2={subY - 2} class="stroke-alice/30" stroke-width="1.25" />
+  <line x1={vertex.x + half - 16} y1={edgeY + 10} x2={vertex.x + 26} y2={subY - 2} class="stroke-alice/30" stroke-width="1.25" />
+
+  <path d={`M${vertex.x - half} ${edgeY} Q${vertex.x} ${control} ${vertex.x + half} ${edgeY}`} fill="none" class="stroke-white" stroke-width="3" stroke-linecap="round" />
+  <path d={`M${vertex.x - 30} ${subY - 6} Q${vertex.x} ${subY + 10} ${vertex.x + 30} ${subY - 6}`} fill="none" class="stroke-white" stroke-width="2.5" stroke-linecap="round" />
+  <polygon points={`${vertex.x - 7},${vertex.y + 8} ${vertex.x + 7},${vertex.y + 8} ${vertex.x + 12},${feedTop} ${vertex.x - 12},${feedTop}`} class="fill-dusk stroke-white" stroke-width="1.5" stroke-linejoin="round" />
+
+  <g class="stroke-alice/50" stroke-width="1">
+    <line x1={vertex.x + 32} y1={subY - 4} x2="452" y2="126" />
+    <line x1={callout.x} y1={callout.y} x2="560" y2="236" />
+    <line x1={vertex.x - 14} y1={vertex.y + 4} x2="230" y2="352" />
+  </g>
+  <text x="458" y="124" class="fill-alice/80 font-mono text-[14px]">Subreflector</text>
+  <text x="630" y="210" text-anchor="end" class="fill-alice/80 font-mono text-[14px]">Primary reflector</text>
+  <text x="630" y="228" text-anchor="end" class="fill-clay font-mono text-[14px]">83 µm surface</text>
+  <text x="224" y="357" text-anchor="end" class="fill-alice/80 font-mono text-[14px]">Feed horn, 225 GHz</text>
+</svg>

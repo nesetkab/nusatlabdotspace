@@ -1,0 +1,71 @@
+---
+const cols = 6;
+const rows = 3;
+const far = { y: 236, left: 190, right: 450 };
+const near = { y: 340, left: 90, right: 550 };
+const risky = new Set(['1-1', '4-0', '3-2']);
+
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const point = (u: number, v: number) => {
+  const y = lerp(far.y, near.y, v);
+  const x = lerp(lerp(far.left, near.left, v), lerp(far.right, near.right, v), u);
+  return `${x.toFixed(1)},${y.toFixed(1)}`;
+};
+
+const tiles = Array.from({ length: cols * rows }, (_, i) => {
+  const c = i % cols;
+  const r = Math.floor(i / cols);
+  return {
+    risky: risky.has(`${c}-${r}`),
+    points: [point(c / cols, r / rows), point((c + 1) / cols, r / rows), point((c + 1) / cols, (r + 1) / rows), point(c / cols, (r + 1) / rows)].join(' '),
+  };
+});
+
+const sat = { x: 320, y: 92 };
+const station = { x: 596, y: 214 };
+---
+
+<svg viewBox="0 0 640 380" role="img" aria-labelledby="dewsat-swath-title" class="block h-auto w-full">
+  <title id="dewsat-swath-title">
+    Diagram of DEWSat. The satellite images farmland in tiles, scores each tile for drought risk on board, and sends only
+    the high-risk tiles down to the ground over S-band.
+  </title>
+  <path d={`M40 ${sat.y + 16} Q320 ${sat.y - 22} 600 ${sat.y + 16}`} fill="none" class="stroke-alice/30" stroke-width="1" stroke-dasharray="3 7" />
+  <text x="44" y={sat.y + 4} class="fill-slate font-mono text-[13px]">550 km, sun-synchronous</text>
+
+  <polygon points={`${sat.x},${sat.y + 12} ${far.left},${far.y} ${far.right},${far.y}`} class="fill-alice/5 stroke-alice/25" stroke-width="1" />
+
+  {tiles.map((tile) => (
+    <polygon points={tile.points} class:list={[tile.risky ? 'fill-clay/70' : 'fill-dusk/25']} />
+  ))}
+  {tiles.map((tile) => (
+    <polygon points={tile.points} fill="none" class="stroke-alice/40" stroke-width="1" stroke-linejoin="round" />
+  ))}
+
+  <path d={`M${sat.x + 12} ${sat.y + 4} Q${station.x - 40} ${sat.y + 10} ${station.x} ${station.y - 22}`} fill="none" class="stroke-clay" stroke-width="1.5" stroke-dasharray="6 5" />
+  <polygon points={`${station.x - 5},${station.y - 30} ${station.x + 5},${station.y - 30} ${station.x},${station.y - 21}`} class="fill-clay" />
+
+  <g transform={`translate(${sat.x} ${sat.y})`}>
+    <rect x="-38" y="-5" width="24" height="10" class="fill-dusk stroke-alice/70" stroke-width="1" />
+    <rect x="14" y="-5" width="24" height="10" class="fill-dusk stroke-alice/70" stroke-width="1" />
+    <line x1="-14" y1="0" x2="14" y2="0" class="stroke-alice/70" stroke-width="1" />
+    <rect x="-10" y="-12" width="20" height="24" class="fill-prussian stroke-white" stroke-width="1.5" />
+  </g>
+  <text x={sat.x} y={sat.y - 26} text-anchor="middle" class="fill-white font-mono text-[15px]">DEWSat</text>
+
+  <g transform={`translate(${station.x} ${station.y})`}>
+    <path d="M-12 -14 Q0 0 12 -14" fill="none" class="stroke-alice" stroke-width="1.5" />
+    <line x1="0" y1="-7" x2="0" y2="4" class="stroke-alice" stroke-width="1.5" />
+  </g>
+  <text x={station.x + 14} y={station.y + 26} text-anchor="end" class="fill-slate font-mono text-[13px]">Ground</text>
+
+  <text x="436" y="164" class="fill-clay font-mono text-[14px]">S-band:</text>
+  <text x="436" y="182" class="fill-clay/80 font-mono text-[13px]">high-risk tiles</text>
+  <text x="436" y="198" class="fill-clay/80 font-mono text-[13px]">only</text>
+  <text x="20" y="200" class="fill-alice/80 font-mono text-[14px]">Red + NIR imagery,</text>
+  <text x="20" y="218" class="fill-slate font-mono text-[13px]">scored on board</text>
+  <rect x="90" y="354" width="12" height="12" class="fill-clay/70" />
+  <text x="110" y="365" class="fill-slate font-mono text-[13px]">High drought risk</text>
+  <rect x="270" y="354" width="12" height="12" class="fill-dusk/25 stroke-alice/40" stroke-width="1" />
+  <text x="290" y="365" class="fill-slate font-mono text-[13px]">Low risk, stays on board</text>
+</svg>

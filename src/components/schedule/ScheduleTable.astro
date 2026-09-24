@@ -1,18 +1,18 @@
 ---
-// Weekly meeting table. The children are <Session> rows.
+// Weekly meeting table; the children are <Session> rows.
 ---
 
-<div class="mt-8 overflow-x-auto">
-  <table class="w-full min-w-lg border-y border-dusk text-left">
-    <thead class="border-b border-dusk font-mono text-xs text-slate">
+<div class="overflow-x-auto">
+  <table class="w-full min-w-lg text-left tabular-nums">
+    <thead class="border-b border-dusk text-sm text-slate">
       <tr>
-        <th scope="col" class="py-3 pr-5 font-medium">Day</th>
-        <th scope="col" class="px-5 py-3 font-medium">Session</th>
-        <th scope="col" class="px-5 py-3 font-medium">Time</th>
-        <th scope="col" class="px-5 py-3 font-medium">Where</th>
+        <th scope="col" class="py-2 pr-6 font-normal">Day</th>
+        <th scope="col" class="py-2 pr-6 font-normal">Session</th>
+        <th scope="col" class="py-2 pr-6 font-normal">Time</th>
+        <th scope="col" class="py-2 pr-6 font-normal">Where</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-dusk/60">
+    <tbody class="divide-y divide-line">
       <slot />
     </tbody>
   </table>

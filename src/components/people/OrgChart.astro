@@ -1,5 +1,5 @@
 ---
-// Root of an org chart: a title box with <OrgBranch> columns under it.
+// Root of an org chart: a title box with <OrgBranch> children fanned out beneath it.
 // `columns` is a CSS grid-template-columns value for wide screens, so branches can have unequal widths.
 interface Props {
   title: string;
@@ -10,8 +10,8 @@ interface Props {
 const { title, subtitle, columns } = Astro.props;
 ---
 
-<div class="mt-12">
-  <div class="mx-auto w-fit border border-clay/60 px-8 py-4 text-center">
+<div class="[p+&]:mt-10">
+  <div class="mx-auto w-fit rounded-sm border border-clay/70 px-8 py-4 text-center">
     <p class="font-display text-2xl font-medium text-white">{title}</p>
     {subtitle && <p class="mt-1 text-sm text-slate">{subtitle}</p>}
   </div>

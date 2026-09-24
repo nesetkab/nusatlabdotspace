@@ -1,17 +1,16 @@
 ---
-// Responsive grid of <Card>s. `ordered` renders an <ol> so `<Card numbered>` children count up.
-// `class` replaces the default top margin.
+// A list of <Card>s that flows into columns on wide screens. `ordered` renders an <ol> so `<Card numbered>` children count up.
 interface Props {
   cols?: 2 | 3 | 4;
   ordered?: boolean;
   class?: string;
 }
 
-const { cols = 3, ordered = false, class: className = 'mt-10' } = Astro.props;
+const { cols = 2, ordered = false, class: className } = Astro.props;
 const columns = { 2: 'md:grid-cols-2', 3: 'md:grid-cols-3', 4: 'sm:grid-cols-2 lg:grid-cols-4' }[cols];
 const List = ordered ? 'ol' : 'ul';
 ---
 
-<List class:list={['grid gap-x-8 gap-y-10', columns, ordered && '[counter-reset:item]', className]}>
+<List class:list={['grid gap-x-12 gap-y-8', columns, ordered && '[counter-reset:item]', className]}>
   <slot />
 </List>

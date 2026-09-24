@@ -1,5 +1,7 @@
 ---
-// One row of the weekly schedule table. The children are the session name.
+// One row of the weekly schedule table; the children are the session name.
+import MapPin from '@lucide/astro/icons/map-pin';
+
 interface Props {
   day: string;
   time: string;
@@ -10,8 +12,8 @@ const { day, time, where } = Astro.props;
 ---
 
 <tr>
-  <th scope="row" class="py-4 pr-5 font-semibold text-white">{day}</th>
-  <td class="px-5 py-4"><slot /></td>
-  <td class="px-5 py-4 font-mono text-sm whitespace-nowrap text-clay">{time}</td>
-  <td class="px-5 py-4 text-slate">{where}</td>
+  <th scope="row" class="py-2.5 pr-6 font-normal text-white">{day}</th>
+  <td class="py-2.5 pr-6"><slot /></td>
+  <td class="py-2.5 pr-6 whitespace-nowrap">{time}</td>
+  <td class="py-2.5 pr-6 text-slate"><span class="inline-flex items-center gap-1.5"><MapPin class="size-4 shrink-0 text-slate/70" aria-hidden="true" />{where}</span></td>
 </tr>

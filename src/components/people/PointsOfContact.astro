@@ -1,16 +1,12 @@
 ---
-// Strip at the bottom of a page listing <PointOfContact> children. A closing line sends everyone else
-// to the contact and People pages.
+import Section from '../layout/Section.astro';
 ---
 
-<section class="border-t border-dusk py-10">
-  <div class="mx-auto max-w-6xl px-5">
-    <h2 class="font-mono text-xs text-slate">Project points of contact</h2>
-    <ul class="mt-4 border-b border-dusk/60 text-alice">
-      <slot />
-    </ul>
-    <p class="mt-4 text-sm text-slate">
-      For anything else, use the <a href="/contact">contact page</a> or see who leads what on the <a href="/people">People page</a>.
-    </p>
-  </div>
-</section>
+<Section title="Who to ask">
+  <ul class="space-y-1 text-alice/85">
+    <slot />
+    <li>
+      Anything else: use the <a href="/contact">contact page</a>, or see who leads what on the <a href="/people">People page</a>.
+    </li>
+  </ul>
+</Section>

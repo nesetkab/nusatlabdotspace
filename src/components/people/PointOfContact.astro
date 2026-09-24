@@ -6,7 +6,4 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<li class="grid gap-1 border-t border-dusk/60 py-3 sm:grid-cols-[14rem_1fr] sm:gap-8">
-  <span class="font-semibold text-white">{project}</span>
-  <span><slot /></span>
-</li>
+<li><strong class="font-semibold text-white">{project}:</strong> <slot /></li>

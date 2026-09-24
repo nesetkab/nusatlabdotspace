@@ -1,32 +1,30 @@
 ---
 layout: ../layouts/PageLayout.astro
 title: This Semester
-description: "NSL's Fall 2026 meeting times, workshops and events, and who to talk to."
-label: Fall 2026
-heading: Meetings, schedule & who to talk to
+description: "NSL’s Fall 2026 meeting times, workshops and events, and who to talk to."
+heading: Fall 2026
 lead: When and where to show up this fall, and who to ask when you get there.
 ---
 
-import { Section, SectionHeading, Grid, Card, JoinLinks, Email, ScheduleTable, Session, EventList, Event } from '../components';
+import { Section, JoinLinks, Email, ScheduleTable, Session, EventList, Event } from '../components';
 
-<Section>
-<Grid cols={3} class="mt-0">
-  <Card as="h2" title="New here?" big="Mon · 7 PM">
-    Start with Intro to Satellites in Forsyth 129. No experience needed. You'll meet the leads and find a team.
-  </Card>
-  <Card as="h2" title="Join NSL">
-    <JoinLinks />
-  </Card>
-  <Card as="h2" title="Questions?">
-    <Email />
+<Section title="New here?">
+<div class="grid gap-10 md:grid-cols-2 md:gap-12">
+<div class="prose-nsl text-alice/90">
 
-    Email us anytime and we'll help you find a team.
-  </Card>
-</Grid>
+Come to Intro to Satellites, Mondays at 7 PM in Forsyth 129. No experience needed. You’ll meet the leads and find a team.
+
+Questions first? Email <Email />. We’re happy to help you find a team.
+
+</div>
+<div class="text-alice/90">
+  <h3 class="font-semibold text-white">How to join</h3>
+  <div class="mt-2"><JoinLinks /></div>
+</div>
+</div>
 </Section>
 
-<Section class="pt-0 sm:pt-0">
-<SectionHeading title="Fall 2026 meeting times" />
+<Section title="Weekly meetings">
 
 <ScheduleTable>
   <Session day="Monday" time="6:00 – 7:00 PM" where="Forsyth 150">Software</Session>
@@ -41,16 +39,15 @@ import { Section, SectionHeading, Grid, Card, JoinLinks, Email, ScheduleTable, S
 </ScheduleTable>
 </Section>
 
-<Section>
-<SectionHeading
-  title="Workshops, talks & events"
-  sub="Onboarding sessions, weekly talks, and visiting lecturers, on top of regular team meetings."
-/>
+<Section
+  title="Workshops, talks, and events"
+  sub="Beyond team meetings, there’s a lot to learn this semester, from onboarding sessions to visiting lecturers."
+>
 
 <EventList>
   <Event when="Mondays · 7 PM" title="Intro to Satellites">
-    Four sessions that onboard newcomers to spacecraft engineering: what a CubeSat is, the anatomy of a satellite, a
-    hands-on mini-project, and the ground station. Forsyth 129.
+    Four sessions onboarding newcomers to spacecraft engineering: from what a CubeSat is, to the anatomy of a
+    satellite, to a hands-on mini-project and the ground station. Forsyth 129.
   </Event>
   <Event when="Wednesdays" title="Lunch & Learn">
     A weekly online talk on a different topic every week, from our AFRL University Nanosatellite Program.
@@ -70,11 +67,9 @@ import { Section, SectionHeading, Grid, Card, JoinLinks, Email, ScheduleTable, S
 </EventList>
 </Section>
 
-<Section>
-<SectionHeading
-  title="Who to talk to"
-  sub="The E-Board, team directors, program leads, and the full TeraLink-1 org chart are on the People page."
-/>
+<Section title="Who to talk to">
 
-<a href="/people" class="mt-8 inline-block bg-clay px-5 py-3 font-semibold text-ink no-underline hover:bg-alice hover:no-underline">Go to People</a>
+<p class="max-w-[68ch] text-alice/80">
+  The E-Board, team directors, program leads, and the full TeraLink-1 org chart are on the <a href="/people">People page</a>.
+</p>
 </Section>

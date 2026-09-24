@@ -1,19 +1,14 @@
 ---
 interface Props {
-  /** Optional qualifier shown above the title, e.g. the term on the semester page. */
-  label?: string;
   title: string;
 }
 
-const { label, title } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<header class="border-b border-dusk">
-  <div class="mx-auto max-w-6xl px-5 pt-16 pb-12 sm:pt-24 sm:pb-16">
-    {label && <p class="mb-4 font-mono text-sm text-clay">{label}</p>}
-    <h1 class="max-w-3xl font-display text-4xl font-medium text-white sm:text-6xl">{title}</h1>
-    <p class="mt-6 max-w-2xl text-lg text-alice">
-      <slot />
-    </p>
-  </div>
+<header class="mx-auto w-full max-w-6xl px-5 pt-14 pb-12 sm:pt-20 sm:pb-16">
+  <h1 class="max-w-4xl font-display text-4xl font-medium text-balance text-white sm:text-5xl">{title}</h1>
+  <p class="mt-5 max-w-[60ch] text-lg text-pretty text-alice/85">
+    <slot />
+  </p>
 </header>

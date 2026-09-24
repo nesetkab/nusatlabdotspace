@@ -4,4 +4,5 @@ export * from './ui';
 export * from './people';
 export * from './schedule';
 export * from './contact';
+export * from './diagrams';
 export * from './site';

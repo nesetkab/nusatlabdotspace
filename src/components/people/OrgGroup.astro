@@ -1,7 +1,7 @@
 ---
 // A labeled grid of <Position> cards inside an <OrgBranch>. Omit `name` for the branch's top leadership.
-// Nest one OrgGroup inside another for a unit with several leads, like Hardware's two directors.
-// The nested group renders as one box with its positions inside.
+// Nest one OrgGroup inside another for a unit with several leads (e.g. Hardware's two directors):
+// the nested group renders as a single card with its positions inside.
 interface Props {
   name?: string;
   /** Minimum card width before the grid wraps. */
@@ -11,13 +11,13 @@ interface Props {
 const { name, min = '11rem' } = Astro.props;
 
 // Styles that apply only when this group sits inside another group.
-const nestedCard = '[[data-org-group]_&]:border [[data-org-group]_&]:border-dusk/60 [[data-org-group]_&]:bg-dusk/20 [[data-org-group]_&]:p-3';
+const nestedCard = '[[data-org-group]_&]:rounded-sm [[data-org-group]_&]:border [[data-org-group]_&]:border-line [[data-org-group]_&]:p-3';
 const nestedTitle =
   '[[data-org-group]_[data-org-group]_&]:mb-3 [[data-org-group]_[data-org-group]_&]:px-1 [[data-org-group]_[data-org-group]_&]:font-sans [[data-org-group]_[data-org-group]_&]:text-base [[data-org-group]_[data-org-group]_&]:font-semibold [[data-org-group]_[data-org-group]_&]:normal-case [[data-org-group]_[data-org-group]_&]:tracking-normal [[data-org-group]_[data-org-group]_&]:text-white';
 ---
 
 <li data-org-group class={nestedCard}>
-  {name && <h4 class:list={['mb-3 font-mono text-xs text-slate', nestedTitle]}>{name}</h4>}
+  {name && <h4 class:list={['mb-2 text-sm font-semibold text-slate', nestedTitle]}>{name}</h4>}
   <ul class="grid gap-3" style={`grid-template-columns: repeat(auto-fill, minmax(min(${min}, 100%), 1fr))`}>
     <slot />
   </ul>

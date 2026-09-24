@@ -1,12 +1,12 @@
 ---
+import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
 import { joinLinks } from '../site/links';
 ---
 
-<ul class="space-y-3">
+<ul class="space-y-2">
   {joinLinks.map(({ href, label, note }) => (
     <li>
-      <a href={href} class="font-semibold">{label}</a>
-      <span class="block text-sm text-slate">{note}</span>
+      <a href={href}>{label}<ArrowUpRight class="ml-0.5 inline size-4 align-[-0.125em]" aria-hidden="true" /></a><span class="text-alice/80">: {note}</span>
     </li>
   ))}
 </ul>

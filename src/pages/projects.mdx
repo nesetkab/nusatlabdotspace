@@ -2,15 +2,13 @@
 layout: ../layouts/PageLayout.astro
 title: Projects
 description: "Everything NSL is building: satellite and ground-station programs, national competitions, and open-source R&D."
-heading: Everything we're building
-lead: Satellite and ground-station programs, national competitions, and open-source R&D.
+heading: Projects
+lead: The full portfolio. Satellite and ground-station programs, national competitions, and open-source R&D.
 ---
 
-import { Section, SectionHeading, Grid, Stack, Card, Mission, PointsOfContact, PointOfContact } from '../components';
-import dewsatArt from '../assets/missions/dewsat.svg';
+import { Section, Grid, Card, Mission, PointsOfContact, PointOfContact, Figure, DewsatSwath } from '../components';
 
-<Section>
-<SectionHeading title="Missions in flight and on the bench" />
+<Section title="Satellites and ground stations" sub="Write-ups for each are on the Programs page.">
 
 <Grid cols={2}>
   <Card title="PROVES Atlas" tag="Launched · April 2026" href="/programs#proves-atlas">
@@ -30,31 +28,27 @@ import dewsatArt from '../assets/missions/dewsat.svg';
 </Grid>
 </Section>
 
-<Section>
-<SectionHeading title="Competitions" />
-
-<Stack class="mt-12">
-
 <Mission
   id="dewsat"
-  name="DEWSat · NASA Space to Soil"
-  status="Finalist"
-  art={dewsatArt}
-  artAlt="DEWSat drought early-warning satellite concept illustration"
-  collaborators="NASA Space to Soil challenge"
+  name="DEWSat"
+  status="NASA Space to Soil finalist"
   scale={[
     { big: '550 km', label: 'sun-synchronous orbit' },
     { big: '12U → 6U', label: 'shrinking the form factor' },
     { big: '~30–100 KB', label: 'quantized Bi-LSTM model' },
   ]}
 >
-  A four-member NSL team was selected as a finalist for DEWSat — a Drought Early Warning Satellite. DEWSat carries a red
+<Figure slot="figure" caption="DEWSat scores each image tile for drought risk in orbit and sends down only the high-risk tiles.">
+  <DewsatSwath />
+</Figure>
+
+  A four-member NSL team was selected as a finalist in NASA's Space to Soil challenge for DEWSat, a Drought Early Warning Satellite. DEWSat carries a red
   and near-infrared multispectral imager and an onboard edge-AI compute stack. It splits its imagery into tiles, computes
   vegetation indices on an FPGA, and runs a quantized Bi-LSTM (compressed ~20–50×) to give each tile a drought-risk
   score. Only the high-risk tiles and their metadata get downlinked, over S-band, with telemetry and commands over UHF.
   Inference runs only over priority regions during sunlit periods to save power.
 
-  Doing the analysis in orbit means faster responses without heavy ground infrastructure — and the same architecture
+  Doing the analysis in orbit means faster responses without heavy ground infrastructure, and the same architecture
   extends to wildfire, flood, and urban-heat monitoring, especially as a constellation.
 
   Our competition entry went to AIAA as an extended abstract. This semester the team is finding a PI to work with,
@@ -62,20 +56,16 @@ import dewsatArt from '../assets/missions/dewsat.svg';
   full paper due December 1 that we'll also submit to AFRL's University Nanosatellite Program.
 </Mission>
 
-<Mission id="gtoc-14" name="GTOC-14" status="Forming interest">
-  The Global Trajectory Optimization Competition — often called the "America's Cup of Rocket Science" — is an
+<Mission id="gtoc-14" name="GTOC-14" status="Competition · forming interest">
+  The Global Trajectory Optimization Competition, often called the "America's Cup of Rocket Science," is an
   international trajectory-optimization contest. GTOC-14 hasn't been announced yet, but NSL intends to field a team and
   is gathering interested members ahead of the announcement.
 </Mission>
 
-</Stack>
-</Section>
-
-<Section>
-<SectionHeading
+<Section
   title="Open-source R&D"
   sub="Tools and hardware we build in the open, free for any student or researcher to use."
-/>
+>
 
 <Grid cols={2}>
   <Card title="Open-Source Star Tracker Software" tag="In development">

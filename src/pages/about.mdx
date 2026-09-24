@@ -2,68 +2,64 @@
 layout: ../layouts/PageLayout.astro
 title: About
 description: "Who we are: a student-run satellite lab at Northeastern, founded in 2020 as Project Horizon."
-heading: Students building real spacecraft.
-lead: We're Northeastern undergrads who design, build, and fly CubeSats. We've been at it since 2020.
+heading: About the lab
+lead: A student-run satellite lab at Northeastern. Undergrads design, build, and fly CubeSats and more.
 ---
 
 import { Image } from 'astro:assets';
-import { Section, SectionHeading, Detail, Grid, Card, OrgList } from '../components';
+import { Section, Grid, Card, OrgList, Figure, CubeSatSizes } from '../components';
+import Cpu from '@lucide/astro/icons/cpu';
+import CodeXml from '@lucide/astro/icons/code-xml';
+import Orbit from '@lucide/astro/icons/orbit';
+import BriefcaseBusiness from '@lucide/astro/icons/briefcase-business';
 import galleryPhoto from '../assets/photos/gallery-1.jpg';
-import SatelliteArt from '../assets/missions/satellite.svg';
 import WhatIsNsl from '../partials/what-is-nsl.mdx';
 import WhatIsACubeSat from '../partials/what-is-a-cubesat.mdx';
 import AlumniEmployers from '../partials/alumni-employers.mdx';
 
-<Section>
-<Detail title="Northeastern Satellite Lab">
-  <Image
-    slot="media"
-    src={galleryPhoto}
-    alt="The atrium of Northeastern's ISEC building, with its helix staircase"
-    widths={[480, 800, 1200]}
-    sizes="(min-width: 768px) 50vw, 100vw"
-    class="h-auto w-full"
-  />
-  <div class="mt-4 space-y-4 text-alice"><WhatIsNsl /></div>
-</Detail>
-
-<Grid cols={3} class="mt-16">
-  <Card big="2020" title="Founded">Started as Project Horizon within AeroNU; its own club since 2025.</Card>
-  <Card big="10" title="Management team">Undergrads running the club day-to-day.</Card>
-  <Card big="Dr. Jornet" title="Faculty advisor">
-    Josep Jornet, Associate Dean of Research, Northeastern College of Engineering.
-  </Card>
-</Grid>
+<Section title="Who we are">
+<div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_16rem]">
+  <div class="prose-nsl text-alice/90"><WhatIsNsl /></div>
+  <figure class="max-w-xs">
+    <Image
+      src={galleryPhoto}
+      alt="The atrium of Northeastern’s ISEC building, with its helix staircase"
+      widths={[320, 640]}
+      sizes="(min-width: 640px) 320px, 100vw"
+      class="block h-auto w-full rounded-sm"
+    />
+    <figcaption class="mt-2 text-sm text-slate">The ISEC atrium, Northeastern University.</figcaption>
+  </figure>
+</div>
 </Section>
 
-<Section>
-<Detail title="What is a CubeSat?" reverse>
-  <SatelliteArt slot="media" role="img" aria-label="CubeSat illustration" class="h-auto w-full" />
-  <div class="mt-4 space-y-4 text-alice"><WhatIsACubeSat /></div>
-</Detail>
+<Section title="What is a CubeSat?">
+<div class="prose-nsl text-alice/90"><WhatIsACubeSat /></div>
+<Figure caption="Common CubeSat sizes, to scale. TeraLink-1 is a 6U." class="mt-8 max-w-[68ch]">
+  <CubeSatSizes />
+</Figure>
 </Section>
 
-<Section id="teams">
-<SectionHeading title="How the work splits up" />
+<Section id="teams" title="Teams" sub="Every member joins at least one. Each team meets once a week; times are on the This Semester page.">
 
-<Grid cols={4}>
-  <Card title="Hardware">
+<Grid cols={2}>
+  <Card title="Hardware" Icon={Cpu}>
     Mechanical and electrical engineering for spacecraft and ground hardware. Mechanical members CAD in SolidWorks and
     Onshape, build with 3D printers, laser cutters, and CNC in EXP and the AerospaceNU back lab, and run structural,
     thermal, and frequency analyses. Electrical and embedded members design PCBs and dev boards, test and validate
     space hardware, and write firmware.
   </Card>
-  <Card title="Software">
+  <Card title="Software" Icon={CodeXml}>
     Flight and ground-station software: sensing, control, imaging, and compression algorithms, plus satellite
     communication, networking, and scheduling systems, tested and merged across every mission subsystem. This
-    semester's goal is a working FlatSat by January.
+    semester’s goal is a working FlatSat by January.
   </Card>
-  <Card title="Simulations">
+  <Card title="Simulations" Icon={Orbit}>
     Orbital and mission simulation with tools like FreeFlyer and Systems Tool Kit, scientific computing to verify
     mission and system architecture, and Python or MATLAB/Simulink models to test algorithms, kinematics, and control
     loops.
   </Card>
-  <Card title="Business">
+  <Card title="Business" Icon={BriefcaseBusiness}>
     Finding and winning competitions and proposals from NASA, AFRL, IEEE, and more; reaching out to researchers and
     institutions; logistics, operations, and finance; merch and branding; and recruitment campaigns and community
     engagement.
@@ -71,8 +67,7 @@ import AlumniEmployers from '../partials/alumni-employers.mdx';
 </Grid>
 </Section>
 
-<Section>
-<SectionHeading title="Objectives" sub="Building satellites comes first. The other three support it." />
+<Section title="What we’re for" sub="Build satellites. Everything else we do supports that.">
 
 <Grid cols={2} ordered>
   <Card numbered title="Secure, fund, and build satellite projects">
@@ -87,32 +82,34 @@ import AlumniEmployers from '../partials/alumni-employers.mdx';
     space meetups, SmallSat, and more.
   </Card>
   <Card numbered title="Put space on the map at NU">
-    Growing NSL's presence on campus, so every student who wants to build a spacecraft knows where to find us.
+    Growing NSL’s presence on campus, so every student who wants to build a spacecraft knows where to find us.
   </Card>
 </Grid>
 </Section>
 
-<Section>
-<SectionHeading
-  title="Where you'll find us"
-  sub="We present at conferences and meetups every year. Tell us where we should go next."
-/>
+<Section title="Where you’ll find us">
 
-<Grid cols={4}>
-  <Card title="SmallSat Conference">Utah</Card>
-  <Card title="Boston Space Network">Boston</Card>
-  <Card title="Ivy Space Conference">Northeast US</Card>
-  <Card title="New Space Age Conference">Boston</Card>
-</Grid>
+<div class="prose-nsl text-alice/90">
+  <p>We present our work at conferences and meetups every year:</p>
+  <ul class="list-disc space-y-1 pl-5 marker:text-slate">
+    <li>SmallSat Conference, Utah</li>
+    <li>Boston Space Network</li>
+    <li>Ivy Space Conference</li>
+    <li>New Space Age Conference, Boston</li>
+  </ul>
+  <p>Know an event we should go to? <a href="/contact">Tell us</a>.</p>
+</div>
 </Section>
 
-<Section>
-<SectionHeading
-  title="Alumni and advisors"
-  sub="Satellite-club alumni mentor current members, and Dr. Josep Jornet, Associate Dean of Research in the College of Engineering, is our faculty advisor. The alumni network keeps helping after graduation, too."
-/>
+<Section title="Alumni and advisors">
 
-<div class="mt-8 border-b border-dusk/60">
-  <OrgList label="Members & alumni work at"><AlumniEmployers /></OrgList>
+<div class="prose-nsl text-alice/90">
+
+A small group of satellite-club alumni mentors current members, and our faculty advisor is Dr. Josep Jornet,
+Associate Dean of Research in the Northeastern College of Engineering. The network stays with members after they
+graduate.
+
 </div>
+
+<OrgList label="Members and alumni have gone on to:" class="mt-4"><AlumniEmployers /></OrgList>
 </Section>

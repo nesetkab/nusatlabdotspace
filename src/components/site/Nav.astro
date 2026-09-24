@@ -6,49 +6,23 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => current === href || current.startsWith(`${href}/`);
 ---
 
-<header class="sticky top-0 z-40 border-b border-dusk bg-ink">
-  <nav aria-label="Main" class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-3">
+<header class="mx-auto w-full max-w-6xl px-5 pt-6">
+  <nav aria-label="Main" class="flex flex-wrap items-center gap-x-10 gap-y-4">
     <a href="/" class="shrink-0" aria-label="Northeastern Satellite Lab home">
-      <Wordmark aria-hidden="true" class="h-9 w-auto sm:h-11" />
+      <Wordmark aria-hidden="true" class="h-10 w-auto" />
     </a>
-
-    <ul class="hidden items-center gap-6 md:flex">
+    <ul class="flex flex-wrap gap-x-6 gap-y-1 text-[0.9375rem]">
       {navLinks.map(({ href, label }) => (
         <li>
           <a
             href={href}
             aria-current={isActive(href) ? 'page' : undefined}
-            class="py-2 text-sm font-medium text-alice decoration-clay decoration-2 underline-offset-8 hover:text-white aria-[current=page]:text-white aria-[current=page]:underline"
+            class="text-alice no-underline hover:text-clay hover:underline aria-[current=page]:text-clay aria-[current=page]:underline"
           >
             {label}
           </a>
         </li>
       ))}
     </ul>
-
-    <details class="group relative md:hidden">
-      <summary class="flex cursor-pointer list-none items-center p-2 text-alice hover:text-white [&::-webkit-details-marker]:hidden">
-        <span class="sr-only">Menu</span>
-        <svg class="size-6 group-open:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <path d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg class="hidden size-6 group-open:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <path d="M6 6l12 12M18 6L6 18" />
-        </svg>
-      </summary>
-      <ul class="absolute right-0 mt-2 w-56 divide-y divide-dusk/60 border border-dusk bg-ink">
-        {navLinks.map(({ href, label }) => (
-          <li>
-            <a
-              href={href}
-              aria-current={isActive(href) ? 'page' : undefined}
-              class="block px-4 py-3 text-alice no-underline hover:bg-prussian hover:no-underline aria-[current=page]:text-clay"
-            >
-              {label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </details>
   </nav>
 </header>

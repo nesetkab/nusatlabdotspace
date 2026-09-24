@@ -1,0 +1,66 @@
+---
+const s = 5.6;
+const c = Math.cos(Math.PI / 6);
+const baseline = 300;
+
+type Box = { name: string; size: string; w: number; d: number; h: number; left: number };
+
+const boxes: Box[] = [
+  { name: '1U', size: '10 × 10 × 10 cm', w: 10, d: 10, h: 10, left: 60 },
+  { name: '3U', size: '10 × 10 × 30 cm', w: 10, d: 10, h: 30, left: 250 },
+  { name: '6U', size: '20 × 10 × 30 cm', w: 20, d: 10, h: 30, left: 420 },
+];
+
+const shapes = boxes.map((box) => {
+  const { w, d, h, left } = box;
+  const ox = left + d * c * s;
+  const oy = baseline - (w + d) * 0.5 * s;
+  const p = (x: number, y: number, z: number) => `${(ox + (x - y) * c * s).toFixed(1)},${(oy + (x + y) * 0.5 * s - z * s).toFixed(1)}`;
+  const poly = (...pts: [number, number, number][]) => pts.map(([x, y, z]) => p(x, y, z)).join(' ');
+
+  const unitLines: string[] = [];
+  for (let z = 10; z < h; z += 10) {
+    unitLines.push(poly([0, d, z], [w, d, z], [w, 0, z]));
+  }
+  for (let x = 10; x < w; x += 10) {
+    unitLines.push(poly([x, 0, h], [x, d, h], [x, d, 0]));
+  }
+
+  const width = (w + d) * c * s;
+  return {
+    ...box,
+    top: poly([0, 0, h], [w, 0, h], [w, d, h], [0, d, h]),
+    front: poly([0, d, 0], [w, d, 0], [w, d, h], [0, d, h]),
+    side: poly([w, 0, 0], [w, d, 0], [w, d, h], [w, 0, h]),
+    unitLines,
+    center: left + width / 2,
+  };
+});
+
+const tall = shapes[2];
+const edgeX = tall.left + (tall.w + tall.d) * c * s + 14;
+const edgeTop = baseline - (tall.w + tall.d) * 0.5 * s + tall.w * 0.5 * s - tall.h * s;
+const edgeBottom = edgeTop + tall.h * s;
+---
+
+<svg viewBox="0 0 640 380" role="img" aria-labelledby="cubesat-sizes-title" class="block h-auto w-full">
+  <title id="cubesat-sizes-title">Line drawing of 1U, 3U, and 6U CubeSats to scale. One unit is a 10 cm cube.</title>
+  {shapes.map((shape) => (
+    <g>
+      <polygon points={shape.side} class="fill-dusk/15 stroke-alice/70" stroke-width="1.5" stroke-linejoin="round" />
+      <polygon points={shape.front} class="fill-dusk/30 stroke-alice/70" stroke-width="1.5" stroke-linejoin="round" />
+      <polygon points={shape.top} class="fill-dusk/50 stroke-alice/70" stroke-width="1.5" stroke-linejoin="round" />
+      {shape.unitLines.map((points) => (
+        <polyline points={points} fill="none" class="stroke-alice/35" stroke-width="1" stroke-dasharray="4 4" />
+      ))}
+      <text x={shape.center} y="336" text-anchor="middle" class="fill-white font-mono text-[18px]">{shape.name}</text>
+      <text x={shape.center} y="360" text-anchor="middle" class="fill-slate font-mono text-[14px]">{shape.size}</text>
+    </g>
+  ))}
+  <g class="stroke-clay" stroke-width="1.25">
+    <line x1={edgeX} y1={edgeTop} x2={edgeX} y2={edgeBottom} />
+    <line x1={edgeX - 5} y1={edgeTop} x2={edgeX + 5} y2={edgeTop} />
+    <line x1={edgeX - 5} y1={edgeBottom} x2={edgeX + 5} y2={edgeBottom} />
+  </g>
+  <text x={edgeX + 10} y={(edgeTop + edgeBottom) / 2 + 5} class="fill-clay font-mono text-[14px]">30 cm</text>
+</svg>

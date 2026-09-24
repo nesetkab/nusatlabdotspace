@@ -1,27 +1,19 @@
 ---
 layout: ../layouts/PageLayout.astro
 title: Programs
-description: "NSL's flagship satellite and ground-station programs: PROVES Atlas, TeraLink-1, and the Sub-THz Ground Station."
+description: "NSL’s flagship satellite and ground-station programs: PROVES Atlas, TeraLink-1, and the Sub-THz Ground Station."
 heading: Programs
 lead: "Our flagship satellite and ground-station programs. Each one runs for several semesters, with a dozen or more students building real hardware alongside national partners."
 ---
 
-import { Section, Stack, Mission } from '../components';
-import provesArt from '../assets/missions/proves.svg';
-import satelliteArt from '../assets/missions/satellite.svg';
-import groundstationArt from '../assets/missions/groundstation.svg';
-
-<Section>
-<h2 class="sr-only">Flagship programs</h2>
-
-<Stack>
+import { Image } from 'astro:assets';
+import { Section, Mission, Figure, TeraLinkLinks, CassegrainDish } from '../components';
+import cubesatEjected from '../assets/photos/nasa-cubesat-ejected.jpg';
 
 <Mission
   id="proves-atlas"
   name="PROVES Atlas"
   status="Launched · April 2026"
-  art={provesArt}
-  artAlt="PROVES Atlas CubeSat illustration"
   collaborators="With the Pleiades Consortium, led by Cal Poly Pomona · PROVES"
   scale={[
     { big: '~15', label: 'students on the build' },
@@ -29,11 +21,15 @@ import groundstationArt from '../assets/missions/groundstation.svg';
     { big: '5', label: 'partner university teams' },
   ]}
 >
-  In April 2026, Northeastern went to space for the first time — a student-built CubeSat, deployed from the
+<Figure slot="figure" caption="A student-built CubeSat leaves the ISS from the Kibo deployer, December 2024. Photo: NASA.">
+  <Image src={cubesatEjected} alt="A small CubeSat drifts away from the space station's robotic arm, with the Earth's limb below" widths={[480, 800, 1200]} sizes="(min-width: 1024px) 680px, 100vw" class="block h-auto w-full" />
+</Figure>
+
+  In April 2026, Northeastern went to space for the first time: a student-built CubeSat, deployed from the
   International Space Station as one of a five-satellite constellation. About 15 students built it in under a year,
   working shoulder-to-shoulder with the Pleiades Consortium, a group of five partner university teams led by Cal Poly
-  Pomona. Our students worked on both the hardware and the software of the platform — including assembly, integration,
-  and testing, with the satellite shipped around the country for environmental testing — and we open-sourced all of it.
+  Pomona. Our students worked on both the hardware and the software of the platform, including assembly, integration,
+  and testing, with the satellite shipped around the country for environmental testing. We open-sourced all of it.
 
   Atlas is an educational satellite with a Sony Spresense camera payload for imaging demos. It's part of PROVES, an
   educational satellite program that's also developing university CubeSat kits for under $3,000, lowering the barrier to
@@ -45,16 +41,17 @@ import groundstationArt from '../assets/missions/groundstation.svg';
   id="teralink-1"
   name="TeraLink-1"
   status="Critical Design Review"
-  art={satelliteArt}
-  artAlt="TeraLink-1 CubeSat concept illustration"
-  collaborators="Funded by AFRL's University Nanosatellite Program (UNP NS-12) · With UNLab at Northeastern's INSI"
+  collaborators="Funded by AFRL’s University Nanosatellite Program (UNP NS-12) · With UNLab at Northeastern’s INSI"
   scale={[
     { big: '6U', label: 'CubeSat (10 × 20 × 30 cm)' },
     { big: '225 GHz', label: 'THz uplink & downlink' },
     { big: '~400 km', label: 'ISS deployment orbit' },
   ]}
-  reverse
 >
+<Figure slot="figure" caption="How TeraLink-1 talks to the ground.">
+  <TeraLinkLinks />
+</Figure>
+
   TeraLink-1 will fly the first-ever terahertz-frequency space-to-ground link demo. It's a 6U CubeSat funded by AFRL's
   University Nanosatellite Program and built with the Ultrabroadband Nanonetworking Lab (UNLab) at Northeastern's
   Institute for the Wireless Internet of Things, and its payload is a pair of THz-band antennas for 225 GHz uplink and
@@ -66,7 +63,7 @@ import groundstationArt from '../assets/missions/groundstation.svg';
   Services ground stations.
 
   The satellite design is complete. After making it through the first round last year, the team is preparing for UNP's
-  Critical Design Review in November — eight hours of AFRL judges critiquing our system design and analyses — and
+  Critical Design Review in November (eight hours of AFRL judges critiquing our system design and analyses), and
   building a FlatSat for flight-software development (F´ and embedded) and hardware- and software-in-the-loop testing.
   See the [TeraLink-1 org chart](/people#teralink-1) for who's working on it.
 </Mission>
@@ -75,15 +72,17 @@ import groundstationArt from '../assets/missions/groundstation.svg';
   id="sub-thz"
   name="Sub-THz Ground Station"
   status="In design"
-  art={groundstationArt}
-  artAlt="Sub-THz ground station illustration"
-  collaborators="TeraLink-1's ground segment · With UNLab at Northeastern's INSI"
+  collaborators="TeraLink-1’s ground segment · With UNLab at Northeastern’s INSI"
   scale={[
     { big: '2 m', label: 'Cassegrain reflector dish' },
     { big: '83 µm', label: 'surface accuracy' },
     { big: '225 GHz', label: 'THz uplink & downlink' },
   ]}
 >
+<Figure slot="figure" caption="Cross-section of the Cassegrain dish, not to scale.">
+  <CassegrainDish />
+</Figure>
+
   The ground half of TeraLink-1's terahertz link, and a truly unprecedented challenge: a 2 m Cassegrain reflector dish
   with a surface accuracy of 83 micrometers (0.083 mm), carrying two THz-band antennas for 225 GHz uplink and downlink.
 
@@ -98,15 +97,14 @@ import groundstationArt from '../assets/missions/groundstation.svg';
 </Mission>
 
 <Mission id="leonird" name="LEONIRD CubeSat" status="Rising project" collaborators="With the MIT Satellite Team">
-  An MIT-led, open-source, payload-agnostic satellite bus — three 1U CubeSats, built on PyCubed and moving to F´ and
-  Zephyr — that anyone can plug a payload into. The bus is in development, with a formal review process being built and
+  An MIT-led, open-source, payload-agnostic satellite bus that anyone can plug a payload into: three 1U CubeSats, built on PyCubed and moving
+  to F´ and Zephyr. The bus is in development, with a formal review process being built and
   a licensing target of December. NSL is helping choose a 1U payload instrument and supporting payload engineering and
   bus design across firmware, software, and mechanics.
 </Mission>
 
-</Stack>
-
-<p class="mt-20 border-t border-dusk/60 pt-8 text-slate">
-  Looking for competitions and open-source R&D too? The full portfolio lives on the <a href="/projects">Projects page</a>.
+<Section>
+<p class="text-alice/80">
+  Competitions and open-source R&D are on the <a href="/projects">Projects page</a>.
 </p>
 </Section>

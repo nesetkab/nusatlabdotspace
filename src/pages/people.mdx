@@ -3,10 +3,10 @@ layout: ../layouts/PageLayout.astro
 title: People
 description: "Who runs the Northeastern Satellite Lab: the E-Board, team directors, program leads, and the TeraLink-1 org chart."
 heading: People
-lead: "NSL is run by undergrads, with help from our faculty advisor and alumni. Here's who leads what, so you know who to ask."
+lead: "NSL is run by undergrads, with help from our faculty advisor and alumni. Here’s who leads what, so you know who to ask."
 ---
 
-import { Section, SectionHeading, OrgChart, OrgBranch, OrgGroup, Position } from '../components';
+import { Section, OrgChart, OrgBranch, OrgGroup, Position } from '../components';
 
 {/*
   Org charts: <OrgChart> → <OrgBranch> columns → <OrgGroup> grids of <Position>s.
@@ -14,8 +14,7 @@ import { Section, SectionHeading, OrgChart, OrgBranch, OrgGroup, Position } from
   Leave `name` off a Position for an open role; `deputy="TBD"` shows an open deputy slot.
 */}
 
-<Section>
-<SectionHeading title="Who runs NSL" />
+<Section title="Club leadership">
 
 <OrgChart title="Northeastern Satellite Lab" subtitle="Faculty advisor · Dr. Josep Jornet">
   <OrgBranch name="E-Board">
@@ -51,13 +50,12 @@ import { Section, SectionHeading, OrgChart, OrgBranch, OrgGroup, Position } from
 </OrgChart>
 </Section>
 
-<Section id="teralink-1">
-<SectionHeading
+<Section id="teralink-1"
   title="TeraLink-1"
-  sub="Our biggest program gets its own chart. It's a satellite and a ground station, built with UNLab at Northeastern's INSI under AFRL's University Nanosatellite Program."
-/>
+  sub="Our biggest program gets its own chart: a satellite and a ground station, built with UNLab at Northeastern’s INSI under AFRL’s University Nanosatellite Program."
+>
 
-<p class="mt-4"><a href="/programs#teralink-1">Read about the mission</a></p>
+<p><a href="/programs#teralink-1">Read about the mission</a>.</p>
 
 <OrgChart title="TeraLink-1" columns="2fr 1fr">
   <OrgBranch name="Satellite">
@@ -89,7 +87,7 @@ import { Section, SectionHeading, OrgChart, OrgBranch, OrgGroup, Position } from
   </OrgBranch>
 </OrgChart>
 
-<p class="mt-10 text-sm text-slate">
+<p class="mt-10 text-alice/80">
   Open roles are marked TBD. If one sounds like you, come to a meeting or <a href="/contact">get in touch</a>.
 </p>
 </Section>

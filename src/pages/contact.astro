@@ -1,47 +1,31 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { PageIntro, Section, SectionHeading, ContactForm, MailingListForm, contactEmail, socialLinks } from '../components';
+import { PageIntro, Section, ContactForm, MailingListForm, contactEmail, socialLinks } from '../components';
 ---
 
 <BaseLayout
   title="Contact"
   description="Get in touch with the Northeastern Satellite Lab, join the mailing list, or find us on social."
 >
-  <PageIntro title="Get in touch">
-    Questions, collaborations, or want to join? Email us at <a href={`mailto:${contactEmail}`} class="break-all">{contactEmail}</a>
-    or use the form below.
+  <PageIntro title="Contact">
+    Prospective members, collaborators, and press: email us at
+    <a href={`mailto:${contactEmail}`} class="[overflow-wrap:anywhere]">{contactEmail}</a>, or use the form below.
+    We’re also on
+    {socialLinks.map(({ href, label }, i) => (
+      <>{i > 0 && ' and '}<a href={href}>{label}</a></>
+    ))}.
   </PageIntro>
 
-  <Section>
-    <SectionHeading
-      title="Send us a message"
-      sub="Prospective members, collaborators, and press are all welcome. We'll write back."
-    />
-    <div class="mt-10 max-w-2xl">
-      <ContactForm />
-    </div>
+  <Section title="Send a message" sub="The form opens your email app with the message filled in.">
+    <ContactForm />
   </Section>
 
-  <Section id="mailing">
-    <SectionHeading
-      title="Mailing list"
-      sub="Meeting times, launch news, and ways to get involved. For Northeastern students and the NSL community."
-    />
+  <Section
+    id="mailing"
+    title="Mailing list"
+    sub="Meeting times, launch news, and ways to get involved, for Northeastern students and the NSL community."
+  >
     <MailingListForm />
-    <p class="mt-6 text-sm text-slate">Project-specific mailing lists for TeraLink-1 and the THz ground station are coming soon.</p>
-  </Section>
-
-  <Section>
-    <SectionHeading title="Social" />
-    <ul class="mt-8 max-w-2xl border-b border-dusk/60">
-      {socialLinks.map(({ href, label }) => (
-        <li class="border-t border-dusk/60">
-          <a href={href} class="flex justify-between py-4 text-lg font-medium text-alice no-underline hover:text-clay hover:no-underline">
-            {label}
-            <span aria-hidden="true" class="text-slate">↗</span>
-          </a>
-        </li>
-      ))}
-    </ul>
+    <p class="mt-4 text-sm text-slate">Project mailing lists for TeraLink-1 and the THz ground station are coming soon.</p>
   </Section>
 </BaseLayout>

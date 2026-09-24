@@ -1,15 +1,16 @@
 ---
-// A labeled row of organization names, passed as <Org> children.
+// A sentence that lists organizations: the label, then the <Org> children separated by commas.
 interface Props {
   label: string;
+  class?: string;
 }
 
-const { label } = Astro.props;
+const { label, class: className } = Astro.props;
 ---
 
-<div class="grid gap-3 border-t border-dusk/60 py-5 md:grid-cols-[14rem_1fr] md:gap-8">
-  <p class="font-mono text-xs text-slate md:pt-1">{label}</p>
-  <ul class="flex flex-wrap gap-x-3 gap-y-1 text-lg text-white">
+<div class:list={['max-w-[68ch] text-alice/80', className]}>
+  <span class="text-white">{label}</span>{" "}
+  <ul class="inline">
     <slot />
   </ul>
 </div>

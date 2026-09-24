@@ -3,12 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Page not found">
-  <section class="mx-auto max-w-6xl px-5 py-32">
-    <p class="font-mono text-sm text-clay">404</p>
-    <h1 class="mt-4 font-display text-4xl font-medium text-white sm:text-6xl">Page not found</h1>
-    <p class="mt-4 max-w-2xl text-lg text-slate">Nothing lives at this address. It may have moved, or the link has a typo.</p>
-    <a href="/" class="mt-10 inline-block bg-clay px-5 py-3 font-semibold text-ink no-underline hover:bg-alice hover:no-underline">
-      Back to home
-    </a>
+  <section class="mx-auto w-full max-w-6xl px-5 py-24">
+    <h1 class="font-display text-4xl font-medium text-white sm:text-5xl">Page not found</h1>
+    <p class="mt-5 text-lg text-alice/85">
+      This page doesn’t exist or has moved. Try the <a href="/">home page</a>.
+    </p>
   </section>
 </BaseLayout>

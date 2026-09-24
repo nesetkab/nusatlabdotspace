@@ -1,6 +1,6 @@
 ---
-// One branch under an <OrgChart>. On wide screens each branch draws its own half of the connector bar and a
-// tick down to its header, so branches can have different widths.
+// One branch under an <OrgChart>. On wide screens, each branch draws its half of the connector bar
+// plus a tick down to its header (the classic CSS tree technique), so branches can differ in width.
 interface Props {
   name: string;
 }
@@ -14,8 +14,8 @@ const { name } = Astro.props;
     lg:after:absolute lg:after:top-0 lg:after:right-0 lg:after:h-8 lg:after:w-1/2 lg:after:border-t lg:after:border-l lg:after:border-dusk lg:after:content-['']
     lg:first:before:hidden lg:last:after:border-t-0"
 >
-  <h3 class="border border-dusk bg-prussian px-4 py-3 text-center font-semibold text-white">{name}</h3>
-  <ul class="mt-6 space-y-8">
+  <h3 class="rounded-sm bg-prussian px-4 py-2.5 text-center font-semibold text-white">{name}</h3>
+  <ul class="mt-5 space-y-6">
     <slot />
   </ul>
 </li>
