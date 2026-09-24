@@ -1,7 +1,6 @@
 ---
-// One project write-up: status/name/body, with optional illustration and headline stats.
-// Without `art` it renders as a compact box (for projects that don't have an illustration yet).
-// Used from the MDX pages; the body is the component's children.
+// A project write-up with a status, name, and body, plus an optional illustration and row of stats.
+// Without `art` it renders as a single ruled block. The children are the body.
 import Detail from './Detail.astro';
 
 interface Props {
@@ -13,7 +12,7 @@ interface Props {
   artAlt?: string;
   scale?: { big: string; label: string }[];
   collaborators?: string;
-  /** Body is placeholder copy awaiting the project team. */
+  /** Adds a note that the body is placeholder copy until the project team sends real text. */
   placeholder?: boolean;
   reverse?: boolean;
 }
@@ -38,10 +37,10 @@ const { id, name, status, art: Art, artAlt, scale, collaborators, placeholder = 
       ))}
     </dl>
   )}
-  {collaborators && <p class="mt-4 text-sm font-medium text-slate">{collaborators}</p>}
+  {collaborators && <p class="mt-4 font-mono text-xs text-slate">{collaborators}</p>}
   {placeholder && (
-    <p class="mt-4 font-mono text-xs uppercase tracking-widest text-clay/80">
-      Placeholder copy — full details coming from the team
+    <p class="mt-4 font-mono text-xs text-clay/80">
+      Placeholder copy. Full details are coming from the team.
     </p>
   )}
 </Detail>

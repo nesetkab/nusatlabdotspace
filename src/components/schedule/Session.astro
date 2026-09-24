@@ -1,5 +1,5 @@
 ---
-// One row of the weekly schedule table; the children are the session name.
+// One row of the weekly schedule table. The children are the session name.
 interface Props {
   day: string;
   time: string;
@@ -10,7 +10,7 @@ const { day, time, where } = Astro.props;
 ---
 
 <tr>
-  <th scope="row" class="px-5 py-4 font-semibold text-white">{day}</th>
+  <th scope="row" class="py-4 pr-5 font-semibold text-white">{day}</th>
   <td class="px-5 py-4"><slot /></td>
   <td class="px-5 py-4 font-mono text-sm whitespace-nowrap text-clay">{time}</td>
   <td class="px-5 py-4 text-slate">{where}</td>

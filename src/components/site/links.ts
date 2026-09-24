@@ -14,7 +14,7 @@ export const socialLinks = [
   { href: 'https://www.linkedin.com/company/northeastern-satlab/', label: 'LinkedIn' },
 ];
 
-// How new members get plugged in (from the FL26 kickoff slides).
+// Sign-up steps for new members, taken from the FL26 kickoff slides.
 export const joinLinks = [
   { href: 'https://engage.northeastern.edu/satellite/club_signup', label: 'NUEngage', note: 'Registration required for all members' },
   { href: 'https://discord.gg/vysb8Cbba', label: 'Discord', note: 'Our communications hub (required)' },

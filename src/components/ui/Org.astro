@@ -1,7 +1,7 @@
 ---
-// One name chip in a <Marquee>.
+// One name in an <OrgList>, separated from the next by a slash.
 ---
 
-<li class="shrink-0 rounded-full border border-dusk bg-ink/60 px-4 py-2 text-sm font-medium whitespace-nowrap text-alice">
+<li class="after:ml-3 after:text-dusk after:content-['/'] last:after:hidden">
   <slot />
 </li>

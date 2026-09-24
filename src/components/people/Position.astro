@@ -13,8 +13,8 @@ const { role, name = 'TBD', deputy, partner = false, href } = Astro.props;
 const open = (value: string) => value === 'TBD';
 ---
 
-<li class:list={['rounded-lg border p-4', partner ? 'border-slate/40 bg-slate/10' : 'border-dusk/60 bg-prussian']}>
-  <p class="font-mono text-xs uppercase tracking-widest text-clay">{role}</p>
+<li class:list={['border p-4', partner ? 'border-dashed border-slate/50' : 'border-dusk/60']}>
+  <p class="font-mono text-xs text-clay">{role}</p>
   <p class:list={['mt-1 font-semibold', open(name) ? 'text-slate' : 'text-white']}>
     {href ? <a href={href} class="text-white">{name}</a> : name}
   </p>

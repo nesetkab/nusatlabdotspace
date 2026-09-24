@@ -1,5 +1,5 @@
 ---
-// One entry in the semester's learning/events list; the children are the description.
+// One entry in the semester's events list. The children are the description.
 interface Props {
   when: string;
   title: string;
@@ -9,7 +9,7 @@ const { when, title } = Astro.props;
 ---
 
 <li class="grid gap-2 py-6 sm:grid-cols-[12rem_1fr] sm:gap-8">
-  <p class="font-mono text-sm font-medium text-clay">{when}</p>
+  <p class="font-mono text-sm text-clay">{when}</p>
   <div>
     <h3 class="text-lg font-semibold text-white">{title}</h3>
     <div class="mt-2 text-slate">

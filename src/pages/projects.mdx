@@ -3,14 +3,14 @@ layout: ../layouts/PageLayout.astro
 title: Projects
 description: "Everything NSL is building: satellite and ground-station programs, national competitions, and open-source R&D."
 heading: Everything we're building
-lead: Active satellite and ground-station programs, national competitions, and open-source R&D — the full portfolio.
+lead: Satellite and ground-station programs, national competitions, and open-source R&D.
 ---
 
 import { Section, SectionHeading, Grid, Stack, Card, Mission, PointsOfContact, PointOfContact } from '../components';
 import dewsatArt from '../assets/missions/dewsat.svg';
 
 <Section>
-<SectionHeading eyebrow="Active satellite & ground station programs" title="Missions in flight and on the bench" />
+<SectionHeading title="Missions in flight and on the bench" />
 
 <Grid cols={2}>
   <Card title="PROVES Atlas" tag="Launched · April 2026" href="/programs#proves-atlas">
@@ -30,14 +30,14 @@ import dewsatArt from '../assets/missions/dewsat.svg';
 </Grid>
 </Section>
 
-<Section alt>
-<SectionHeading eyebrow="Competitions" title="Taking on the hard problems" />
+<Section>
+<SectionHeading title="Competitions" />
 
 <Stack class="mt-12">
 
 <Mission
   id="dewsat"
-  name="NASA Space to Soil — DEWSat"
+  name="DEWSat · NASA Space to Soil"
   status="Finalist"
   art={dewsatArt}
   artAlt="DEWSat drought early-warning satellite concept illustration"
@@ -73,39 +73,38 @@ import dewsatArt from '../assets/missions/dewsat.svg';
 
 <Section>
 <SectionHeading
-  eyebrow="R&D projects"
-  title="Open-source by default"
-  sub="Tools and hardware we build in the open — usable by any student or researcher."
+  title="Open-source R&D"
+  sub="Tools and hardware we build in the open, free for any student or researcher to use."
 />
 
 <Grid cols={2}>
-  <Card icon="star" title="Open-Source Star Tracker Software" tag="In development">
-    An open attitude-determination algorithm that identifies a spacecraft's orientation from the stars it sees — a
+  <Card title="Open-Source Star Tracker Software" tag="In development">
+    An open attitude-determination algorithm that identifies a spacecraft's orientation from the stars it sees. A
     Software team project.
   </Card>
 
-  <Card icon="layers" title="SatSim" tag="Early development">
-    An open-source Python framework for end-to-end CubeSat mission simulation — a modular architecture covering orbital
-    mechanics, spacecraft dynamics, and mission analysis, aiming to become an accessible tool for mission design and
-    education. The Simulations team's mission sandbox.
+  <Card title="SatSim" tag="Early development">
+    An open-source Python framework for end-to-end CubeSat mission simulation, with modules for orbital mechanics,
+    spacecraft dynamics, and mission analysis. The goal is a tool people actually use for mission design and teaching.
+    It's the Simulations team's mission sandbox.
   </Card>
 
-  <Card icon="wrench" title="Deployable Solar Panel System" tag="In development" meta="PEAK funded">
-    A student-designed deployable solar-panel mechanism for CubeSats — more power in a small package.
+  <Card title="Deployable Solar Panel System" tag="In development" meta="PEAK funded">
+    A student-designed deployable solar-panel mechanism that gets more power out of a CubeSat's small surface area.
   </Card>
 
-  <Card icon="zap" title="Miniature EPS" tag="Lesson series">
+  <Card title="Miniature EPS" tag="Lesson series">
     A miniature electrical power system board, built step by step in a workshop series during Hardware meetings and led
     by our EE lead, Vishhal Kumar.
   </Card>
 
-  <Card icon="crosshair" title="Pointing & Tracking System" tag="Apply to join" meta="With PhD students">
+  <Card title="Pointing & Tracking System" tag="Apply to join" meta="With PhD students">
     Pointing and tracking development alongside Northeastern PhD students. Spots are limited, so members apply to join.
   </Card>
 
-  <Card icon="cpu" title="Cornell-Style ChipSats" tag="Up next">
-    Chip-scale satellites in the style of Cornell's ChipSats — whole spacecraft on a single small circuit board. A new
-    Hardware project getting started.
+  <Card title="Cornell-Style ChipSats" tag="Up next">
+    Chip-scale satellites in the style of Cornell's ChipSats, where the whole spacecraft fits on one small circuit
+    board. A new Hardware project that's just getting started.
   </Card>
 </Grid>
 </Section>

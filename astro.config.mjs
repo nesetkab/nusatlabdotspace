@@ -17,10 +17,10 @@ export default defineConfig({
 
   fonts: [
     {
-      name: 'Inter',
-      cssVariable: '--font-inter',
+      name: 'Roboto',
+      cssVariable: '--font-body',
       provider: fontProviders.fontsource(),
-      weights: ['400 800'],
+      weights: ['400 700'],
       styles: ['normal']
     },
     {
