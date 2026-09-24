@@ -1,0 +1,19 @@
+---
+// A labeled, ruled list of organization names, passed as <Org> children. Flows into columns on wide screens.
+interface Props {
+  label: string;
+  /** Column count on wide screens. */
+  cols?: 1 | 2 | 3;
+  class?: string;
+}
+
+const { label, cols = 2, class: className } = Astro.props;
+const columns = { 1: '', 2: 'sm:columns-2', 3: 'sm:columns-2 lg:columns-3' }[cols];
+---
+
+<div class={className}>
+  <h3 class="label mb-4">{label}</h3>
+  <ul class:list={['gap-8 border-b border-line', columns]}>
+    <slot />
+  </ul>
+</div>

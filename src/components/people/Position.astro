@@ -13,14 +13,14 @@ const { role, name = 'TBD', deputy, partner = false, href } = Astro.props;
 const open = (value: string) => value === 'TBD';
 ---
 
-<li class:list={['rounded-lg border p-4', partner ? 'border-slate/40 bg-slate/10' : 'border-dusk/60 bg-prussian']}>
-  <p class="font-mono text-xs uppercase tracking-widest text-clay">{role}</p>
+<li class:list={['border p-4', partner ? 'border-dashed border-slate/50' : 'border-line bg-ink']}>
+  <p class="label text-clay">{role}</p>
   <p class:list={['mt-1 font-semibold', open(name) ? 'text-slate' : 'text-white']}>
     {href ? <a href={href} class="text-white">{name}</a> : name}
   </p>
   {partner && <p class="mt-1 text-xs text-slate">Partner lab</p>}
   {deputy && (
-    <p class="mt-3 border-t border-dusk/60 pt-3 text-sm">
+    <p class="mt-3 border-t border-line pt-3 text-sm">
       <span class="text-slate">Deputy · </span>
       <span class={open(deputy) ? 'text-slate' : 'text-alice'}>{deputy}</span>
     </p>

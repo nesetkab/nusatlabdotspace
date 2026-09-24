@@ -15,11 +15,11 @@ interface Props {
 const siteName = 'Northeastern Satellite Lab';
 const {
   title,
-  description = "Northeastern's Satellite Lab (NSL) — a student-run club designing, building, and launching CubeSats. Hardware, software, and simulations.",
+  description = "The Northeastern Satellite Lab (NSL) is a student-run club that designs, builds, and launches CubeSats: hardware, software, and simulations.",
   shareImage = defaultShareImage,
 } = Astro.props;
 
-const fullTitle = title ? `${title} · ${siteName}` : `${siteName} — Student-built CubeSats`;
+const fullTitle = title ? `${title} · ${siteName}` : `${siteName} · Student-built CubeSats`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const og = await getImage({ src: shareImage, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
 const ogUrl = new URL(og.src, Astro.site);

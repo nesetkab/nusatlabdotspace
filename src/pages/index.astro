@@ -2,10 +2,25 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import hero from '../assets/photos/hero.jpg';
-import { Section, SectionHeading, Icon, Marquee, Org, Grid, Card, MailingListForm } from '../components';
+import { Section, SectionHeading, Org, OrgList, Grid, Card, StatusTag, MailingListForm } from '../components';
 import WhatIsNsl from '../partials/what-is-nsl.mdx';
 import WhatIsACubeSat from '../partials/what-is-a-cubesat.mdx';
 import AlumniEmployers from '../partials/alumni-employers.mdx';
+
+const facts = [
+  { label: 'In orbit', value: 'PROVES Atlas', note: 'Deployed from the ISS, April 2026' },
+  { label: 'Next review', value: 'TeraLink-1 CDR', note: 'AFRL University Nanosatellite Program, November' },
+  { label: 'Founded', value: '2020', note: 'As Project Horizon, within AeroNU' },
+  { label: 'Meetings', value: 'Mon to Thu', note: 'Evenings in Forsyth Hall', href: '/this-semester' },
+];
+
+const missions = [
+  { href: '/programs#proves-atlas', name: 'PROVES Atlas', what: 'Camera CubeSat in a five-university constellation', status: 'Launched' },
+  { href: '/programs#teralink-1', name: 'TeraLink-1', what: '6U CubeSat for the first terahertz space-to-ground link', status: 'Critical Design Review' },
+  { href: '/programs#sub-thz', name: 'Sub-THz Ground Station', what: '2 m reflector dish, 83 µm surface accuracy', status: 'In design' },
+  { href: '/projects#dewsat', name: 'DEWSat', what: 'Drought early-warning satellite with onboard AI', status: 'NASA finalist' },
+  { href: '/programs#leonird', name: 'LEONIRD CubeSat', what: 'Payload for an open-source bus, with MIT', status: 'Rising project' },
+];
 
 const basics = [
   { q: 'What is NSL?', Answer: WhatIsNsl },
@@ -14,170 +29,194 @@ const basics = [
 
 // Full team descriptions live on the About page.
 const teams = [
-  { icon: 'wrench', title: 'Hardware' },
-  { icon: 'zap', title: 'Software' },
-  { icon: 'globe', title: 'Simulations' },
-  { icon: 'briefcase', title: 'Business' },
+  { icon: 'wrench', title: 'Hardware', body: 'Structures, PCBs, power systems, and firmware. CAD, fabrication, and test.' },
+  { icon: 'zap', title: 'Software', body: 'Flight and ground-station software: control, imaging, communications, and scheduling.' },
+  { icon: 'globe', title: 'Simulations', body: 'Orbits, dynamics, and mission analysis in FreeFlyer, STK, Python, and MATLAB.' },
+  { icon: 'briefcase', title: 'Business', body: 'Proposals, competitions, funding, outreach, and the operations that keep missions going.' },
 ] as const;
 
-const workLinks = [
+const press = [
   {
-    href: '/projects',
-    eyebrow: 'Full portfolio',
-    title: 'Projects',
-    body: "Everything we're building — active satellite & ground-station programs, competitions like NASA Space to Soil, and open-source R&D.",
-    cta: 'See all projects',
+    outlet: 'Northeastern Global News',
+    year: '2026',
+    title: 'Students reach for the stars with launch of first satellite',
+    href: 'https://news.northeastern.edu/2026/03/20/student-club-satellite-launch/',
   },
   {
-    href: '/programs',
-    eyebrow: 'Flagship programs',
-    title: 'Programs',
-    body: 'The deep dive on our flagship flight experiments — PROVES Atlas, TeraLink-1, and the Sub-THz Ground Station.',
-    cta: 'See our programs',
+    outlet: 'The Huntington News',
+    title: 'Northeastern Satellite Laboratory prepares for interstellar debut with cube satellite',
+    href: 'https://huntnewsnu.com/92573/primary-homepage/northeastern-satellite-laboratory-prepares-for-interstellar-debut-with-cube-satellite/',
+  },
+  {
+    outlet: 'College of Engineering',
+    title: 'New Space Engineering Club Set to Launch Their First Satellite',
+    href: 'https://coe.northeastern.edu/news/new-space-engineering-club-set-to-launch-their-first-satellite/',
+  },
+  {
+    outlet: 'Northeastern Global News',
+    year: '2024',
+    title: "Building a space satellite isn't cheap. These Northeastern students are researching ways to bring the cost way down.",
+    href: 'https://news.northeastern.edu/2024/09/16/satellite-development-cost-project-horizon/',
+  },
+  {
+    outlet: 'College of Engineering',
+    title: 'Student Club Is Innovating To Lower the Cost of Satellites',
+    href: 'https://coe.northeastern.edu/news/northeastern-undergraduates-innovate-satellite-development-through-project-horizon/',
   },
 ];
 ---
 
 <BaseLayout>
-  <section class="relative isolate overflow-hidden">
-    <Image
-      src={hero}
-      alt="The atrium of Northeastern's ISEC building, with its helix staircase"
-      widths={[640, 1024, 1600]}
-      sizes="100vw"
-      loading="eager"
-      fetchpriority="high"
-      class="absolute inset-0 -z-10 size-full object-cover"
-    />
-    <div class="absolute inset-0 -z-10 bg-linear-to-t from-ink via-ink/80 to-ink/40"></div>
-
-    <div class="mx-auto max-w-6xl px-5 py-28 sm:py-40">
-      <p class="font-mono text-xs uppercase tracking-widest font-medium text-slate">Northeastern Satellite Lab · Est. 2020</p>
-      <h1 class="mt-4 max-w-3xl font-display text-4xl font-medium sm:text-6xl">
-        <span class="block text-white">Welcome to</span>
-        <span class="block font-features-['smcp'] text-slate">Northeastern <span class="text-clay">Satellite</span> Lab</span>
-      </h1>
-      <p class="mt-6 max-w-2xl text-lg text-alice">
-        We're a student-run club designing, building, and launching CubeSats and more — real spacecraft,
-        built by undergrads across hardware, software, and simulations.
-      </p>
-      <div class="mt-10 flex flex-wrap gap-4">
-        <a href="/projects" class="rounded-md bg-clay px-5 py-3 font-semibold text-ink no-underline hover:bg-alice hover:no-underline">
-          Explore our work →
-        </a>
-        <a href="/contact#mailing" class="rounded-md border border-alice/40 px-5 py-3 font-semibold text-alice no-underline hover:border-clay hover:text-clay hover:no-underline">
-          Join the mailing list
-        </a>
+  <section>
+    <div class="mx-auto grid max-w-6xl items-end gap-12 px-5 pt-14 pb-14 sm:pt-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16 lg:pb-20">
+      <div>
+        <p class="label">Student-run satellite lab · Boston</p>
+        <h1 class="mt-6 font-display text-[clamp(2.125rem,9vw,4.5rem)] leading-[0.95] font-medium tracking-tight text-white font-features-['smcp']">
+          Northeastern <span class="text-clay">Satellite</span> Lab
+        </h1>
+        <p class="mt-8 max-w-xl text-lg text-pretty text-alice/85 sm:text-xl">
+          Undergraduates who design, build, and fly real spacecraft. Our first satellite went to orbit in April 2026.
+          The next one is on the bench now.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/programs" class="btn-primary">See our missions</a>
+          <a href="/this-semester" class="btn-ghost">Come to a meeting</a>
+        </div>
       </div>
+
+      <figure>
+        <Image
+          src={hero}
+          alt="The helix staircase in the atrium of Northeastern's ISEC building"
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 1024px) 480px, 100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="aspect-[4/3] w-full border border-line object-cover object-[70%_50%] lg:aspect-square"
+        />
+        <figcaption class="label mt-3">ISEC, Northeastern University</figcaption>
+      </figure>
+    </div>
+
+    <div class="mx-auto max-w-6xl px-5">
+    <dl class="grid grid-cols-2 border-t border-line lg:grid-cols-4">
+      {facts.map(({ label, value, note, href }) => (
+        <div class="border-b border-line py-6 pr-4 even:border-l even:pl-4 nth-last-[-n+2]:border-b-0 lg:border-b-0 lg:border-l lg:pl-6 lg:first:border-l-0 lg:first:pl-0">
+          <dt class="label">{label}</dt>
+          <dd class="mt-3 font-display text-xl font-medium text-white">
+            {href ? <a href={href} class="text-white">{value}</a> : value}
+          </dd>
+          <dd class="mt-1 text-sm text-slate">{note}</dd>
+        </div>
+      ))}
+    </dl>
     </div>
   </section>
 
-  <section aria-labelledby="press-heading" class="border-y border-dusk/60">
-    <div class="mx-auto max-w-6xl px-5 py-12">
-      <h2 id="press-heading" class="text-lg text-slate">
-        <span class="font-mono text-xs font-medium uppercase tracking-widest text-clay">As seen in</span>
-        <span class="mt-2 block font-display text-xl font-medium text-white sm:text-2xl">
-          Northeastern Global News, The Huntington News & Northeastern College of Engineering
-        </span>
-      </h2>
-      <Grid cols={3} class="mt-8">
-        <Card eyebrow="The Huntington News" title="Northeastern Satellite Laboratory prepares for interstellar debut with cube satellite" href="https://huntnewsnu.com/92573/primary-homepage/northeastern-satellite-laboratory-prepares-for-interstellar-debut-with-cube-satellite/" cta="Read" />
-        <Card eyebrow="Northeastern Global News" title="Students reach for the stars with launch of first satellite" href="https://news.northeastern.edu/2026/03/20/student-club-satellite-launch/" cta="Read" />
-        <Card eyebrow="Northeastern College of Engineering" title="New Space Engineering Club Set to Launch Their First Satellite" href="https://coe.northeastern.edu/news/new-space-engineering-club-set-to-launch-their-first-satellite/" cta="Read" />
-        <Card eyebrow="Northeastern College of Engineering" title="Student Club Is Innovating To Lower the Cost of Satellites" href="https://coe.northeastern.edu/news/northeastern-undergraduates-innovate-satellite-development-through-project-horizon/" cta="Read" />
-        <Card eyebrow="Northeastern Global News" title="Building a space satellite isn't cheap. These Northeastern students are researching ways to bring the cost way down." href="https://news.northeastern.edu/2024/09/16/satellite-development-cost-project-horizon/" cta="Read" />
-      </Grid>
-    </div>
-  </section>
+  <Section>
+    <SectionHeading eyebrow="Missions" title="What we're flying and building" />
+    <ul class="mt-12 border-b border-line">
+      {missions.map(({ href, name, what, status }) => (
+        <li class="border-t border-line">
+          <a
+            href={href}
+            class="group grid gap-x-10 gap-y-2 py-5 text-alice no-underline transition-colors hover:bg-prussian/50 hover:no-underline md:grid-cols-[13rem_minmax(0,1fr)_14rem] md:items-baseline md:px-3 md:-mx-3"
+          >
+            <span class="order-last md:order-none"><StatusTag>{status}</StatusTag></span>
+            <span>
+              <span class="block font-display text-xl font-medium text-white group-hover:text-clay">{name}</span>
+              <span class="mt-1 block text-slate">{what}</span>
+            </span>
+            <span aria-hidden="true" class="hidden text-right text-sm text-slate group-hover:text-clay md:block">Read the mission &rarr;</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-8 text-slate md:pl-[15.5rem]">
+      Competitions and open-source R&amp;D are on the <a href="/projects">Projects page</a>.
+    </p>
+  </Section>
 
-  <Section alt>
-    <SectionHeading eyebrow="Get to know us" title="The basics" />
-    <div class="mt-10 max-w-3xl divide-y divide-dusk/60 border-y border-dusk/60">
+  <Section>
+    <SectionHeading eyebrow="About" title="A student club that builds spacecraft" />
+    <div class="mt-12 grid gap-12 md:grid-cols-2 md:gap-14">
       {basics.map(({ q, Answer }) => (
-        <details class="group py-5">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white [&::-webkit-details-marker]:hidden">
-            {q}
-            <svg class="size-5 shrink-0 text-clay transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-              <path d="M12 5v14M5 12h14" />
-            </svg>
-          </summary>
-          <div class="mt-4 space-y-4 text-alice"><Answer /></div>
-        </details>
+        <div>
+          <h3 class="text-lg font-semibold text-white">{q}</h3>
+          <div class="prose-nsl mt-4"><Answer /></div>
+        </div>
       ))}
     </div>
   </Section>
 
   <Section>
     <SectionHeading
-      eyebrow="More than CubeSats"
-      title="Satellites are just the start"
-      sub="CubeSats are our flagship, not our boundary. NSL's work spans ground stations, national competitions, open-source R&D, and mission simulation — from a sub-THz ground segment to trajectory-optimization contests and tools any student team can pick up and use."
+      eyebrow="Teams"
+      title="Four teams, one spacecraft"
+      sub="Every member joins a team and works on real flight hardware, software, mission analysis, or the business that funds it. You don't need to be an engineer."
     />
+    <Grid cols={4}>
+      {teams.map(({ icon, title, body }) => (
+        <Card {icon} {title} href="/about#teams" cta="More about the team">{body}</Card>
+      ))}
+    </Grid>
   </Section>
 
-  <Section class="pt-0 sm:pt-0">
-    <SectionHeading
-      eyebrow="Our teams"
-      title="Four teams, one spacecraft"
-      sub="Every member joins a team and works on real flight hardware, software, mission analysis, or the business that keeps missions funded — engineers and non-engineers alike have a home here."
-    />
-    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {teams.map(({ icon, title }) => (
-        <li>
-          <a href="/about#teams" class="group flex items-center gap-4 rounded-xl border border-dusk/60 bg-prussian p-5 font-semibold text-white no-underline transition-colors hover:border-clay hover:no-underline">
-            <span class="inline-flex size-11 shrink-0 items-center justify-center rounded-lg bg-dusk/40 text-clay">
-              <Icon name={icon} />
+  <Section>
+    <SectionHeading eyebrow="Press" title="In the news" />
+    <ul class="mt-12 border-b border-line">
+      {press.map(({ outlet, year, title, href }) => (
+        <li class="border-t border-line">
+          <a
+            href={href}
+            class="group grid gap-x-10 gap-y-1 py-5 text-alice no-underline hover:no-underline md:grid-cols-[13rem_minmax(0,1fr)_auto] md:items-baseline"
+          >
+            <span class="label md:pt-1">{outlet}</span>
+            <span class="text-lg text-pretty text-white group-hover:text-clay group-hover:underline">
+              {title}<span aria-hidden="true" class="ml-1.5 text-slate">&nearr;</span>
             </span>
-            {title}
-            <span aria-hidden="true" class="ml-auto text-clay transition-transform group-hover:translate-x-1">→</span>
+            <span class="hidden font-mono text-sm text-slate md:block">{year}</span>
           </a>
         </li>
       ))}
     </ul>
   </Section>
 
-  <section class="bg-prussian py-20 sm:py-24">
-    <div class="mx-auto max-w-6xl px-5">
-      <SectionHeading
-        eyebrow="Partners & people"
-        title="We don't do it alone"
-        sub="The agencies, labs, and university teams we build alongside — and where our members and alumni go on to work."
-      />
-    </div>
-    <Marquee label="Partners, collaborators & mentors" duration={36}>
-      <Org>NASA CSLI</Org>
-      <Org>AFRL UNP</Org>
-      <Org>INSI</Org>
-      <Org>UNLab</Org>
-      <Org>NSF CIRC</Org>
-      <Org>PROVES</Org>
-      <Org>Cal Poly Pomona Bronco Space</Org>
-      <Org>MIT Satellite Team</Org>
-      <Org>Morehead State University</Org>
-    </Marquee>
-    <Marquee label="Our members & alumni work at" reverse duration={50}><AlumniEmployers /></Marquee>
-  </section>
-
   <Section>
-    <SectionHeading eyebrow="Our work" title="Missions, competitions, and open-source tools" />
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
-      {workLinks.map(({ href, eyebrow, title, body, cta }) => (
-        <a href={href} class="group rounded-xl border border-dusk/60 bg-prussian p-8 text-alice no-underline transition-colors hover:border-clay hover:no-underline">
-          <span class="font-mono text-xs uppercase tracking-widest text-slate">{eyebrow}</span>
-          <span class="mt-3 block font-display text-2xl font-medium text-white">{title}</span>
-          <span class="mt-3 block">{body}</span>
-          <span class="mt-6 block font-semibold text-clay">{cta} <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span></span>
-        </a>
-      ))}
+    <SectionHeading
+      eyebrow="Partners"
+      title="We don't do it alone"
+      sub="The agencies, labs, and university teams we build with, and where our members and alumni go on to work."
+    />
+    <div class="mt-12 grid gap-12 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10">
+      <div class="hidden md:block"></div>
+      <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-10">
+        <OrgList label="Partners and mentors" cols={1}>
+          <Org>NASA CubeSat Launch Initiative</Org>
+          <Org>AFRL University Nanosatellite Program</Org>
+          <Org>Northeastern INSI</Org>
+          <Org>UNLab</Org>
+          <Org>NSF CIRC</Org>
+          <Org>PROVES</Org>
+          <Org>Cal Poly Pomona Bronco Space</Org>
+          <Org>MIT Satellite Team</Org>
+          <Org>Morehead State University</Org>
+        </OrgList>
+        <OrgList label="Members and alumni work at"><AlumniEmployers /></OrgList>
+      </div>
     </div>
   </Section>
 
-  <Section alt>
-    <SectionHeading
-      eyebrow="Stay in the loop"
-      title="Are you a NU or NSL community member?"
-      sub="Join our mailing list for meeting times, launch news, and ways to get involved."
-    />
-    <MailingListForm />
+  <Section id="mailing">
+    <div class="grid gap-10 md:grid-cols-[13rem_minmax(0,1fr)]">
+      <p class="label md:pt-3">Mailing list</p>
+      <div class="max-w-2xl">
+        <h2 class="font-display text-3xl font-medium tracking-tight text-white sm:text-4xl">Stay in the loop</h2>
+        <p class="mt-4 text-lg text-alice/80">
+          For Northeastern students and the NSL community: meeting times, launch news, and ways to get involved.
+        </p>
+        <MailingListForm />
+      </div>
+    </div>
   </Section>
 </BaseLayout>

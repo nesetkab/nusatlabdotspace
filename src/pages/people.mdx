@@ -3,7 +3,7 @@ layout: ../layouts/PageLayout.astro
 title: People
 description: "Who runs the Northeastern Satellite Lab: the E-Board, team directors, program leads, and the TeraLink-1 org chart."
 heading: The team behind the spacecraft
-lead: "NSL is run by undergrads, with support from our faculty advisor and a network of alumni. Here's who leads what — and who to talk to."
+lead: "NSL is run by undergrads, with support from our faculty advisor and a network of alumni. Here's who leads what, and who to talk to."
 ---
 
 import { Section, SectionHeading, OrgChart, OrgBranch, OrgGroup, Position } from '../components';
@@ -51,14 +51,14 @@ import { Section, SectionHeading, OrgChart, OrgBranch, OrgGroup, Position } from
 </OrgChart>
 </Section>
 
-<Section alt id="teralink-1">
+<Section id="teralink-1">
 <SectionHeading
   eyebrow="Program org chart"
   title="TeraLink-1"
   sub="Our biggest program gets its own chart: a satellite and a ground station, built with UNLab at Northeastern's INSI under AFRL's University Nanosatellite Program."
 />
 
-<p class="mt-4"><a href="/programs#teralink-1">Read about the mission →</a></p>
+<p class="mt-6 md:pl-[15.5rem]"><a href="/programs#teralink-1" class="underline">Read about the mission</a></p>
 
 <OrgChart title="TeraLink-1" columns="2fr 1fr">
   <OrgBranch name="Satellite">
@@ -91,6 +91,6 @@ import { Section, SectionHeading, OrgChart, OrgBranch, OrgGroup, Position } from
 </OrgChart>
 
 <p class="mt-10 text-sm text-slate">
-  Open roles are marked TBD — if one sounds like you, come to a meeting or <a href="/contact">get in touch</a>.
+  Open roles are marked TBD. If one sounds like you, come to a meeting or <a href="/contact">get in touch</a>.
 </p>
 </Section>

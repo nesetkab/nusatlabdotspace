@@ -1,6 +1,6 @@
 ---
 // Media + text block. With something in the "media" slot it's a two-column layout;
-// without one (or with `boxed`) it collapses to a single bordered box.
+// without one (or with `boxed`) the title and text sit side by side instead.
 import StatusTag from './StatusTag.astro';
 
 interface Props {
@@ -8,34 +8,47 @@ interface Props {
   title: string;
   as?: 'h2' | 'h3';
   reverse?: boolean;
-  /** Force the single-box layout. Needed when the media slot is filled conditionally, since Astro still reports it as present. */
+  /** Force the text-only layout. Needed when the media slot is filled conditionally, since Astro still reports it as present. */
   boxed?: boolean;
+  /** Small caption under the media. */
+  caption?: string;
   id?: string;
   class?: string;
 }
 
-const { tag, title, as: Heading = 'h2', reverse = false, boxed = false, id, class: className } = Astro.props;
+const { tag, title, as: Heading = 'h2', reverse = false, boxed = false, caption, id, class: className } = Astro.props;
 const hasMedia = !boxed && Astro.slots.has('media');
 ---
 
 <article
   id={id}
   class:list={[
-    'scroll-mt-24',
-    hasMedia
-      ? 'grid items-center gap-10 md:grid-cols-2 md:gap-14'
-      : 'rounded-xl border border-dusk/60 bg-prussian p-6 sm:p-8 [[data-alt]_&]:bg-ink',
+    'scroll-mt-24 grid gap-10',
+    hasMedia ? 'items-start md:grid-cols-2 md:gap-14' : 'md:grid-cols-[13rem_minmax(0,1fr)]',
     className,
   ]}
 >
   {hasMedia && (
-    <div class:list={['overflow-hidden rounded-xl border border-dusk/60 bg-ink', reverse && 'md:order-last']}>
-      <slot name="media" />
-    </div>
+    <figure class:list={[reverse && 'md:order-last']}>
+      <div class="overflow-hidden border border-line bg-ink">
+        <slot name="media" />
+      </div>
+      {caption && <figcaption class="label mt-3">{caption}</figcaption>}
+    </figure>
   )}
-  <div>
-    {tag && <StatusTag>{tag}</StatusTag>}
-    <Heading class="mt-4 font-display text-2xl font-medium text-white sm:text-3xl">{title}</Heading>
-    <slot />
-  </div>
+  {hasMedia ? (
+    <div>
+      {tag && <StatusTag>{tag}</StatusTag>}
+      <Heading class="mt-4 font-display text-2xl font-medium tracking-tight text-white sm:text-3xl">{title}</Heading>
+      <slot />
+    </div>
+  ) : (
+    <>
+      <div>{tag && <StatusTag>{tag}</StatusTag>}</div>
+      <div class="max-w-3xl">
+        <Heading class="font-display text-2xl font-medium tracking-tight text-white sm:text-3xl">{title}</Heading>
+        <slot />
+      </div>
+    </>
+  )}
 </article>

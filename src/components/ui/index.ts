@@ -5,5 +5,5 @@ export { default as Detail } from './Detail.astro';
 export { default as StatusTag } from './StatusTag.astro';
 export { default as Icon } from './Icon.astro';
 export type { IconName } from './Icon.astro';
-export { default as Marquee } from './Marquee.astro';
+export { default as OrgList } from './OrgList.astro';
 export { default as Org } from './Org.astro';

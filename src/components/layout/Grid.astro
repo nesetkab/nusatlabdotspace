@@ -1,5 +1,5 @@
 ---
-// Responsive grid of <Card>s. `ordered` renders an <ol> so `<Card numbered>` children count up.
+// Grid of <Card>s drawn as ruled cells, like a table. `ordered` renders an <ol> so `<Card numbered>` children count up.
 // `class` replaces the default top margin.
 interface Props {
   cols?: 2 | 3 | 4;
@@ -12,6 +12,6 @@ const columns = { 2: 'md:grid-cols-2', 3: 'md:grid-cols-3', 4: 'sm:grid-cols-2 l
 const List = ordered ? 'ol' : 'ul';
 ---
 
-<List class:list={['grid gap-6', columns, ordered && '[counter-reset:item]', className]}>
+<List class:list={['grid border-t border-l border-line', columns, ordered && '[counter-reset:item]', className]}>
   <slot />
 </List>

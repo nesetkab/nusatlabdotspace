@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { PageIntro, Section, SectionHeading, Icon, ContactForm, MailingListForm, contactEmail, socialLinks } from '../components';
+import { PageIntro, Section, SectionHeading, ContactForm, MailingListForm, contactEmail, socialLinks } from '../components';
 ---
 
 <BaseLayout
@@ -8,49 +8,46 @@ import { PageIntro, Section, SectionHeading, Icon, ContactForm, MailingListForm,
   description="Get in touch with the Northeastern Satellite Lab, join the mailing list, or find us on social."
 >
   <PageIntro eyebrow="Contact" title="Get in touch">
-    Questions, collaborations, or want to join? Email us at <a href={`mailto:${contactEmail}`} class="break-all">{contactEmail}</a>
+    Questions, collaborations, or want to join? Email us at <a href={`mailto:${contactEmail}`} class="break-all sm:break-normal">{contactEmail}</a>
     or use the form below.
   </PageIntro>
 
   <Section>
-    <div class="grid gap-12 md:grid-cols-2">
-      <div>
-        <SectionHeading
-          eyebrow="Reach the lab"
-          title="Send us a message"
-          sub="Whether you're a prospective member, a collaborator, or press — drop us a line and we'll get back to you."
-        />
-        <p class="mt-8 flex items-center gap-3">
-          <span class="inline-flex size-11 shrink-0 items-center justify-center rounded-lg bg-dusk/40 text-clay">
-            <Icon name="mail" />
-          </span>
-          <a href={`mailto:${contactEmail}`} class="break-all">{contactEmail}</a>
-        </p>
+    <SectionHeading
+      eyebrow="Reach the lab"
+      title="Send us a message"
+      sub="Whether you're a prospective member, a collaborator, or press, drop us a line and we'll get back to you."
+    />
+    <div class="mt-12 grid gap-12 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10">
+      <div class="hidden md:block"></div>
+      <div class="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
+        <dl class="divide-y divide-line self-start border-y border-line text-sm">
+          <div class="grid grid-cols-[6rem_minmax(0,1fr)] gap-4 py-3">
+            <dt class="label pt-0.5">Email</dt>
+            <dd><a href={`mailto:${contactEmail}`} class="break-all">{contactEmail}</a></dd>
+          </div>
+          {socialLinks.map(({ href, label }) => (
+            <div class="grid grid-cols-[6rem_minmax(0,1fr)] gap-4 py-3">
+              <dt class="label pt-0.5">{label}</dt>
+              <dd><a href={href} class="break-all">{href.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></dd>
+            </div>
+          ))}
+        </dl>
+        <ContactForm />
       </div>
-      <ContactForm />
     </div>
   </Section>
 
-  <Section alt id="mailing">
+  <Section id="mailing">
     <SectionHeading
       eyebrow="Mailing list"
       title="Join our mailing list"
-      sub="For NU and NSL community members — meeting times, launch news, and opportunities to get involved."
+      sub="For Northeastern students and the NSL community: meeting times, launch news, and ways to get involved."
     />
-    <MailingListForm />
-    <p class="mt-6 text-sm text-slate">Project-specific mailing lists (TeraLink-1, THz ground station) are coming soon.</p>
+    <div class="md:pl-[15.5rem]">
+      <MailingListForm />
+      <p class="mt-6 text-sm text-slate">Project-specific mailing lists (TeraLink-1, THz ground station) are coming soon.</p>
+    </div>
   </Section>
 
-  <Section>
-    <SectionHeading eyebrow="Follow along" title="Find us on social" />
-    <ul class="mt-8 flex flex-wrap gap-3">
-      {socialLinks.map(({ href, label }) => (
-        <li>
-          <a href={href} class="inline-block rounded-full border border-dusk px-5 py-2 font-medium text-alice no-underline hover:border-clay hover:text-clay hover:no-underline">
-            {label}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </Section>
 </BaseLayout>

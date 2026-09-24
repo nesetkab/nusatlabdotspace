@@ -4,11 +4,11 @@ title: About
 description: "Who we are: a student-run satellite lab at Northeastern, founded in 2020 as Project Horizon."
 eyebrow: About Us
 heading: Students building real spacecraft.
-lead: A student-run satellite lab at Northeastern — undergrads designing, building, and flying CubeSats and more.
+lead: A student-run satellite lab at Northeastern. Undergrads design, build, and fly CubeSats and more.
 ---
 
 import { Image } from 'astro:assets';
-import { Section, SectionHeading, Detail, Grid, Card, Marquee } from '../components';
+import { Section, SectionHeading, Detail, Grid, Card, OrgList } from '../components';
 import galleryPhoto from '../assets/photos/gallery-1.jpg';
 import SatelliteArt from '../assets/missions/satellite.svg';
 import WhatIsNsl from '../partials/what-is-nsl.mdx';
@@ -16,19 +16,19 @@ import WhatIsACubeSat from '../partials/what-is-a-cubesat.mdx';
 import AlumniEmployers from '../partials/alumni-employers.mdx';
 
 <Section>
-<Detail tag="Who we are" title="Northeastern Satellite Lab">
+<Detail tag="Who we are" title="Northeastern Satellite Lab" caption="ISEC, Northeastern University">
   <Image
     slot="media"
     src={galleryPhoto}
     alt="The atrium of Northeastern's ISEC building, with its helix staircase"
     widths={[480, 800, 1200]}
     sizes="(min-width: 768px) 50vw, 100vw"
-    class="h-auto w-full"
+    class="block h-auto w-full"
   />
-  <div class="mt-4 space-y-4 text-alice"><WhatIsNsl /></div>
+  <div class="prose-nsl mt-5"><WhatIsNsl /></div>
 </Detail>
 
-<Grid cols={3} class="mt-16">
+<Grid cols={3} class="mt-20">
   <Card big="2020" title="Founded">Started as Project Horizon within AeroNU; its own club since 2025.</Card>
   <Card big="10" title="Management team">Undergrads running the club day-to-day.</Card>
   <Card big="Dr. Jornet" title="Faculty advisor">
@@ -37,10 +37,10 @@ import AlumniEmployers from '../partials/alumni-employers.mdx';
 </Grid>
 </Section>
 
-<Section alt>
+<Section>
 <Detail tag="The platform" title="What is a CubeSat?" reverse>
-  <SatelliteArt slot="media" role="img" aria-label="CubeSat illustration" class="h-auto w-full" />
-  <div class="mt-4 space-y-4 text-alice"><WhatIsACubeSat /></div>
+  <SatelliteArt slot="media" role="img" aria-label="CubeSat illustration" class="block h-auto w-full" />
+  <div class="prose-nsl mt-5"><WhatIsACubeSat /></div>
 </Detail>
 </Section>
 
@@ -56,7 +56,7 @@ import AlumniEmployers from '../partials/alumni-employers.mdx';
   </Card>
   <Card icon="zap" title="Software">
     Flight and ground-station software: sensing, control, imaging, and compression algorithms, plus satellite
-    communication, networking, and scheduling systems — tested and merged across every mission subsystem. This
+    communication, networking, and scheduling systems, tested and merged across every mission subsystem. This
     semester's goal is a working FlatSat by January.
   </Card>
   <Card icon="globe" title="Simulations">
@@ -72,7 +72,7 @@ import AlumniEmployers from '../partials/alumni-employers.mdx';
 </Grid>
 </Section>
 
-<Section alt>
+<Section>
 <SectionHeading eyebrow="Our objective" title="Build satellites. That's it." sub="Everything else we do is in service of that." />
 
 <Grid cols={2} ordered>
@@ -84,7 +84,7 @@ import AlumniEmployers from '../partials/alumni-employers.mdx';
     A strong, cohesive aerospace engineering network between students, faculty, and alumni.
   </Card>
   <Card numbered title="Foster the space community">
-    Connecting space organizations at and beyond Northeastern — NU research groups, local aerospace companies, Boston
+    Connecting space organizations at and beyond Northeastern: NU research groups, local aerospace companies, Boston
     space meetups, SmallSat, and more.
   </Card>
   <Card numbered title="Put space on the map at NU">
@@ -97,7 +97,7 @@ import AlumniEmployers from '../partials/alumni-employers.mdx';
 <SectionHeading
   eyebrow="Out in the community"
   title="Where you'll find us"
-  sub="We present our work at conferences and meetups every year — let us know where we should go next."
+  sub="We present our work at conferences and meetups every year. Let us know where we should go next."
 />
 
 <Grid cols={4}>
@@ -108,13 +108,14 @@ import AlumniEmployers from '../partials/alumni-employers.mdx';
 </Grid>
 </Section>
 
-<section class="bg-prussian py-20 sm:py-24">
-  <div class="mx-auto max-w-6xl px-5">
-    <SectionHeading
-      eyebrow="Alumni & advisors"
-      title="The people behind the students"
-      sub="NSL is supported by a small but dedicated group of satellite-club alumni who mentor current members, and by our faculty advisor Dr. Josep Jornet, Associate Dean of Research in the Northeastern College of Engineering. That network follows our members after graduation, too."
-    />
-  </div>
-  <Marquee label="Our members & alumni work at" duration={50}><AlumniEmployers /></Marquee>
-</section>
+<Section>
+<SectionHeading
+  eyebrow="Alumni & advisors"
+  title="The people behind the students"
+  sub="NSL is supported by a small but dedicated group of satellite-club alumni who mentor current members, and by our faculty advisor Dr. Josep Jornet, Associate Dean of Research in the Northeastern College of Engineering. That network follows our members after graduation, too."
+/>
+
+<div class="mt-12 md:pl-[15.5rem]">
+  <OrgList label="Our members & alumni work at" cols={3}><AlumniEmployers /></OrgList>
+</div>
+</Section>

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* NSL brand palette — source of truth: design/nsl-palette.svg */
+/* NSL brand palette. Source of truth: design/nsl-palette.svg */
 @theme {
   --color-*: initial;
   --color-ink: #070c13;
@@ -12,22 +12,16 @@
   --color-white: #f8f8f8;
   --color-transparent: transparent;
   --color-current: currentColor;
+
+  /* Hairlines: the site is drawn with rules, not boxes. */
+  --color-line: color-mix(in oklab, var(--color-dusk) 55%, var(--color-ink));
+  --color-line-strong: var(--color-dusk);
 }
 
 @theme inline {
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
   --font-display: var(--font-science-gothic);
-}
-
-@theme {
-  --animate-marquee: marquee var(--marquee-duration, 42s) linear infinite;
-
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
-    }
-  }
 }
 
 @layer base {
@@ -38,13 +32,44 @@
 
   body {
     @apply flex min-h-dvh flex-col font-sans;
+    font-feature-settings: 'cv11', 'ss01';
   }
 
   a {
-    @apply text-clay underline-offset-4 hover:underline;
+    @apply text-clay decoration-clay/40 underline-offset-4 hover:underline;
   }
 
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-clay;
   }
+
+  ::selection {
+    @apply bg-clay text-ink;
+  }
+}
+
+/* Running text from MDX pages. Links stay underlined so they read as links without color alone. */
+@utility prose-nsl {
+  @apply space-y-4 leading-relaxed text-alice/90;
+
+  & a {
+    @apply underline;
+  }
+}
+
+/* Small label set in mono: for data labels and metadata, not as a heading on every section. */
+@utility label {
+  @apply font-mono text-xs font-medium tracking-[0.12em] text-slate uppercase;
+}
+
+@utility btn {
+  @apply inline-flex items-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold no-underline transition-colors hover:no-underline;
+}
+
+@utility btn-primary {
+  @apply btn bg-clay text-ink hover:bg-white;
+}
+
+@utility btn-ghost {
+  @apply btn border border-line-strong text-alice hover:border-alice hover:text-white;
 }
