@@ -20,6 +20,16 @@
   --font-display: var(--font-science-gothic);
 }
 
+@theme {
+  --animate-marquee: marquee var(--marquee-duration, 42s) linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
 @layer base {
   html {
     @apply bg-ink text-alice antialiased;

@@ -1,0 +1,26 @@
+---
+// Endlessly scrolling row of <Org> chips, passed as children.
+// The list is rendered twice so the loop is seamless; with reduced motion it stops scrolling and wraps instead.
+interface Props {
+  label: string;
+  reverse?: boolean;
+  /** Seconds per loop. */
+  duration?: number;
+}
+
+const { label, reverse = false, duration = 42 } = Astro.props;
+const items = await Astro.slots.render('default');
+---
+
+<div class="mt-10">
+  <p class="mx-auto max-w-6xl px-5 font-mono text-xs uppercase tracking-widest text-slate">{label}</p>
+  <div class="mt-4 overflow-hidden mask-x-from-90% mask-x-to-100% motion-reduce:mx-auto motion-reduce:max-w-6xl motion-reduce:px-5 motion-reduce:mask-none">
+    <div
+      class:list={['flex w-max animate-marquee motion-reduce:w-auto motion-reduce:animate-none', reverse && '[animation-direction:reverse]']}
+      style={`--marquee-duration: ${duration}s`}
+    >
+      <ul class="flex gap-3 pr-3 motion-reduce:flex-wrap" set:html={items} />
+      <ul class="flex gap-3 pr-3 motion-reduce:hidden" aria-hidden="true" set:html={items} />
+    </div>
+  </div>
+</div>

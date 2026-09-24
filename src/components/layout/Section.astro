@@ -1,0 +1,16 @@
+---
+interface Props {
+  /** Alternate (raised) background, used to separate adjacent sections. */
+  alt?: boolean;
+  id?: string;
+  class?: string;
+}
+
+const { alt = false, id, class: className } = Astro.props;
+---
+
+<section id={id} data-alt={alt || undefined} class:list={['scroll-mt-20 py-20 sm:py-24', alt && 'bg-prussian', className]}>
+  <div class="mx-auto max-w-6xl px-5">
+    <slot />
+  </div>
+</section>

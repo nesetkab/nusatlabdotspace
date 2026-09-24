@@ -1,0 +1,64 @@
+---
+// The one card used across the site, placed inside a <Grid> (or any <ul>/<ol>). Every part but the title is optional:
+//   icon     — feather icon in the top-left           (teams, R&D projects)
+//   tag      — status pill in the top-right           (R&D projects, program cards)
+//   eyebrow  — small caps label above the title       (press outlet)
+//   big      — large gold callout above the title     (facts, meeting time)
+//   numbered — auto-numbers cards inside <Grid ordered>
+//   meta     — small line under the body              (collaborators)
+//   href     — makes the whole card a link, ending in `cta` ("Read more →")
+// The children are the body text.
+import Icon, { type IconName } from './Icon.astro';
+import StatusTag from './StatusTag.astro';
+
+interface Props {
+  title: string;
+  as?: 'h2' | 'h3';
+  icon?: IconName;
+  tag?: string;
+  eyebrow?: string;
+  big?: string;
+  numbered?: boolean;
+  meta?: string;
+  href?: string;
+  cta?: string;
+}
+
+const { title, as: Heading = 'h3', icon, tag, eyebrow, big, numbered = false, meta, href, cta = 'Read more' } = Astro.props;
+const Box = href ? 'a' : 'div';
+---
+
+<li>
+  <Box
+    href={href}
+    class:list={[
+      'flex h-full flex-col rounded-xl border border-dusk/60 bg-prussian p-6 [[data-alt]_&]:bg-ink',
+      href && 'group text-alice no-underline transition-colors hover:border-clay hover:no-underline',
+      numbered && '[counter-increment:item]',
+    ]}
+  >
+    {(icon || tag) && (
+      <div class="mb-5 flex items-start justify-between gap-4">
+        {icon && (
+          <span class="inline-flex size-11 shrink-0 items-center justify-center rounded-lg bg-dusk/40 text-clay">
+            <Icon name={icon} />
+          </span>
+        )}
+        {tag && <StatusTag>{tag}</StatusTag>}
+      </div>
+    )}
+    {numbered && <span aria-hidden="true" class="mb-3 font-mono text-sm font-medium text-clay before:content-[counter(item,decimal-leading-zero)]"></span>}
+    {eyebrow && <p class="mb-3 font-mono text-xs uppercase tracking-widest text-slate">{eyebrow}</p>}
+    {big && <p class="mb-2 font-display text-3xl font-medium text-clay">{big}</p>}
+    <Heading class="text-lg font-semibold text-white">{title}</Heading>
+    <div class="mt-2 flex-1 space-y-3 text-slate">
+      <slot />
+    </div>
+    {meta && <p class="mt-3 text-sm font-medium text-alice">{meta}</p>}
+    {href && (
+      <span class="mt-6 font-semibold text-clay">
+        {cta} <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span>
+      </span>
+    )}
+  </Box>
+</li>

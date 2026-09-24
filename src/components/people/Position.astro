@@ -1,0 +1,28 @@
+---
+// One role in an org chart. Leave `name` off (or "TBD") for an open role; pass `deputy` to show the deputy under the lead.
+interface Props {
+  role: string;
+  name?: string;
+  deputy?: string;
+  /** Held by a member of a partner lab rather than an NSL student. */
+  partner?: boolean;
+  href?: string;
+}
+
+const { role, name = 'TBD', deputy, partner = false, href } = Astro.props;
+const open = (value: string) => value === 'TBD';
+---
+
+<li class:list={['rounded-lg border p-4', partner ? 'border-slate/40 bg-slate/10' : 'border-dusk/60 bg-prussian']}>
+  <p class="font-mono text-xs uppercase tracking-widest text-clay">{role}</p>
+  <p class:list={['mt-1 font-semibold', open(name) ? 'text-slate' : 'text-white']}>
+    {href ? <a href={href} class="text-white">{name}</a> : name}
+  </p>
+  {partner && <p class="mt-1 text-xs text-slate">Partner lab</p>}
+  {deputy && (
+    <p class="mt-3 border-t border-dusk/60 pt-3 text-sm">
+      <span class="text-slate">Deputy · </span>
+      <span class={open(deputy) ? 'text-slate' : 'text-alice'}>{deputy}</span>
+    </p>
+  )}
+</li>

@@ -1,0 +1,47 @@
+---
+// One project write-up: status/name/body, with optional illustration and headline stats.
+// Without `art` it renders as a compact box (for projects that don't have an illustration yet).
+// Used from the MDX pages; the body is the component's children.
+import Detail from './Detail.astro';
+
+interface Props {
+  id: string;
+  name: string;
+  status: string;
+  /** SVG component imported from src/assets/missions/. */
+  art?: (props: Record<string, unknown>) => unknown;
+  artAlt?: string;
+  scale?: { big: string; label: string }[];
+  collaborators?: string;
+  /** Body is placeholder copy awaiting the project team. */
+  placeholder?: boolean;
+  reverse?: boolean;
+}
+
+const { id, name, status, art: Art, artAlt, scale, collaborators, placeholder = false, reverse } = Astro.props;
+---
+
+<Detail {id} tag={status} title={name} as="h3" {reverse} boxed={!Art}>
+  {Art && <Art slot="media" role="img" aria-label={artAlt} class="h-auto w-full" />}
+
+  <div class="mt-4 space-y-4 text-alice">
+    <slot />
+  </div>
+
+  {scale && (
+    <dl class="mt-8 grid grid-cols-2 gap-6 border-t border-dusk/60 pt-6 sm:grid-cols-3">
+      {scale.map(({ big, label }) => (
+        <div class="flex flex-col-reverse justify-end">
+          <dt class="mt-1 text-sm text-slate">{label}</dt>
+          <dd class="font-display text-3xl font-medium text-white">{big}</dd>
+        </div>
+      ))}
+    </dl>
+  )}
+  {collaborators && <p class="mt-4 text-sm font-medium text-slate">{collaborators}</p>}
+  {placeholder && (
+    <p class="mt-4 font-mono text-xs uppercase tracking-widest text-clay/80">
+      Placeholder copy — full details coming from the team
+    </p>
+  )}
+</Detail>

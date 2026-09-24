@@ -1,6 +1,6 @@
 ---
-import Wordmark from '../assets/brand/nsl-wordmark-light.svg';
-import { navLinks } from './nav-links';
+import Wordmark from '../../assets/brand/nsl-wordmark-light.svg';
+import { navLinks } from './links';
 
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => current === href || current.startsWith(`${href}/`);

@@ -1,0 +1,12 @@
+---
+// Vertical stack with generous spacing, for a run of <Mission> write-ups.
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['space-y-24', className]}>
+  <slot />
+</div>

@@ -1,0 +1,96 @@
+---
+layout: ../layouts/PageLayout.astro
+title: People
+description: "Who runs the Northeastern Satellite Lab: the E-Board, team directors, program leads, and the TeraLink-1 org chart."
+heading: The team behind the spacecraft
+lead: "NSL is run by undergrads, with support from our faculty advisor and a network of alumni. Here's who leads what — and who to talk to."
+---
+
+import { Section, SectionHeading, OrgChart, OrgBranch, OrgGroup, Position } from '../components';
+
+{/*
+  Org charts: <OrgChart> → <OrgBranch> columns → <OrgGroup> grids of <Position>s.
+  Nest a named <OrgGroup> inside another for a unit with several leads (like Hardware).
+  Leave `name` off a Position for an open role; `deputy="TBD"` shows an open deputy slot.
+*/}
+
+<Section>
+<SectionHeading eyebrow="The club" title="Who runs NSL" />
+
+<OrgChart title="Northeastern Satellite Lab" subtitle="Faculty advisor · Dr. Josep Jornet">
+  <OrgBranch name="E-Board">
+    <OrgGroup>
+      <Position role="President" name="Laura Teixeira" />
+      <Position role="Vice President" name="Swati Sundaram" />
+      <Position role="Finance Officer" name="Orlando LuPone" />
+      <Position role="Outreach Officer" name="Sandhya Moorthi" />
+      <Position role="Compliance Officer" name="Gavin Sarno" />
+    </OrgGroup>
+  </OrgBranch>
+
+  <OrgBranch name="Teams">
+    <OrgGroup>
+      <OrgGroup name="Hardware">
+        <Position role="Director, Mechanical" name="Jeremy Ng" />
+        <Position role="Director, Electrical" name="Vishhal Kumar" />
+      </OrgGroup>
+      <Position role="Director, Software" name="Sandhya Moorthi" />
+      <Position role="Director, Simulations" name="Swati Sundaram" />
+      <Position role="Director, Business" name="Sandhya Moorthi" />
+    </OrgGroup>
+  </OrgBranch>
+
+  <OrgBranch name="Programs">
+    <OrgGroup>
+      <Position role="TeraLink-1" name="Noah Typrin" href="#teralink-1" />
+      <Position role="DEWSat" name="Swati Sundaram" />
+      <Position role="LEONIRD CubeSat" name="Laura Teixeira" />
+      <Position role="Mini-EPS" name="Vishhal Kumar" />
+    </OrgGroup>
+  </OrgBranch>
+</OrgChart>
+</Section>
+
+<Section alt id="teralink-1">
+<SectionHeading
+  eyebrow="Program org chart"
+  title="TeraLink-1"
+  sub="Our biggest program gets its own chart: a satellite and a ground station, built with UNLab at Northeastern's INSI under AFRL's University Nanosatellite Program."
+/>
+
+<p class="mt-4"><a href="/programs#teralink-1">Read about the mission →</a></p>
+
+<OrgChart title="TeraLink-1" columns="2fr 1fr">
+  <OrgBranch name="Satellite">
+    <OrgGroup>
+      <Position role="Project Manager" name="Noah Typrin" deputy="TBD" />
+      <Position role="Chief Engineer" name="Landon Bayer" deputy="TBD" />
+    </OrgGroup>
+    <OrgGroup name="Subsystem leads">
+      <Position role="Structures" name="Jeremy Ng" deputy="TBD" />
+      <Position role="Thermal" name="Gavin Sarno" deputy="TBD" />
+      <Position role="CDH" name="Sandhya Moorthi" deputy="TBD" />
+      <Position role="Communications" name="Chance Bowman" deputy="TBD" />
+      <Position role="ADCS" name="Swati Sundaram" deputy="TBD" />
+      <Position role="Flight Software" name="Sandhya Moorthi" deputy="Eshan Nambiar" />
+      <Position role="Payload" name="Andrew Benincasa" partner />
+    </OrgGroup>
+  </OrgBranch>
+
+  <OrgBranch name="Ground Station">
+    <OrgGroup>
+      <Position role="Project Manager" name="Riley Ashok" />
+    </OrgGroup>
+    <OrgGroup name="Subsystem leads">
+      <Position role="Software" name="Orlando LuPone" />
+      <Position role="Electrical" />
+      <Position role="Hardware" />
+      <Position role="Pointing" name="Paolo Testolina" deputy="Ahmed Masihi" partner />
+    </OrgGroup>
+  </OrgBranch>
+</OrgChart>
+
+<p class="mt-10 text-sm text-slate">
+  Open roles are marked TBD — if one sounds like you, come to a meeting or <a href="/contact">get in touch</a>.
+</p>
+</Section>

@@ -1,0 +1,34 @@
+---
+// No list backend yet: submitting opens the visitor's email app with a pre-filled signup request.
+import { contactEmail } from '../site/links';
+---
+
+<form data-mailing-form data-to={contactEmail} class="mt-8 flex max-w-lg flex-col gap-3 sm:flex-row" novalidate>
+  <input
+    type="email"
+    name="email"
+    required
+    autocomplete="email"
+    placeholder="your.email@northeastern.edu"
+    aria-label="Email address"
+    class="min-w-0 flex-1 rounded-md border border-dusk bg-ink px-4 py-3 text-white placeholder:text-slate/70 focus:border-clay"
+  />
+  <button type="submit" class="cursor-pointer rounded-md bg-clay px-5 py-3 font-semibold text-ink hover:bg-alice">
+    Join the list
+  </button>
+</form>
+<p data-mailing-done hidden class="mt-3 text-sm text-slate" role="status">Thanks! Your email app should open to confirm.</p>
+
+<script>
+  for (const form of document.querySelectorAll<HTMLFormElement>('[data-mailing-form]')) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const email = new FormData(form).get('email')?.toString().trim();
+      if (!email) return;
+      const body = encodeURIComponent(`Please add me to the NSL mailing list: ${email}`);
+      window.location.href = `mailto:${form.dataset.to}?subject=Mailing%20list%20signup&body=${body}`;
+      const done = form.nextElementSibling;
+      if (done instanceof HTMLElement) done.hidden = false;
+    });
+  }
+</script>

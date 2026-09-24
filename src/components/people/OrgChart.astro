@@ -1,0 +1,25 @@
+---
+// Root of an org chart: a title box with <OrgBranch> children fanned out beneath it.
+// `columns` is a CSS grid-template-columns value for wide screens, so branches can have unequal widths.
+interface Props {
+  title: string;
+  subtitle?: string;
+  columns?: string;
+}
+
+const { title, subtitle, columns } = Astro.props;
+---
+
+<div class="mt-12">
+  <div class="mx-auto w-fit rounded-xl border border-clay/60 bg-prussian px-8 py-4 text-center">
+    <p class="font-display text-2xl font-medium text-white">{title}</p>
+    {subtitle && <p class="mt-1 text-sm text-slate">{subtitle}</p>}
+  </div>
+  <div aria-hidden="true" class="mx-auto hidden h-8 w-px bg-dusk lg:block"></div>
+  <ul
+    class="mt-10 grid gap-10 lg:mt-0 lg:gap-0 lg:[grid-template-columns:var(--org-columns)]"
+    style={`--org-columns: ${columns ?? 'repeat(auto-fit, minmax(0, 1fr))'}`}
+  >
+    <slot />
+  </ul>
+</div>

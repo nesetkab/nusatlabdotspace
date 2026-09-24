@@ -1,0 +1,112 @@
+---
+layout: ../layouts/PageLayout.astro
+title: Programs
+description: "NSL's flagship satellite and ground-station programs: PROVES Atlas, TeraLink-1, and the Sub-THz Ground Station."
+heading: Programs
+lead: "Our flagship satellite and ground-station programs — some call them flight experiments — at the scale of multi-semester missions: real hardware, real launches, and teams of a dozen or more students working with national partners."
+---
+
+import { Section, Stack, Mission } from '../components';
+import provesArt from '../assets/missions/proves.svg';
+import satelliteArt from '../assets/missions/satellite.svg';
+import groundstationArt from '../assets/missions/groundstation.svg';
+
+<Section>
+<h2 class="sr-only">Flagship programs</h2>
+
+<Stack>
+
+<Mission
+  id="proves-atlas"
+  name="PROVES Atlas"
+  status="Launched · April 2026"
+  art={provesArt}
+  artAlt="PROVES Atlas CubeSat illustration"
+  collaborators="With the Pleiades Consortium, led by Cal Poly Pomona · PROVES"
+  scale={[
+    { big: '~15', label: 'students on the build' },
+    { big: '<1 yr', label: 'from kickoff to launch' },
+    { big: '5', label: 'partner university teams' },
+  ]}
+>
+  In April 2026, Northeastern went to space for the first time — a student-built CubeSat, deployed from the
+  International Space Station as one of a five-satellite constellation. About 15 students built it in under a year,
+  working shoulder-to-shoulder with the Pleiades Consortium, a group of five partner university teams led by Cal Poly
+  Pomona. Our students worked on both the hardware and the software of the platform — including assembly, integration,
+  and testing, with the satellite shipped around the country for environmental testing — and we open-sourced all of it.
+
+  Atlas is an educational satellite with a Sony Spresense camera payload for imaging demos. It's part of PROVES, an
+  educational satellite program that's also developing university CubeSat kits for under $3,000, lowering the barrier to
+  space for students and researchers everywhere. Next up: a mobile ground station to track Atlas and the other PROVES
+  satellites.
+</Mission>
+
+<Mission
+  id="teralink-1"
+  name="TeraLink-1"
+  status="Critical Design Review"
+  art={satelliteArt}
+  artAlt="TeraLink-1 CubeSat concept illustration"
+  collaborators="Funded by AFRL's University Nanosatellite Program (UNP NS-12) · With UNLab at Northeastern's INSI"
+  scale={[
+    { big: '6U', label: 'CubeSat (10 × 20 × 30 cm)' },
+    { big: '225 GHz', label: 'THz uplink & downlink' },
+    { big: '~400 km', label: 'ISS deployment orbit' },
+  ]}
+  reverse
+>
+  TeraLink-1 will fly the first-ever terahertz-frequency space-to-ground link demo. It's a 6U CubeSat funded by AFRL's
+  University Nanosatellite Program and built with the Ultrabroadband Nanonetworking Lab (UNLab) at Northeastern's
+  Institute for the Wireless Internet of Things, and its payload is a pair of THz-band antennas for 225 GHz uplink and
+  downlink.
+
+  After deploying into an ISS orbit and detumbling, TeraLink-1 keeps its solar panels pointed at the sun. On passes over
+  campus it relays telemetry and location over UHF while its THz antenna face tracks our [THz ground
+  station](#sub-thz). The experiment data is too big for UHF, so it comes down over S-band through three Amazon Web
+  Services ground stations.
+
+  The satellite design is complete. After making it through the first round last year, the team is preparing for UNP's
+  Critical Design Review in November — eight hours of AFRL judges critiquing our system design and analyses — and
+  building a FlatSat for flight-software development (F´ and embedded) and hardware- and software-in-the-loop testing.
+  See the [TeraLink-1 org chart](/people#teralink-1) for who's working on it.
+</Mission>
+
+<Mission
+  id="sub-thz"
+  name="Sub-THz Ground Station"
+  status="In design"
+  art={groundstationArt}
+  artAlt="Sub-THz ground station illustration"
+  collaborators="TeraLink-1's ground segment · With UNLab at Northeastern's INSI"
+  scale={[
+    { big: '2 m', label: 'Cassegrain reflector dish' },
+    { big: '83 µm', label: 'surface accuracy' },
+    { big: '225 GHz', label: 'THz uplink & downlink' },
+  ]}
+>
+  The ground half of TeraLink-1's terahertz link, and a truly unprecedented challenge: a 2 m Cassegrain reflector dish
+  with a surface accuracy of 83 micrometers (0.083 mm), carrying two THz-band antennas for 225 GHz uplink and downlink.
+
+  When TeraLink-1 passes over our UHF ground station, it reports its location and telemetry. We turn that into a
+  two-line element set (TLE) to predict where it will be, and the THz station uses a star tracker and rotator to point
+  the dish and follow it. The satellite stores the uplink and downlink I/Q data from each experiment, then sends it down
+  over S-band.
+
+  This semester the team is working on reflector surface-accuracy analysis and fabrication with vendors and NU
+  facilities, thermal and structural analyses, hardware procurement, deployment-site preparation, and the electronics
+  and software architecture for pointing and tracking.
+</Mission>
+
+<Mission id="leonird" name="LEONIRD CubeSat" status="Rising project" collaborators="With the MIT Satellite Team">
+  An MIT-led, open-source, payload-agnostic satellite bus — three 1U CubeSats, built on PyCubed and moving to F´ and
+  Zephyr — that anyone can plug a payload into. The bus is in development, with a formal review process being built and
+  a licensing target of December. NSL is helping choose a 1U payload instrument and supporting payload engineering and
+  bus design across firmware, software, and mechanics.
+</Mission>
+
+</Stack>
+
+<p class="mt-20 border-t border-dusk/60 pt-8 text-slate">
+  Looking for competitions and open-source R&D too? The full portfolio lives on the <a href="/projects">Projects page</a>.
+</p>
+</Section>

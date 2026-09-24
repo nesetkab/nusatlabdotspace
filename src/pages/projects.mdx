@@ -1,0 +1,118 @@
+---
+layout: ../layouts/PageLayout.astro
+title: Projects
+description: "Everything NSL is building: satellite and ground-station programs, national competitions, and open-source R&D."
+heading: Everything we're building
+lead: Active satellite and ground-station programs, national competitions, and open-source R&D — the full portfolio.
+---
+
+import { Section, SectionHeading, Grid, Stack, Card, Mission, PointsOfContact, PointOfContact } from '../components';
+import dewsatArt from '../assets/missions/dewsat.svg';
+
+<Section>
+<SectionHeading eyebrow="Active satellite & ground station programs" title="Missions in flight and on the bench" />
+
+<Grid cols={2}>
+  <Card title="PROVES Atlas" tag="Launched · April 2026" href="/programs#proves-atlas">
+    Northeastern's first satellite: a student-built camera CubeSat, deployed from the ISS as part of a five-university
+    constellation.
+  </Card>
+  <Card title="TeraLink-1" tag="Critical Design Review" href="/programs#teralink-1">
+    A 6U CubeSat for the first-ever terahertz space-to-ground link demo, funded by AFRL's University Nanosatellite
+    Program.
+  </Card>
+  <Card title="Sub-THz Ground Station" tag="In design" href="/programs#sub-thz">
+    TeraLink-1's ground segment: a 2 m reflector dish with 83 µm surface accuracy for 225 GHz uplink and downlink.
+  </Card>
+  <Card title="LEONIRD CubeSat" tag="Rising project" href="/programs#leonird">
+    Helping the MIT Satellite Team pick and build a 1U payload for their open-source, payload-agnostic bus.
+  </Card>
+</Grid>
+</Section>
+
+<Section alt>
+<SectionHeading eyebrow="Competitions" title="Taking on the hard problems" />
+
+<Stack class="mt-12">
+
+<Mission
+  id="dewsat"
+  name="NASA Space to Soil — DEWSat"
+  status="Finalist"
+  art={dewsatArt}
+  artAlt="DEWSat drought early-warning satellite concept illustration"
+  collaborators="NASA Space to Soil challenge"
+  scale={[
+    { big: '550 km', label: 'sun-synchronous orbit' },
+    { big: '12U → 6U', label: 'shrinking the form factor' },
+    { big: '~30–100 KB', label: 'quantized Bi-LSTM model' },
+  ]}
+>
+  A four-member NSL team was selected as a finalist for DEWSat — a Drought Early Warning Satellite. DEWSat carries a red
+  and near-infrared multispectral imager and an onboard edge-AI compute stack. It splits its imagery into tiles, computes
+  vegetation indices on an FPGA, and runs a quantized Bi-LSTM (compressed ~20–50×) to give each tile a drought-risk
+  score. Only the high-risk tiles and their metadata get downlinked, over S-band, with telemetry and commands over UHF.
+  Inference runs only over priority regions during sunlit periods to save power.
+
+  Doing the analysis in orbit means faster responses without heavy ground infrastructure — and the same architecture
+  extends to wildfire, flood, and urban-heat monitoring, especially as a constellation.
+
+  Our competition entry went to AIAA as an extended abstract. This semester the team is finding a PI to work with,
+  developing and quantizing the model, laying out the satellite in CAD as a 6U design (down from 12U), and writing a
+  full paper due December 1 that we'll also submit to AFRL's University Nanosatellite Program.
+</Mission>
+
+<Mission id="gtoc-14" name="GTOC-14" status="Forming interest">
+  The Global Trajectory Optimization Competition — often called the "America's Cup of Rocket Science" — is an
+  international trajectory-optimization contest. GTOC-14 hasn't been announced yet, but NSL intends to field a team and
+  is gathering interested members ahead of the announcement.
+</Mission>
+
+</Stack>
+</Section>
+
+<Section>
+<SectionHeading
+  eyebrow="R&D projects"
+  title="Open-source by default"
+  sub="Tools and hardware we build in the open — usable by any student or researcher."
+/>
+
+<Grid cols={2}>
+  <Card icon="star" title="Open-Source Star Tracker Software" tag="In development">
+    An open attitude-determination algorithm that identifies a spacecraft's orientation from the stars it sees — a
+    Software team project.
+  </Card>
+
+  <Card icon="layers" title="SatSim" tag="Early development">
+    An open-source Python framework for end-to-end CubeSat mission simulation — a modular architecture covering orbital
+    mechanics, spacecraft dynamics, and mission analysis, aiming to become an accessible tool for mission design and
+    education. The Simulations team's mission sandbox.
+  </Card>
+
+  <Card icon="wrench" title="Deployable Solar Panel System" tag="In development" meta="PEAK funded">
+    A student-designed deployable solar-panel mechanism for CubeSats — more power in a small package.
+  </Card>
+
+  <Card icon="zap" title="Miniature EPS" tag="Lesson series">
+    A miniature electrical power system board, built step by step in a workshop series during Hardware meetings and led
+    by our EE lead, Vishhal Kumar.
+  </Card>
+
+  <Card icon="crosshair" title="Pointing & Tracking System" tag="Apply to join" meta="With PhD students">
+    Pointing and tracking development alongside Northeastern PhD students. Spots are limited, so members apply to join.
+  </Card>
+
+  <Card icon="cpu" title="Cornell-Style ChipSats" tag="Up next">
+    Chip-scale satellites in the style of Cornell's ChipSats — whole spacecraft on a single small circuit board. A new
+    Hardware project getting started.
+  </Card>
+</Grid>
+</Section>
+
+<PointsOfContact>
+  <PointOfContact project="TeraLink-1">Noah Typrin, Landon Bayer</PointOfContact>
+  <PointOfContact project="Sub-THz Ground Station">Riley Ashok</PointOfContact>
+  <PointOfContact project="DEWSat">Swati Sundaram</PointOfContact>
+  <PointOfContact project="LEONIRD CubeSat">Laura Teixeira</PointOfContact>
+</PointsOfContact>

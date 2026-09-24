@@ -1,0 +1,9 @@
+---
+interface Props {
+  project: string;
+}
+
+const { project } = Astro.props;
+---
+
+<li><strong class="text-white">{project}</strong> — <slot /></li>

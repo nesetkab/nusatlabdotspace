@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 import cloudflare from '@astrojs/cloudflare';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -46,5 +48,6 @@ export default defineConfig({
   ],
 
   session: false,
-  adapter: cloudflare({ imageService: 'compile' })
+  adapter: cloudflare({ imageService: 'compile' }),
+  integrations: [mdx()]
 });

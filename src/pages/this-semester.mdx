@@ -1,0 +1,80 @@
+---
+layout: ../layouts/PageLayout.astro
+title: This Semester
+description: "NSL's Fall 2026 meeting times, workshops and events, and who to talk to."
+eyebrow: This Semester · Fall 2026
+heading: Meetings, schedule & who to talk to
+lead: Everything you need to show up and get involved this semester.
+---
+
+import { Section, SectionHeading, Grid, Card, JoinLinks, Email, ScheduleTable, Session, EventList, Event } from '../components';
+
+<Section>
+<Grid cols={3} class="mt-0">
+  <Card as="h2" title="New here?" big="Mon · 7 PM">
+    Start with Intro to Satellites in Forsyth 129 — no experience needed, and you'll meet the leads and find a team.
+  </Card>
+  <Card as="h2" title="Join NSL">
+    <JoinLinks />
+  </Card>
+  <Card as="h2" title="Questions?">
+    <Email />
+
+    Reach out anytime — we're happy to help you find a team.
+  </Card>
+</Grid>
+
+<h2 class="mt-16 font-display text-3xl font-medium text-white sm:text-4xl">Fall 2026 meeting times</h2>
+
+<ScheduleTable>
+  <Session day="Monday" time="6:00 – 7:00 PM" where="Forsyth 150">Software</Session>
+  <Session day="Monday" time="7:00 – 8:00 PM" where="Forsyth 129">Intro to Satellites</Session>
+  <Session day="Monday" time="8:00 – 9:00 PM" where="Forsyth 129">E-Board & coordination</Session>
+  <Session day="Tuesday" time="6:00 – 7:00 PM" where="Forsyth 128">Sub-THz Ground Station</Session>
+  <Session day="Tuesday" time="7:00 – 8:00 PM" where="Forsyth 128">Hardware</Session>
+  <Session day="Wednesday" time="6:00 – 7:00 PM" where="Invitation only">TeraLink-1 systems leads</Session>
+  <Session day="Wednesday" time="7:00 – 8:00 PM" where="Forsyth 150">Simulations</Session>
+  <Session day="Wednesday" time="8:00 – 9:00 PM" where="Invitation only">DEWSat</Session>
+  <Session day="Thursday" time="7:00 – 8:00 PM" where="Forsyth 128">Business</Session>
+</ScheduleTable>
+</Section>
+
+<Section alt>
+<SectionHeading
+  eyebrow="Learn with us"
+  title="Workshops, talks & events"
+  sub="Beyond team meetings, there's a lot to learn this semester — from onboarding sessions to visiting lecturers."
+/>
+
+<EventList>
+  <Event when="Mondays · 7 PM" title="Intro to Satellites">
+    Four sessions onboarding newcomers to spacecraft engineering — from what a CubeSat is, to the anatomy of a
+    satellite, to a hands-on mini-project and the ground station. Forsyth 129.
+  </Event>
+  <Event when="Wednesdays" title="Lunch & Learn">
+    A weekly online talk on a different topic every week, from our AFRL University Nanosatellite Program.
+  </Event>
+  <Event when="During Hardware" title="Miniature EPS workshop series">
+    Our EE lead, Vishhal Kumar, runs hands-on power-system lessons during Hardware meetings.
+  </Event>
+  <Event when="Oct 5" title="MathWorks Simulations Workshop">
+    A visiting-lecturer workshop from MathWorks. RSVPs are open now.
+  </Event>
+  <Event when="Nov 17" title="MIT Lincoln Laboratory SATCOM lunch talk">
+    A visiting lecture on satellite communications. More details to come.
+  </Event>
+  <Event when="Late semester" title="Embedded 101 Workshop">
+    A visiting-lecturer workshop on embedded systems. Time TBD.
+  </Event>
+</EventList>
+</Section>
+
+<Section>
+<SectionHeading
+  eyebrow="Persons of contact"
+  title="Who to talk to"
+  sub="The E-Board, team directors, and program leads — plus the full TeraLink-1 org chart — are on the People page."
+/>
+
+<a href="/people" class="mt-8 inline-block rounded-md bg-clay px-5 py-3 font-semibold text-ink no-underline hover:bg-alice hover:no-underline">Meet the team →</a>
+</Section>

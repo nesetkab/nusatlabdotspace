@@ -1,0 +1,12 @@
+---
+import { joinLinks } from '../site/links';
+---
+
+<ul class="space-y-3">
+  {joinLinks.map(({ href, label, note }) => (
+    <li>
+      <a href={href} class="font-semibold">{label}</a>
+      <span class="block text-sm text-slate">{note}</span>
+    </li>
+  ))}
+</ul>
