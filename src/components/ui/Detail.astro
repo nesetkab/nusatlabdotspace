@@ -1,6 +1,6 @@
 ---
-// Media + text block. With something in the "media" slot it's a two-column layout;
-// without one (or with `boxed`) the title and text sit side by side instead.
+// Text block with an optional picture beside it. With something in the "media" slot it's a two-column layout;
+// without one (or with `boxed`) it's a single column.
 import StatusTag from './StatusTag.astro';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
   reverse?: boolean;
   /** Force the text-only layout. Needed when the media slot is filled conditionally, since Astro still reports it as present. */
   boxed?: boolean;
-  /** Small caption under the media. */
+  /** Caption under the media. */
   caption?: string;
   id?: string;
   class?: string;
@@ -22,33 +22,18 @@ const hasMedia = !boxed && Astro.slots.has('media');
 
 <article
   id={id}
-  class:list={[
-    'scroll-mt-24 grid gap-10',
-    hasMedia ? 'items-start md:grid-cols-2 md:gap-14' : 'md:grid-cols-[13rem_minmax(0,1fr)]',
-    className,
-  ]}
+  class:list={['scroll-mt-6', hasMedia && 'grid items-start gap-8 md:gap-12',
+    hasMedia && (reverse ? 'md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]' : 'md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]'), className]}
 >
   {hasMedia && (
-    <figure class:list={[reverse && 'md:order-last']}>
-      <div class="overflow-hidden border border-line bg-ink">
-        <slot name="media" />
-      </div>
-      {caption && <figcaption class="label mt-3">{caption}</figcaption>}
+    <figure class:list={['md:mt-2', !reverse && 'md:order-last']}>
+      <slot name="media" />
+      {caption && <figcaption class="mt-2 text-sm text-slate">{caption}</figcaption>}
     </figure>
   )}
-  {hasMedia ? (
-    <div>
-      {tag && <StatusTag>{tag}</StatusTag>}
-      <Heading class="mt-4 font-display text-2xl font-medium tracking-tight text-white sm:text-3xl">{title}</Heading>
-      <slot />
-    </div>
-  ) : (
-    <>
-      <div>{tag && <StatusTag>{tag}</StatusTag>}</div>
-      <div class="max-w-3xl">
-        <Heading class="font-display text-2xl font-medium tracking-tight text-white sm:text-3xl">{title}</Heading>
-        <slot />
-      </div>
-    </>
-  )}
+  <div>
+    <Heading class="font-display text-2xl font-medium text-white sm:text-3xl">{title}</Heading>
+    {tag && <div class="mt-1"><StatusTag>{tag}</StatusTag></div>}
+    <slot />
+  </div>
 </article>

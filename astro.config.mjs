@@ -17,17 +17,17 @@ export default defineConfig({
 
   fonts: [
     {
-      name: 'Inter',
-      cssVariable: '--font-inter',
+      name: 'IBM Plex Sans',
+      cssVariable: '--font-plex-sans',
       provider: fontProviders.fontsource(),
-      weights: ['400 800'],
-      styles: ['normal']
+      weights: [400, 600],
+      styles: ['normal', 'italic']
     },
     {
-      name: 'JetBrains Mono',
-      cssVariable: '--font-jetbrains-mono',
+      name: 'IBM Plex Mono',
+      cssVariable: '--font-plex-mono',
       provider: fontProviders.fontsource(),
-      weights: [400, 500],
+      weights: [400],
       styles: ['normal'],
       fallbacks: ['monospace']
     },

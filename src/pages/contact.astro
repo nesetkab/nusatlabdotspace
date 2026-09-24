@@ -7,47 +7,26 @@ import { PageIntro, Section, SectionHeading, ContactForm, MailingListForm, conta
   title="Contact"
   description="Get in touch with the Northeastern Satellite Lab, join the mailing list, or find us on social."
 >
-  <PageIntro eyebrow="Contact" title="Get in touch">
-    Questions, collaborations, or want to join? Email us at <a href={`mailto:${contactEmail}`} class="break-all sm:break-normal">{contactEmail}</a>
-    or use the form below.
+  <PageIntro title="Contact">
+    Prospective members, collaborators, and press: email us at
+    <a href={`mailto:${contactEmail}`} class="break-all sm:break-normal">{contactEmail}</a>, or use the form below.
+    We’re also on
+    {socialLinks.map(({ href, label }, i) => (
+      <>{i > 0 && ' and '}<a href={href}>{label}</a></>
+    ))}.
   </PageIntro>
 
   <Section>
-    <SectionHeading
-      eyebrow="Reach the lab"
-      title="Send us a message"
-      sub="Whether you're a prospective member, a collaborator, or press, drop us a line and we'll get back to you."
-    />
-    <div class="mt-12 grid gap-12 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10">
-      <div class="hidden md:block"></div>
-      <div class="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
-        <dl class="divide-y divide-line self-start border-y border-line text-sm">
-          <div class="grid grid-cols-[6rem_minmax(0,1fr)] gap-4 py-3">
-            <dt class="label pt-0.5">Email</dt>
-            <dd><a href={`mailto:${contactEmail}`} class="break-all">{contactEmail}</a></dd>
-          </div>
-          {socialLinks.map(({ href, label }) => (
-            <div class="grid grid-cols-[6rem_minmax(0,1fr)] gap-4 py-3">
-              <dt class="label pt-0.5">{label}</dt>
-              <dd><a href={href} class="break-all">{href.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></dd>
-            </div>
-          ))}
-        </dl>
-        <ContactForm />
-      </div>
-    </div>
+    <SectionHeading title="Send a message" sub="The form opens your email app with the message filled in." />
+    <div class="mt-6"><ContactForm /></div>
   </Section>
 
   <Section id="mailing">
     <SectionHeading
-      eyebrow="Mailing list"
-      title="Join our mailing list"
-      sub="For Northeastern students and the NSL community: meeting times, launch news, and ways to get involved."
+      title="Mailing list"
+      sub="Meeting times, launch news, and ways to get involved, for Northeastern students and the NSL community."
     />
-    <div class="md:pl-[15.5rem]">
-      <MailingListForm />
-      <p class="mt-6 text-sm text-slate">Project-specific mailing lists (TeraLink-1, THz ground station) are coming soon.</p>
-    </div>
+    <MailingListForm />
+    <p class="mt-4 text-sm text-slate">Project mailing lists for TeraLink-1 and the THz ground station are coming soon.</p>
   </Section>
-
 </BaseLayout>

@@ -1,5 +1,5 @@
 ---
-// A page section. Sections are separated by a hairline rule, not by alternating background colors.
+// A page section. `class` adds to (or overrides) the default spacing.
 interface Props {
   id?: string;
   class?: string;
@@ -8,8 +8,6 @@ interface Props {
 const { id, class: className } = Astro.props;
 ---
 
-<section id={id} class:list={['scroll-mt-20 border-t border-line py-16 sm:py-24', className]}>
-  <div class="mx-auto max-w-6xl px-5">
-    <slot />
-  </div>
+<section id={id} class:list={['mx-auto w-full max-w-6xl scroll-mt-6 px-5 py-12 sm:py-16', className]}>
+  <slot />
 </section>

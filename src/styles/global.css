@@ -13,14 +13,13 @@
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  /* Hairlines: the site is drawn with rules, not boxes. */
+  /* Rules and table borders. */
   --color-line: color-mix(in oklab, var(--color-dusk) 55%, var(--color-ink));
-  --color-line-strong: var(--color-dusk);
 }
 
 @theme inline {
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains-mono);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
   --font-display: var(--font-science-gothic);
 }
 
@@ -31,12 +30,11 @@
   }
 
   body {
-    @apply flex min-h-dvh flex-col font-sans;
-    font-feature-settings: 'cv11', 'ss01';
+    @apply flex min-h-dvh flex-col font-sans text-[1.0625rem] leading-7;
   }
 
   a {
-    @apply text-clay decoration-clay/40 underline-offset-4 hover:underline;
+    @apply text-clay underline decoration-clay/40 decoration-1 underline-offset-[0.2em] hover:decoration-clay;
   }
 
   :focus-visible {
@@ -48,28 +46,11 @@
   }
 }
 
-/* Running text from MDX pages. Links stay underlined so they read as links without color alone. */
+/* Running text. Kept to a readable line length. */
 @utility prose-nsl {
-  @apply space-y-4 leading-relaxed text-alice/90;
-
-  & a {
-    @apply underline;
-  }
-}
-
-/* Small label set in mono: for data labels and metadata, not as a heading on every section. */
-@utility label {
-  @apply font-mono text-xs font-medium tracking-[0.12em] text-slate uppercase;
-}
-
-@utility btn {
-  @apply inline-flex items-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold no-underline transition-colors hover:no-underline;
+  @apply max-w-[68ch] space-y-4 text-pretty;
 }
 
 @utility btn-primary {
-  @apply btn bg-clay text-ink hover:bg-white;
-}
-
-@utility btn-ghost {
-  @apply btn border border-line-strong text-alice hover:border-alice hover:text-white;
+  @apply inline-flex cursor-pointer items-center justify-center rounded-sm bg-clay px-5 py-2.5 font-semibold whitespace-nowrap text-ink no-underline hover:bg-white;
 }

@@ -2,11 +2,10 @@
 import { joinLinks } from '../site/links';
 ---
 
-<ul class="divide-y divide-line border-y border-line">
+<ul class="space-y-2">
   {joinLinks.map(({ href, label, note }) => (
-    <li class="py-3">
-      <a href={href} class="font-semibold">{label}</a>
-      <span class="block text-sm text-slate">{note}</span>
+    <li>
+      <a href={href}>{label}</a><span class="text-alice/80">: {note}</span>
     </li>
   ))}
 </ul>

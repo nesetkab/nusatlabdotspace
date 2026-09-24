@@ -1,15 +1,12 @@
 ---
 layout: ../layouts/PageLayout.astro
 title: Programs
-description: "NSL's flagship satellite and ground-station programs: PROVES Atlas, TeraLink-1, and the Sub-THz Ground Station."
+description: "NSL’s flagship satellite and ground-station programs: PROVES Atlas, TeraLink-1, and the Sub-THz Ground Station."
 heading: Programs
 lead: "Our flagship satellite and ground-station programs. These are multi-semester missions with real hardware, real launches, and teams of a dozen or more students working with national partners."
 ---
 
 import { Section, Stack, Mission } from '../components';
-import provesArt from '../assets/missions/proves.svg';
-import satelliteArt from '../assets/missions/satellite.svg';
-import groundstationArt from '../assets/missions/groundstation.svg';
 
 <Section>
 <h2 class="sr-only">Flagship programs</h2>
@@ -20,8 +17,6 @@ import groundstationArt from '../assets/missions/groundstation.svg';
   id="proves-atlas"
   name="PROVES Atlas"
   status="Launched · April 2026"
-  art={provesArt}
-  artAlt="PROVES Atlas CubeSat illustration"
   collaborators="With the Pleiades Consortium, led by Cal Poly Pomona · PROVES"
   scale={[
     { big: '~15', label: 'students on the build' },
@@ -45,15 +40,12 @@ import groundstationArt from '../assets/missions/groundstation.svg';
   id="teralink-1"
   name="TeraLink-1"
   status="Critical Design Review"
-  art={satelliteArt}
-  artAlt="TeraLink-1 CubeSat concept illustration"
-  collaborators="Funded by AFRL's University Nanosatellite Program (UNP NS-12) · With UNLab at Northeastern's INSI"
+  collaborators="Funded by AFRL’s University Nanosatellite Program (UNP NS-12) · With UNLab at Northeastern’s INSI"
   scale={[
     { big: '6U', label: 'CubeSat (10 × 20 × 30 cm)' },
     { big: '225 GHz', label: 'THz uplink & downlink' },
     { big: '~400 km', label: 'ISS deployment orbit' },
   ]}
-  reverse
 >
   TeraLink-1 will fly the first-ever terahertz-frequency space-to-ground link demo. It's a 6U CubeSat funded by AFRL's
   University Nanosatellite Program and built with the Ultrabroadband Nanonetworking Lab (UNLab) at Northeastern's
@@ -75,9 +67,7 @@ import groundstationArt from '../assets/missions/groundstation.svg';
   id="sub-thz"
   name="Sub-THz Ground Station"
   status="In design"
-  art={groundstationArt}
-  artAlt="Sub-THz ground station illustration"
-  collaborators="TeraLink-1's ground segment · With UNLab at Northeastern's INSI"
+  collaborators="TeraLink-1’s ground segment · With UNLab at Northeastern’s INSI"
   scale={[
     { big: '2 m', label: 'Cassegrain reflector dish' },
     { big: '83 µm', label: 'surface accuracy' },
@@ -106,7 +96,7 @@ import groundstationArt from '../assets/missions/groundstation.svg';
 
 </Stack>
 
-<p class="mt-20 border-t border-line pt-8 text-slate">
-  Looking for competitions and open-source R&D too? The full portfolio lives on the <a href="/projects">Projects page</a>.
+<p class="mt-20 text-alice/80">
+  Competitions and open-source R&D are on the <a href="/projects">Projects page</a>.
 </p>
 </Section>

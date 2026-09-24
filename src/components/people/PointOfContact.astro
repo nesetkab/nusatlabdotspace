@@ -6,4 +6,4 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<li class="grid gap-1 border-t border-line py-3 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10"><strong class="font-semibold text-white">{project}</strong> <span><slot /></span></li>
+<li><strong class="font-semibold text-white">{project}:</strong> <slot /></li>

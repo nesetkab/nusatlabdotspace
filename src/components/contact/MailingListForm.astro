@@ -3,7 +3,7 @@
 import { contactEmail } from '../site/links';
 ---
 
-<form data-mailing-form data-to={contactEmail} class="mt-8 flex max-w-lg flex-col gap-3 sm:flex-row" novalidate>
+<form data-mailing-form data-to={contactEmail} class="mt-5 flex max-w-lg flex-col gap-3 sm:flex-row" novalidate>
   <input
     type="email"
     name="email"
@@ -11,13 +11,13 @@ import { contactEmail } from '../site/links';
     autocomplete="email"
     placeholder="your.email@northeastern.edu"
     aria-label="Email address"
-    class="min-w-0 flex-1 rounded-sm border border-line-strong bg-ink px-4 py-3 text-white placeholder:text-slate/60 focus:border-clay focus:outline-none"
+    class="min-w-0 flex-1 rounded-sm border border-dusk bg-ink px-4 py-3 text-white placeholder:text-slate/60 focus:border-clay focus:outline-none"
   />
-  <button type="submit" class="btn-primary cursor-pointer justify-center">
+  <button type="submit" class="btn-primary">
     Join the list
   </button>
 </form>
-<p data-mailing-done hidden class="mt-3 text-sm text-slate" role="status">Thanks! Your email app should open to confirm.</p>
+<p data-mailing-done hidden class="mt-3 text-sm text-slate" role="status">Thanks. Your email app should open so you can send the request.</p>
 
 <script>
   for (const form of document.querySelectorAll<HTMLFormElement>('[data-mailing-form]')) {

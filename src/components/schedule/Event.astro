@@ -8,11 +8,11 @@ interface Props {
 const { when, title } = Astro.props;
 ---
 
-<li class="grid gap-2 py-6 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10">
-  <p class="font-mono text-sm text-clay md:pt-0.5">{when}</p>
+<li class="grid gap-1 py-5 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8">
+  <p class="text-slate">{when}</p>
   <div>
-    <h3 class="text-lg font-semibold text-white">{title}</h3>
-    <div class="mt-2 text-slate">
+    <h3 class="font-semibold text-white">{title}</h3>
+    <div class="mt-1 max-w-[62ch] text-alice/80">
       <slot />
     </div>
   </div>

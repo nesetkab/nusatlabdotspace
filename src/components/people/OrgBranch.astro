@@ -10,12 +10,12 @@ const { name } = Astro.props;
 
 <li
   class="relative lg:px-3 lg:pt-8
-    lg:before:absolute lg:before:top-0 lg:before:left-0 lg:before:w-1/2 lg:before:border-t lg:before:border-line-strong lg:before:content-['']
-    lg:after:absolute lg:after:top-0 lg:after:right-0 lg:after:h-8 lg:after:w-1/2 lg:after:border-t lg:after:border-l lg:after:border-line-strong lg:after:content-['']
+    lg:before:absolute lg:before:top-0 lg:before:left-0 lg:before:w-1/2 lg:before:border-t lg:before:border-dusk lg:before:content-['']
+    lg:after:absolute lg:after:top-0 lg:after:right-0 lg:after:h-8 lg:after:w-1/2 lg:after:border-t lg:after:border-l lg:after:border-dusk lg:after:content-['']
     lg:first:before:hidden lg:last:after:border-t-0"
 >
-  <h3 class="border border-line-strong bg-prussian px-4 py-3 text-center text-sm font-semibold tracking-wide text-white">{name}</h3>
-  <ul class="mt-6 space-y-8">
+  <h3 class="rounded-sm bg-prussian px-4 py-2.5 text-center font-semibold text-white">{name}</h3>
+  <ul class="mt-5 space-y-6">
     <slot />
   </ul>
 </li>

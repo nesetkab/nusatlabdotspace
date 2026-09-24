@@ -1,7 +1,5 @@
 ---
-// One name in an <OrgList>.
+// One name in an <OrgList>. Names run together as a comma-separated sentence.
 ---
 
-<li class="break-inside-avoid border-t border-line py-2.5 text-sm text-alice">
-  <slot />
-</li>
+<li class="inline after:content-[',_'] last:after:content-['.']"><slot /></li>

@@ -1,60 +1,37 @@
 ---
-// The one card used across the site, placed inside a <Grid> as one ruled cell. Every part but the title is optional:
-//   icon     : feather icon in the top-left           (teams, R&D projects)
-//   tag      : status label in the top-right          (R&D projects, program cards)
-//   eyebrow  : small label above the title            (press outlet)
-//   big      : large figure above the title           (facts, meeting time)
-//   numbered : auto-numbers cards inside <Grid ordered>
-//   meta     : small line under the body              (collaborators)
-//   href     : makes the whole card a link, ending in `cta` ("Read more")
+// One entry in a <Grid> (or any <ul>/<ol>): a title with an optional status line and body text.
+//   tag      : status, shown under the title            (R&D projects, program entries)
+//   eyebrow  : small line above the title                (press outlet)
+//   numbered : numbers the entry inside <Grid ordered>
+//   meta     : small line under the body                 (collaborators)
+//   href     : links the title
 // The children are the body text.
-import Icon, { type IconName } from './Icon.astro';
-import StatusTag from './StatusTag.astro';
-
 interface Props {
   title: string;
   as?: 'h2' | 'h3';
-  icon?: IconName;
   tag?: string;
   eyebrow?: string;
-  big?: string;
   numbered?: boolean;
   meta?: string;
   href?: string;
-  cta?: string;
 }
 
-const { title, as: Heading = 'h3', icon, tag, eyebrow, big, numbered = false, meta, href, cta = 'Read more' } = Astro.props;
-const Box = href ? 'a' : 'div';
+const { title, as: Heading = 'h3', tag, eyebrow, numbered = false, meta, href } = Astro.props;
 ---
 
-<li class="border-r border-b border-line">
-  <Box
-    href={href}
+<li class:list={[numbered && '[counter-increment:item]']}>
+  {eyebrow && <p class="mb-1 text-sm text-slate">{eyebrow}</p>}
+  <Heading
     class:list={[
-      'flex h-full flex-col p-6 sm:p-8',
-      href && 'group text-alice no-underline transition-colors hover:bg-prussian/60 hover:no-underline',
-      numbered && '[counter-increment:item]',
+      'font-semibold text-balance text-white',
+      numbered && "before:mr-2 before:font-mono before:font-normal before:text-slate before:content-[counter(item)'.']",
     ]}
   >
-    {(icon || tag) && (
-      <div class="mb-6 flex items-start justify-between gap-4">
-        {icon && <Icon name={icon} class="size-6 text-clay" />}
-        {tag && <StatusTag>{tag}</StatusTag>}
-      </div>
-    )}
-    {numbered && <span aria-hidden="true" class="mb-6 font-mono text-sm text-clay before:content-[counter(item,decimal-leading-zero)]"></span>}
-    {eyebrow && <p class="label mb-3">{eyebrow}</p>}
-    {big && <p class="mb-3 font-display text-4xl font-medium text-white">{big}</p>}
-    <Heading class="text-lg font-semibold text-balance text-white">{title}</Heading>
-    <div class="mt-2 flex-1 space-y-3 text-pretty text-slate">
-      <slot />
-    </div>
-    {meta && <p class="label mt-5 text-alice/70">{meta}</p>}
-    {href && (
-      <span class="mt-6 text-sm font-semibold text-clay group-hover:underline">
-        {cta}<span aria-hidden="true"> &rarr;</span>
-      </span>
-    )}
-  </Box>
+    {href ? <a href={href}>{title}</a> : title}
+  </Heading>
+  {tag && <p class="text-sm text-clay">{tag}</p>}
+  <div class="mt-2 space-y-3 text-pretty text-alice/80">
+    <slot />
+  </div>
+  {meta && <p class="mt-2 text-sm text-slate">{meta}</p>}
 </li>

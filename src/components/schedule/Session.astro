@@ -10,8 +10,8 @@ const { day, time, where } = Astro.props;
 ---
 
 <tr>
-  <th scope="row" class="py-4 pr-5 font-semibold text-white">{day}</th>
-  <td class="py-4 pr-5"><slot /></td>
-  <td class="py-4 pr-5 font-mono text-sm whitespace-nowrap text-clay">{time}</td>
-  <td class="py-4 pr-5 text-slate">{where}</td>
+  <th scope="row" class="py-2.5 pr-6 font-normal text-white">{day}</th>
+  <td class="py-2.5 pr-6"><slot /></td>
+  <td class="py-2.5 pr-6 whitespace-nowrap">{time}</td>
+  <td class="py-2.5 pr-6 text-slate">{where}</td>
 </tr>

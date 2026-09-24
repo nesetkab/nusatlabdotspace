@@ -1,5 +1,5 @@
 ---
-// Grid of <Card>s drawn as ruled cells, like a table. `ordered` renders an <ol> so `<Card numbered>` children count up.
+// A list of <Card>s that flows into columns on wide screens. `ordered` renders an <ol> so `<Card numbered>` children count up.
 // `class` replaces the default top margin.
 interface Props {
   cols?: 2 | 3 | 4;
@@ -7,11 +7,11 @@ interface Props {
   class?: string;
 }
 
-const { cols = 3, ordered = false, class: className = 'mt-12' } = Astro.props;
+const { cols = 2, ordered = false, class: className = 'mt-8' } = Astro.props;
 const columns = { 2: 'md:grid-cols-2', 3: 'md:grid-cols-3', 4: 'sm:grid-cols-2 lg:grid-cols-4' }[cols];
 const List = ordered ? 'ol' : 'ul';
 ---
 
-<List class:list={['grid border-t border-l border-line', columns, ordered && '[counter-reset:item]', className]}>
+<List class:list={['grid gap-x-12 gap-y-8', columns, ordered && '[counter-reset:item]', className]}>
   <slot />
 </List>

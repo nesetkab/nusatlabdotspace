@@ -2,15 +2,14 @@
 layout: ../layouts/PageLayout.astro
 title: Projects
 description: "Everything NSL is building: satellite and ground-station programs, national competitions, and open-source R&D."
-heading: Everything we're building
+heading: Projects
 lead: The full portfolio. Satellite and ground-station programs, national competitions, and open-source R&D.
 ---
 
 import { Section, SectionHeading, Grid, Stack, Card, Mission, PointsOfContact, PointOfContact } from '../components';
-import dewsatArt from '../assets/missions/dewsat.svg';
 
 <Section>
-<SectionHeading eyebrow="Active satellite & ground station programs" title="Missions in flight and on the bench" />
+<SectionHeading title="Satellites and ground stations" sub="Write-ups for each are on the Programs page." />
 
 <Grid cols={2}>
   <Card title="PROVES Atlas" tag="Launched · April 2026" href="/programs#proves-atlas">
@@ -31,16 +30,14 @@ import dewsatArt from '../assets/missions/dewsat.svg';
 </Section>
 
 <Section>
-<SectionHeading eyebrow="Competitions" title="Taking on the hard problems" />
+<SectionHeading title="Competitions" />
 
-<Stack class="mt-12">
+<Stack class="mt-10">
 
 <Mission
   id="dewsat"
   name="DEWSat"
   status="Finalist"
-  art={dewsatArt}
-  artAlt="DEWSat drought early-warning satellite concept illustration"
   collaborators="NASA Space to Soil challenge"
   scale={[
     { big: '550 km', label: 'sun-synchronous orbit' },
@@ -73,37 +70,36 @@ import dewsatArt from '../assets/missions/dewsat.svg';
 
 <Section>
 <SectionHeading
-  eyebrow="R&D projects"
-  title="Open-source by default"
+  title="Open-source R&D"
   sub="Tools and hardware we build in the open, for any student or researcher to use."
 />
 
 <Grid cols={2}>
-  <Card icon="star" title="Open-Source Star Tracker Software" tag="In development">
+  <Card title="Open-Source Star Tracker Software" tag="In development">
     An open attitude-determination algorithm that identifies a spacecraft's orientation from the stars it sees. A
     Software team project.
   </Card>
 
-  <Card icon="layers" title="SatSim" tag="Early development">
+  <Card title="SatSim" tag="Early development">
     An open-source Python framework for end-to-end CubeSat mission simulation, with a modular architecture covering orbital
     mechanics, spacecraft dynamics, and mission analysis, aiming to become an accessible tool for mission design and
     education. The Simulations team's mission sandbox.
   </Card>
 
-  <Card icon="wrench" title="Deployable Solar Panel System" tag="In development" meta="PEAK funded">
+  <Card title="Deployable Solar Panel System" tag="In development" meta="PEAK funded">
     A student-designed deployable solar-panel mechanism for CubeSats: more power in a small package.
   </Card>
 
-  <Card icon="zap" title="Miniature EPS" tag="Lesson series">
+  <Card title="Miniature EPS" tag="Lesson series">
     A miniature electrical power system board, built step by step in a workshop series during Hardware meetings and led
     by our EE lead, Vishhal Kumar.
   </Card>
 
-  <Card icon="crosshair" title="Pointing & Tracking System" tag="Apply to join" meta="With PhD students">
+  <Card title="Pointing & Tracking System" tag="Apply to join" meta="With PhD students">
     Pointing and tracking development alongside Northeastern PhD students. Spots are limited, so members apply to join.
   </Card>
 
-  <Card icon="cpu" title="Cornell-Style ChipSats" tag="Up next">
+  <Card title="Cornell-Style ChipSats" tag="Up next">
     Chip-scale satellites in the style of Cornell's ChipSats: whole spacecraft on a single small circuit board. A new
     Hardware project getting started.
   </Card>
