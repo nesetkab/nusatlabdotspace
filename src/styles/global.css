@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* NSL brand palette — source of truth: design/nsl-palette.svg */
+/* NSL brand palette. Keep in sync with design/nsl-palette.svg. */
 @theme {
   --color-*: initial;
   --color-ink: #070c13;
@@ -15,19 +15,9 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-body);
   --font-mono: var(--font-jetbrains-mono);
   --font-display: var(--font-science-gothic);
-}
-
-@theme {
-  --animate-marquee: marquee var(--marquee-duration, 42s) linear infinite;
-
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
-    }
-  }
 }
 
 @layer base {
@@ -38,6 +28,11 @@
 
   body {
     @apply flex min-h-dvh flex-col font-sans;
+  }
+
+  /* Counter behind the 01, 02, … on <SectionHeading>. Starts over on each page. */
+  main {
+    counter-reset: section;
   }
 
   a {

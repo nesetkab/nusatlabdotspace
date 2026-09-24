@@ -1,4 +1,4 @@
-// Everything, in one import: `import { Section, Card, Mission } from '../components';`
+// Re-exports every component, so pages can write `import { Section, Card, Mission } from '../components';`
 export * from './layout';
 export * from './ui';
 export * from './people';

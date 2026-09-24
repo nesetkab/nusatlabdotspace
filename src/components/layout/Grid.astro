@@ -7,11 +7,11 @@ interface Props {
   class?: string;
 }
 
-const { cols = 3, ordered = false, class: className = 'mt-12' } = Astro.props;
+const { cols = 3, ordered = false, class: className = 'mt-10' } = Astro.props;
 const columns = { 2: 'md:grid-cols-2', 3: 'md:grid-cols-3', 4: 'sm:grid-cols-2 lg:grid-cols-4' }[cols];
 const List = ordered ? 'ol' : 'ul';
 ---
 
-<List class:list={['grid gap-6', columns, ordered && '[counter-reset:item]', className]}>
+<List class:list={['grid gap-x-8 gap-y-10', columns, ordered && '[counter-reset:item]', className]}>
   <slot />
 </List>

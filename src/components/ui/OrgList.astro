@@ -1,0 +1,15 @@
+---
+// A labeled row of organization names, passed as <Org> children.
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="grid gap-3 border-t border-dusk/60 py-5 md:grid-cols-[14rem_1fr] md:gap-8">
+  <p class="font-mono text-xs text-slate md:pt-1">{label}</p>
+  <ul class="flex flex-wrap gap-x-3 gap-y-1 text-lg text-white">
+    <slot />
+  </ul>
+</div>
