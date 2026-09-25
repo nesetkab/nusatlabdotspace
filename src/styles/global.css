@@ -18,8 +18,6 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-plex-sans);
-  --font-mono: var(--font-plex-mono);
   --font-display: var(--font-science-gothic);
 }
 
